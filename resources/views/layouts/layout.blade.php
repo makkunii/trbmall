@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trb Mall - @yield('title')</title>
+
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+
+
+  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+
+    <div class="container">
+      <a href="../../index3.html" class="navbar-brand">
+        <img src="images/trbmalllogo.png" alt="TRB MALL Logo" style="height:60px">
+      </a>
+
+      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+            <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Category</a>
+                <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                  <li><a href="#" class="dropdown-item">Some action </a></li>
+                  <li><a href="#" class="dropdown-item">Some other action</a></li>
+
+                  <li class="dropdown-divider"></li>
+
+                </ul>
+              </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Contact</a>
+                </li>
+        <!-- SEARCH FORM -->
+
+        <form class="form-inline ml-0 ml-md-3">
+          <div class="input-group input-group-sm .col-8">
+            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" style="height:40px; width:400px">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-lg btn-danger" style="width:50px">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right navbar links -->
+      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+        <ul class="navbar-nav ">
+              <li class="nav-item">
+                <a href="{{ route('login')}}" class="nav-link">Login</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="fas fa-shopping-cart text-danger" style="font-size: 20px"></i>
+                  <span class="badge badge-warning navbar-badge">1</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <span class="dropdown-header">1 Items</span>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                   TESTING
+                  </a>
+                  <div class="dropdown-divider"></div>
+
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item dropdown-footer">See All Items</a>
+                </div>
+              </li>
+      </ul>
+    </div>
+  </nav>
+</head>
+
+<body class="hold-transition layout-top-nav">
+
+
+
+   @yield("section")
+
+
+
+
+
+
+
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.min.js"></script>
+</body>
+</html>
