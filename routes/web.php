@@ -17,6 +17,17 @@ use App\Http\Controllers\DashboardController;
 */
 
 
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+// PAPA WENDEL LIBRE MOKO
+
 Route::get('/home', function () {
     return view('home');
 });
