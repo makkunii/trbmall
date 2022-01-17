@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Category;
+
+class ApiCategoryController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+      $categories = Category::with('children')->whereNull('parent_id')->get();
+
+      return view('categories.index')->with([
+        'categories'  => $categories
+      ]);
+    }
+}
