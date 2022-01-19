@@ -25,27 +25,27 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('dashboard')}}" class="nav-link">
               <i class="fas fa-columns nav-icon"></i>
               <p>Dashboard</p>
             </a>
           </li>
-          
+
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('accounts')}}" class="nav-link">
               <i class="fas fa-users nav-icon"></i>
               <p>Accounts</p>
             </a>
           </li>
 		  <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('products')}}" class="nav-link">
               <i class="fas fa-shopping-bag nav-icon"></i>
               <p>Products</p>
             </a>
           </li>
             </ul>
           </li>
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class DashboardController extends Controller
 {
+    public function dashboard(){
+        return view('dashboard/dashboard');
+    }
     public function products(){
         return view('dashboard/products');
     }
@@ -15,4 +18,5 @@ class DashboardController extends Controller
     public function accounts(){
         return view('dashboard/accounts');
     }
+
 }

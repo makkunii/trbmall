@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -21,7 +22,7 @@ use App\Http\Controllers\DashboardController;
 // PAPA WENDEL LIBRE MOKO
 // PAPA WENDEL LIBRE MOKO
 // PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO   
+// PAPA WENDEL LIBRE MOKO
 // PAPA WENDEL LIBRE MOKO
 // PAPA WENDEL LIBRE MOKO
 // PAPA WENDEL LIBRE MOKO
@@ -29,12 +30,12 @@ use App\Http\Controllers\DashboardController;
 // PAPA WENDEL LIBRE MOKO
 // AKO RIN LIBRE MO WENDELL
 
-Route::get('/home', function () {
-    return view('home');
+
+
+Route::get('/login', function () {
+    return view('login');
 });
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Route::get('/login', function () {
     return view('login');
@@ -55,9 +56,11 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 /*-------------------------------------
 DASHBOARD
 --------------------------------------*/
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 //PRODUCT
 Route::get('/dashboard/products', [DashboardController::class, 'products'])->name('products');
 //ACCOUNTS
 Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
 
+Route::get('/', [HomeController::class, 'index'])->name('home');

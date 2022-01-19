@@ -12,7 +12,7 @@
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
 
     <div class="container">
-      <a href="../../index3.html" class="navbar-brand">
+      <a href="{{ route('home')}}" class="navbar-brand">
         <img src="images/trbmalllogo.png" alt="TRB MALL Logo" style="height:60px">
       </a>
 
@@ -24,10 +24,10 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-            <a href="#" class="nav-link">Home</a>
+            <a href="" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Contact</a>
+                <a href="{{ route('home')}}" class="nav-link">Contact</a>
                 </li>
       </div>
 

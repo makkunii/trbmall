@@ -16,13 +16,12 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
-<body class="hold-transition sidebar-mini">
+<body>
 
-  
-    @yield('navbar')
     @yield('sidebar')
+    @yield('navbar')
     @yield('footer')
-  
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
