@@ -17,4 +17,5 @@ class Product extends Model
         'length',
         'height',
         'status' 
+    ]
 }
