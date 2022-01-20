@@ -50,8 +50,8 @@ public function insertproduct(Request $request) {
    public function updateproduct(Request $request, $id){
           // VALIDATE PRODUCT
           $request->validate([
-            'name' => 'required|string|max:255|unique:products,name',
-            'category_id' => 'nullable',
+            'name' => 'required|string|max:255|unique:products,name,'. $id,
+            'category' => 'nullable',
             'tax' => 'nullable',
             'generic_name' => 'nullable|string|max:255',
             'drug_class' => 'nullable|string|max:255',
@@ -61,24 +61,24 @@ public function insertproduct(Request $request) {
             'is_prescription' => 'required|numeric',
             'is_available' => 'required|numeric',
             'image' => 'mimes:jpg,jpeg,png|max:1096'
-          ]);
+        ]);
 
           // UPDATE PRODUCT
-          $update = DB::table('products')
-          ->where('id', $request->id)
-               ->update([
-                'name' => $request->input('name'),
-                'category_id' => $request->input('category'),
-                'tax_id' => $request->input('tax'),
-                'generic_name' => $request->input('generic_name'),
-                'drug_class' => $request->input('drug_class'),
-                'description' => $request->input('description'),
-                'price' => $request->input('price'),
-                'measurement' => $request->input('measurement'),
-                'is_prescription' => $request->input('is_prescription'),
-                'is_available' => $request->input('is_available'),
-                'image' => $request->input('is_available'),
-           ]);
+          Product::where('id', $id)
+          ->update([
+          'name' => $request->input('name'),
+          'category_id' => $request->input('category'),
+          'tax_id' => $request->input('tax'),
+          'generic_name' => $request->input('generic_name'),
+          'drug_class' => $request->input('drug_class'),
+          'description' => $request->input('description'),
+          'price' => $request->input('price'),
+          'measurement' => $request->input('measurement'),
+          'is_prescription' => $request->input('is_prescription'),
+          'is_available' => $request->input('is_available'),
+          'image' =>$request->input('image'),
+      ]);
+
 
        // REDIRECT TO PRODUCT INDEX
        return redirect()->route('index')->with('message', $request->name . ' has been updated.');
