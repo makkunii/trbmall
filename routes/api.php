@@ -18,7 +18,7 @@ use App\Http\Controllers\ApiProductController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/products',[ApiProductController::class, 'showproduct']);
+Route::get('/showproduct',[ApiProductController::class, 'showproduct']);
 Route::get('/editproduct/{id}',[ApiProductController::class, 'editproduct']);
 Route::post('/insertproduct',[ApiProductController::class, 'insertproduct']);
-Route::post('/updateproduct',[ApiProductController::class, 'updateproduct']);
+Route::post('/updateproduct/{id}',[ApiProductController::class, 'updateproduct']);
