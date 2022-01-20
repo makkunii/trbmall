@@ -119,7 +119,7 @@ public function insertproduct(Request $request) {
        }
 
   //**************************EDIT VIEW**************************//
-  public function editproduct(){
+  public function editproduct($id){
           $fetchedit = DB::table('products')
           ->select( 'name',
           'category_id',
