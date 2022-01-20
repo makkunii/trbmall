@@ -13,7 +13,7 @@ public function insertproduct(Request $request) {
        // VALIDATE PRODUCT
        $request->validate([
         'name' => 'required|string|max:255|unique:products,name',
-        'category' => 'nullable',
+        'category_id' => 'nullable',
         'tax' => 'nullable',
         'generic_name' => 'nullable|string|max:255',
         'drug_class' => 'nullable|string|max:255',
@@ -51,7 +51,7 @@ public function insertproduct(Request $request) {
           // VALIDATE PRODUCT
           $request->validate([
             'name' => 'required|string|max:255|unique:products,name',
-            'category' => 'nullable',
+            'category_id' => 'nullable',
             'tax' => 'nullable',
             'generic_name' => 'nullable|string|max:255',
             'drug_class' => 'nullable|string|max:255',
