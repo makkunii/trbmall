@@ -52,30 +52,35 @@ public function insertproduct(Request $request) {
    public function updateproduct(Request $request, $id){
           // VALIDATE PRODUCT
           $request->validate([
-              'name' => 'required|string|max:255|unique:products,name,'. $id,
-              'description' => 'required',
-              'price' => 'float',
-              'category' => 'required',
-              'sub-category' => 'required',
-              'weight' => 'nullable',
-              'length' => 'nullable',
-              'height' => 'nullable',
-              'status' => 'required|string|max:255'
+            'name' => 'required|string|max:255|unique:products,name',
+            'category' => 'nullable',
+            'tax' => 'nullable',
+            'generic_name' => 'nullable|string|max:255',
+            'drug_class' => 'nullable|string|max:255',
+            'description' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'measurement' => 'required|string|max:255',
+            'is_prescription' => 'required|numeric',
+            'is_available' => 'required|numeric',
+            'image' => 'mimes:jpg,jpeg,png|max:1096'
           ]);
 
           // UPDATE PRODUCT
            Product::where('id', $id)
                ->update([
-                 'name' => $request->input('name'),
-                 'description' => $request->input('description'),
-                 'price' => $request->input('price'),
-                 'category' => $request->input('category'),
-                 'sub-category' => $request->input('sub-category'),
-                 'weight' => $request->input('weight'),
-                 'length' => $request->input('length'),
-                 'height' => $request->input('height'),
-                 'status' => $request->input('status')
-
+                'name' => $request->input('name'),
+                'category_id' => $request->input('category'),
+                'tax_id' => $request->input('tax'),
+                'generic_name' => $request->input('generic_name'),
+                'drug_class' => $request->input('drug_class'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+                'stock' => $request->input('stock'),
+                'measurement' => $request->input('measurement'),
+                'is_prescription' => $request->input('is_prescription'),
+                'is_available' => $request->input('is_available'),
+                'image' => $request->input('is_available'),
            ]);
 
        // REDIRECT TO PRODUCT INDEX
@@ -85,14 +90,14 @@ public function insertproduct(Request $request) {
 
    public function disableproduct(Request $request){
        $request->validate([
-           'status' => 'required'
+           'is_active' => 'required'
        ]); // this is validation for api before update
 
        //update in database
-       $update = DB::table('tbl_product')
+       $update = DB::table('product')
        ->where('id', $request->id)
        ->update([
-           'status' => $request->status
+           'is_active' => $request->is_active
        ]);
        return response()->json(['Success' => 'Product Disable'],200);
 
@@ -100,7 +105,7 @@ public function insertproduct(Request $request) {
 
    //**************************SHOW VIEW**************************//
    public function showproduct(){
-           $fetchedit = DB::table('tbl_product')
+           $fetchedit = DB::table('product')
            ->select('name','description','price','category','sub-category','weight','length','height','status')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
@@ -108,7 +113,7 @@ public function insertproduct(Request $request) {
 
   //**************************EDIT VIEW**************************//
   public function editproduct(){
-          $fetchedit = DB::table('tbl_product')
+          $fetchedit = DB::table('product')
           ->select('name','description','price','category','sub-category','weight','length','height','status')
           ->where('tbl_product',$id)
           ->first();
