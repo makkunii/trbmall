@@ -106,7 +106,19 @@ public function insertproduct(Request $request) {
    //**************************SHOW VIEW**************************//
    public function showproduct(){
            $fetchedit = DB::table('product')
-           ->select('name','description','price','category','sub-category','weight','length','height','status')
+           ->select( 'name',
+           'category_id',
+           'tax_id',
+           'generic_name',
+           'drug_class',
+           'description',
+           'price',
+           'stock',
+           'measurement',
+           'is_prescription',
+           'is_available',
+           'is_active',
+           'image')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }
@@ -114,7 +126,19 @@ public function insertproduct(Request $request) {
   //**************************EDIT VIEW**************************//
   public function editproduct(){
           $fetchedit = DB::table('product')
-          ->select('name','description','price','category','sub-category','weight','length','height','status')
+          ->select( 'name',
+          'category_id',
+          'tax_id',
+          'generic_name',
+          'drug_class',
+          'description',
+          'price',
+          'stock',
+          'measurement',
+          'is_prescription',
+          'is_available',
+          'is_active',
+          'image')
           ->where('tbl_product',$id)
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);

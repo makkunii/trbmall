@@ -21,6 +21,6 @@ class Product extends Model
         'is_prescription',
         'is_available',
         'is_active',
-        'image',
+        'image'
     ];
 }
