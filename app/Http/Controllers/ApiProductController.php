@@ -64,7 +64,8 @@ public function insertproduct(Request $request) {
           ]);
 
           // UPDATE PRODUCT
-           Product::where('id', $id)
+          $update = DB::table('products')
+          ->where('id', $request->id)
                ->update([
                 'name' => $request->input('name'),
                 'category_id' => $request->input('category'),
