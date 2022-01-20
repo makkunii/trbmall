@@ -84,20 +84,20 @@ public function insertproduct(Request $request) {
    }
 
 
-   public function disableproduct(Request $request){
-       $request->validate([
-           'is_active' => 'required'
-       ]); // this is validation for api before update
+//    public function disableproduct(Request $request){
+//        $request->validate([
+//            'is_active' => 'required'
+//        ]); // this is validation for api before update
 
-       //update in database
-       $update = DB::table('product')
-       ->where('id', $request->id)
-       ->update([
-           'is_active' => $request->is_active
-       ]);
-       return response()->json(['Success' => 'Product Disable'],200);
+//        //update in database
+//        $update = DB::table('product')
+//        ->where('id', $request->id)
+//        ->update([
+//            'is_active' => $request->is_active
+//        ]);
+//        return response()->json(['Success' => 'Product Disable'],200);
 
-}
+// }
 
    //**************************SHOW VIEW**************************//
    public function showproduct(){
