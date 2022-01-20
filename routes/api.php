@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/products',[ApiProductController::class, 'showproduct']);
 Route::get('/editproduct/{id}',[ApiProductController::class, 'editproduct']);
-Route::post('/insertproduct',[ApiProductController::class, 'insertproduct']);
+Route::post('/insert',[ApiProductController::class, 'insertproduct']);
 Route::post('/updateproduct',[ApiProductController::class, 'updateproduct']);
