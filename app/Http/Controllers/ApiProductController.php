@@ -93,9 +93,9 @@ public function insertproduct(Request $request) {
    public function showproduct(){
            $fetchedit = DB::table('products')
            ->select( 'name',
-           'description',
+           'description', 
            'price',
-           'category',
+           'category_id',
            'weight',
            'length',
            'height',
@@ -110,7 +110,7 @@ public function insertproduct(Request $request) {
           ->select( 'name',
           'description',
           'price',
-          'category',
+          'category_id',
           'weight',
           'length',
           'height',
