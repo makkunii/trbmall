@@ -133,7 +133,7 @@ public function insertproduct(Request $request) {
           'is_available',
           'is_active',
           'image')
-          ->where('tbl_product',$id)
+          ->where('products',$id)
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);
       }
