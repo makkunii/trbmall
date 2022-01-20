@@ -9,14 +9,18 @@ class Product extends Model
 {
     protected $table = 'tbl_product';
     protected $fillable = [
-           'name',
-           'description',
-           'price' ,
-           'category',
-           'sub-category',
-           'weight',
-           'length',
-           'height',
-           'status'
+        'name',
+        'category_id',
+        'tax_id',
+        'generic_name',
+        'drug_class',
+        'description',
+        'price',
+        'stock',
+        'measurement',
+        'is_prescription',
+        'is_available',
+        'is_active',
+        'image',
     ];
 }
