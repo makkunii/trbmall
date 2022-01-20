@@ -12,33 +12,28 @@ class ApiProductController extends Controller
 public function insertproduct(Request $request) {
        // VALIDATE PRODUCT
        $request->validate([
-        'name' => 'required|string|max:255|unique:products,name',
-        'category_id' => 'nullable',
-        'tax' => 'nullable',
-        'generic_name' => 'nullable|string|max:255',
-        'drug_class' => 'nullable|string|max:255',
-        'description' => 'required|string|max:255',
-        'price' => 'required|numeric',
-        'measurement' => 'required|string|max:255',
-        'is_prescription' => 'required|numeric',
-        'is_available' => 'required|numeric',
-        'image' => 'mimes:jpg,jpeg,png|max:1096'
+           'name' => 'required|string|max:255',
+           'description' => 'required',
+           'price' => 'float',
+           'category_id' => 'required',
+           'weight' => 'nullable',
+           'length' => 'nullable',
+           'height' => 'nullable',
+           'status' => 'required|string|max:255'
 
        ]);
 
        // CREATE PRODUCT
        Product::create([
         'name' => $request->input('name'),
-        'category_id' => $request->input('category'),
-        'tax_id' => $request->input('tax'),
-        'generic_name' => $request->input('generic_name'),
-        'drug_class' => $request->input('drug_class'),
         'description' => $request->input('description'),
         'price' => $request->input('price'),
-        'measurement' => $request->input('measurement'),
-        'is_prescription' => $request->input('is_prescription'),
-        'is_available' => $request->input('is_available'),
-        'image' => $request->input('is_available'),
+        'category_id' => $request->input('category_id'),
+        'weight' => $request->input('weight'),
+        'length' => $request->input('length'),
+        'height' => $request->input('height'),
+        'status' => $request->input('status')
+        
 
        ]);
 
@@ -50,33 +45,27 @@ public function insertproduct(Request $request) {
    public function updateproduct(Request $request, $id){
           // VALIDATE PRODUCT
           $request->validate([
-            'name' => 'required|string|max:255|unique:products,name,'. $id,
-            'category' => 'nullable',
-            'tax' => 'nullable',
-            'generic_name' => 'nullable|string|max:255',
-            'drug_class' => 'nullable|string|max:255',
-            'description' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'measurement' => 'required|string|max:255',
-            'is_prescription' => 'required|numeric',
-            'is_available' => 'required|numeric',
-            'image' => 'mimes:jpg,jpeg,png|max:1096'
+            'name' => 'required|string|max:255',
+           'description' => 'required',
+           'price' => 'float',
+           'category_id' => 'required',
+           'weight' => 'nullable',
+           'length' => 'nullable',
+           'height' => 'nullable',
+           'status' => 'required|string|max:255'
         ]);
 
           // UPDATE PRODUCT
           Product::where('id', $id)
           ->update([
-          'name' => $request->input('name'),
-          'category_id' => $request->input('category'),
-          'tax_id' => $request->input('tax'),
-          'generic_name' => $request->input('generic_name'),
-          'drug_class' => $request->input('drug_class'),
-          'description' => $request->input('description'),
-          'price' => $request->input('price'),
-          'measurement' => $request->input('measurement'),
-          'is_prescription' => $request->input('is_prescription'),
-          'is_available' => $request->input('is_available'),
-          'image' =>$request->input('image'),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'category_id' => $request->input('category_id'),
+            'weight' => $request->input('weight'),
+            'length' => $request->input('length'),
+            'height' => $request->input('height'),
+            'status' => $request->input('status')
       ]);
 
 
@@ -104,17 +93,13 @@ public function insertproduct(Request $request) {
    public function showproduct(){
            $fetchedit = DB::table('products')
            ->select( 'name',
-           'category_id',
-           'tax_id',
-           'generic_name',
-           'drug_class',
            'description',
            'price',
-           'measurement',
-           'is_prescription',
-           'is_available',
-           'is_active',
-           'image')
+           'category',
+           'weight',
+           'length',
+           'height',
+           'status')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }
@@ -123,17 +108,13 @@ public function insertproduct(Request $request) {
   public function editproduct($id){
           $fetchedit = DB::table('products')
           ->select( 'name',
-          'category_id',
-          'tax_id',
-          'generic_name',
-          'drug_class',
           'description',
           'price',
-          'measurement',
-          'is_prescription',
-          'is_available',
-          'is_active',
-          'image')
+          'category',
+          'weight',
+          'length',
+          'height',
+          'status')
           ->where('id',$id)
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);
