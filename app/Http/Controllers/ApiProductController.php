@@ -105,7 +105,7 @@ public function insertproduct(Request $request) {
 
    //**************************SHOW VIEW**************************//
    public function showproduct(){
-           $fetchedit = DB::table('product')
+           $fetchedit = DB::table('products')
            ->select( 'name',
            'category_id',
            'tax_id',
@@ -125,7 +125,7 @@ public function insertproduct(Request $request) {
 
   //**************************EDIT VIEW**************************//
   public function editproduct(){
-          $fetchedit = DB::table('product')
+          $fetchedit = DB::table('products')
           ->select( 'name',
           'category_id',
           'tax_id',
