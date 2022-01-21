@@ -24,4 +24,4 @@ Route::get('/editproduct/{id}',[ApiProductController::class, 'editproduct']);
 Route::post('/insertproduct',[ApiProductController::class, 'insertproduct']);
 Route::post('/updateproduct/{id}',[ApiProductController::class, 'updateproduct']);
 //********************CATEGORY********************\\
-Route::get('/showcategory',[ApiCategoryController::class, 'showcategory']);
+
