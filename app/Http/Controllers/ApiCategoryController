@@ -12,29 +12,6 @@ class ApiCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showcategory($category = null)
-    {
-        $categories = null;
-        $title = '';
-
-        if ($category == 'inactive') {
-            // GETS INACTIVE CATEGORIES
-            $categories = Category::where('is_active', 0)->where('id', '!=', 1)->get() ?? null;
-            $title = 'Inactive';
-        } else {
-            // GETS ALL ACTIVE CATEGORIES
-            $categories = Category::where('is_active', 1)->where('id', '!=', 1)->get() ?? null;
-            $title = 'Active';
-        }
-
-        if ($categories == null) {
-            return redirect()->route('admin.category.index')->with('message', 'there are currently no categories');
-        }
-
-        return view('show')
-            ->with('categories', $categories)
-            ->with('title', $title);
-    }
 
 
 }
