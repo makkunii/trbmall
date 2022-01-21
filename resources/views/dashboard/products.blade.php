@@ -3,7 +3,16 @@
 <div class="wrapper">
 @include('include.sidebar')
 @include('include.navbar')
+<style>
+    .select2-selection__rendered {
+    line-height: 25px !important;
+    margin-bottom: 50px  !important;
 
+    }
+    .select2 option {
+        height: 24px;
+    }
+</style>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -28,7 +37,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            
+
 
             <div class="card">
               <div class="card-header text-right bg-light">
@@ -112,26 +121,26 @@
                     <label for="price">Price</label>
                     <input type="text" class="form-control" id="price" placeholder="Enter price" required>
                   </div>
-                  <div class="form-group">
+                   <div class="form-group">
                         <label>Category</label>
-                        <select class="form-control">
-                          <option selected disabled>Category</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label>Sub-category</label>
-                        <select class="form-control">
-                          <option selected disabled>Select sub-category</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
+                        <div class="select2-danger">
+                            <select class="select2" name="Category[]" multiple="multiple" data-placeholder="Category" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                <option>Gadget</option>
+                                <option>Beauty Products</option>
+                                <option>Testing</option>
+                            </select>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sub-Category</label>
+                        <div class="select2-danger">
+                            <select class="select2" name="SubCategory[]" multiple="multiple" data-placeholder="SubCategory" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                <option>Gadget</option>
+                                <option>Beauty Products</option>
+                                <option>Testing</option>
+                            </select>
+                            </div>
+                    </div>
                   <div class="form-group">
                     <label for="weight">Weight</label>
                     <input type="text" class="form-control" id="weight" placeholder="Enter weight">
@@ -267,4 +276,3 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
- 
