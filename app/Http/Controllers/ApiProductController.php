@@ -101,6 +101,8 @@ public function insertproduct(Request $request) {
            'status')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
+
+           return redirect()->route('index.showproduct')->with('message', $request->name . ' has been updated.');
        }
 
   //**************************EDIT VIEW**************************//
