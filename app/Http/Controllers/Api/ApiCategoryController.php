@@ -12,51 +12,6 @@ class ApiCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($category = null)
-    {
-        $categories = null;
-        $title = '';
-
-        if ($category == 'inactive') {
-            // GETS INACTIVE CATEGORIES
-            $categories = Category::where('is_active', 0)->where('id', '!=', 1)->get() ?? null;
-            $title = 'Inactive';
-        } else {
-            // GETS ALL ACTIVE CATEGORIES
-            $categories = Category::where('is_active', 1)->where('id', '!=', 1)->get() ?? null;
-            $title = 'Active';
-        }
-
-        if ($categories == null) {
-            return redirect()->route('admin.category.index')->with('message', 'there are currently no categories');
-        }
-
-        return view('show')
-            ->with('categories', $categories)
-            ->with('title', $title);
-    }
 
 
-public function store(Request $request)
-{
-      $validatedData = $this->validate($request, [
-            'name'      => 'required|min:3|max:255|string',
-            'parent_id' => 'sometimes|nullable|numeric'
-      ]);
-
-      Category::create($validatedData);
-
-      return redirect()->route('index')->withSuccess('You have successfully created a Category!');
-}
-
-public function update(Request $request, Category $category)
-{
-        $validatedData = $this->validate($request, [
-            'name'  => 'required|min:3|max:255|string'
-        ]);
-
-        $category->update($validatedData);
-
-        return redirect()->route('index')->withSuccess('You have successfully updated a Category!');
-}
 }
