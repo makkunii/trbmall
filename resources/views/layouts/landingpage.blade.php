@@ -24,7 +24,7 @@
 </head>
 
 <body>
-   
+
 @yield("content")
 @yield('categories')
 @yield('search')
@@ -32,7 +32,7 @@
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
-            
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">

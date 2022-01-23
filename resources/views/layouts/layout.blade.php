@@ -27,7 +27,7 @@
             <a href="" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('home')}}" class="nav-link">Contact</a>
+                <a href="{{ route('home')}} " class="nav-link">Contact</a>
                 </li>
       </div>
 
@@ -40,7 +40,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="{{ route('cart')}}">
                   <i class="fas fa-shopping-cart text-danger btn-lg"></i>
-                  <span class="badge badge-warning navbar-badge">1</span>
+                  <span class="badge badge-warning navbar-badge">{{ Cart::getTotalQuantity()}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                   <span class="dropdown-header">1 Items</span>
