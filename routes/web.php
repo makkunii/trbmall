@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\DashboardController;
 
@@ -18,50 +19,23 @@ use App\Http\Controllers\Web\DashboardController;
 |
 */
 
-
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// PAPA WENDEL LIBRE MOKO
-// AKO RIN LIBRE MO WENDELL
-
-
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/dashboard/products', function () {
-    return view('dashboard/products');
- });
-
- Route::get('/dashboard/accounts', function () {
-    return view('dashboard/accounts');
- });
-
-
  //LOGIN
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 /*-------------------------------------
 DASHBOARD
 --------------------------------------*/
+//Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
 //PRODUCT
 Route::get('/dashboard/products', [DashboardController::class, 'products'])->name('products');
 //ACCOUNTS
 Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
 
+/*-------------------------------------
+TRB MALL
+--------------------------------------*/
+//LANDING PAGE - HOME
 Route::get('/', [HomeController::class, 'index'])->name('home');
+// CART
+Route::get('/mall/cart', [CartController::class, 'cart'])->name('cart');

@@ -13,7 +13,7 @@
 
     <div class="container">
       <a href="{{ route('home')}}" class="navbar-brand">
-        <img src="images/trbmalllogo.png" alt="TRB MALL Logo" style="height:60px">
+        <img src="{{ asset('images/trbmalllogo.png') }}" alt="TRB MALL Logo" style="height:60px">
       </a>
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,8 +38,8 @@
                 <a href="{{ route('login')}}" class="nav-link">Login</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                  <i class="fas fa-shopping-cart text-danger" style="font-size: 20px"></i>
+                <a class="nav-link" data-toggle="dropdown" href="{{ route('cart')}}">
+                  <i class="fas fa-shopping-cart text-danger btn-lg"></i>
                   <span class="badge badge-warning navbar-badge">1</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

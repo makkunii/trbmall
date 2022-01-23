@@ -10,34 +10,13 @@
     
     <br>
 
-    <!-- Hero Section Begin -->
+    <!-- Categories Section Begin -->
     <section class="hero">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>Categories</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">Sample</a></li>
-                        </ul>
-                    </div>
-                </div>
+            @include('include.categories')
                 <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="What do you need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                    </div>
+                    @include('include.search')
                     <div class="hero__item set-bg" data-setbg="assets/img/hero/banner.jpg">
                         <div class="hero__text">
                             <span>TRB MALL</span>
@@ -50,9 +29,9 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Categories Section End -->
 
-    <!-- Featured Section Begin -->
+    <!-- Products Section Begin -->
     <section class="featured spad">
         <div class="container">
             <div class="row">
@@ -98,4 +77,4 @@
            
     </section>
     @endsection
-    <!-- Featured Section End -->
+    <!-- Products Section End -->
