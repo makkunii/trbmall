@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiProductController;
+use App\Http\Controllers\ApiAccountController;
 use App\Http\Controllers\ApiCategoryController;
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,9 @@ Route::get('/showproduct',[ApiProductController::class, 'showproduct']);
 Route::get('/editproduct/{id}',[ApiProductController::class, 'editproduct']);
 Route::post('/insertproduct',[ApiProductController::class, 'insertproduct']);
 Route::post('/updateproduct/{id}',[ApiProductController::class, 'updateproduct']);
-//********************CATEGORY********************\\
-
+//********************Account********************\\
+Route::get('/showaccount',[ApiAccountController::class, 'showaccount']);
+Route::get('/editaccount/{id}',[ApiAccountController::class, 'editaccount']);
+Route::post('/insertaccount',[ApiAccountController::class, 'insertaccount']);
+Route::post('/updateaccount/{id}',[ApiAccountController::class, 'updateaccount']);
+//********************Category********************\\
