@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Account;
 use Illuminate\Http\Request;
 
 class ApiAccountController extends Controller
