@@ -104,7 +104,7 @@ public function insertaccount(Request $request) {
 }
 
    //**************************SHOW VIEW**************************//
-   public function showproduct(){
+   public function showaccount(){
            $fetchedit = DB::table('accounts')
            ->select('name','email','email_verified_at','password','is_admin','is_active','firs_name','last_name','address','contact','scid')
            ->get();
@@ -112,7 +112,7 @@ public function insertaccount(Request $request) {
        }
 
   //**************************EDIT VIEW**************************//
-  public function editproduct(){
+  public function editaccount(){
           $fetchedit = DB::table('accounts')
           ->select('name','email','email_verified_at','password','is_admin','is_active','firs_name','last_name','address','contact','scid')
           ->where('accounts',$id)
