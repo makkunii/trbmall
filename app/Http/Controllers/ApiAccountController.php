@@ -115,7 +115,7 @@ public function insertaccount(Request $request) {
   public function editaccount($id){
           $fetchedit = DB::table('users')
           ->select('name','email','email_verified_at','password','is_admin','is_active','first_name','last_name','address','contact','scid')
-          ->where('users',$id)
+          ->where('id',$id)
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);
       }
