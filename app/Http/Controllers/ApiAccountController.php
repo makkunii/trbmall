@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use Illuminate\Http\Request;
-
+use DB;
 class ApiAccountController extends Controller
 {
   //**************************INSERT**************************//
@@ -16,7 +16,7 @@ public function insertaccount(Request $request) {
            'email_verified_at' => 'float',
            'is_admin' => 'required',
            'is_active' => 'required',
-           'firs_name' => 'nullable',
+           'first_name' => 'nullable',
            'last_name' => 'nullable',
            'contact' => 'nullable',
            'scid' => 'required|string|max:255',
@@ -33,7 +33,7 @@ public function insertaccount(Request $request) {
            'email_verified_at' => $request->input('email_verified_at'),
            'is_admin' => $request->input('is_admin'),
            'is_active' => $request->input('is_active'),
-           'firs_name' => $request->input('firs_name'),
+           'first_name' => $request->input('firs_name'),
            'last_name' => $request->input('last_name'),
            'contact' => $request->input('contact'),
            'scid' => $request->input('scid'),
@@ -56,7 +56,7 @@ public function insertaccount(Request $request) {
               'email_verified_at' => 'float',
               'is_admin' => 'required',
               'is_active' => 'required',
-              'firs_name' => 'nullable',
+              'first_name' => 'nullable',
               'last_name' => 'nullable',
               'contact' => 'nullable',
               'scid' => 'required|string|max:255',
@@ -73,7 +73,7 @@ public function insertaccount(Request $request) {
                  'email_verified_at' => $request->input('email_verified_at'),
                  'is_admin' => $request->input('is_admin'),
                  'is_active' => $request->input('is_active'),
-                 'firs_name' => $request->input('firs_name'),
+                 'first_name' => $request->input('firs_name'),
                  'last_name' => $request->input('last_name'),
                  'contact' => $request->input('contact'),
                  'scid' => $request->input('scid'),
@@ -106,7 +106,7 @@ public function insertaccount(Request $request) {
    //**************************SHOW VIEW**************************//
    public function showaccount(){
            $fetchedit = DB::table('users')
-           ->select('name','email','email_verified_at','password','is_admin','is_active','firs_name','last_name','address','contact','scid')
+           ->select('name','email','email_verified_at','password','is_admin','is_active','first_name','last_name','address','contact','scid')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }
@@ -114,7 +114,7 @@ public function insertaccount(Request $request) {
   //**************************EDIT VIEW**************************//
   public function editaccount($id){
           $fetchedit = DB::table('users')
-          ->select('name','email','email_verified_at','password','is_admin','is_active','firs_name','last_name','address','contact','scid')
+          ->select('name','email','email_verified_at','password','is_admin','is_active','first_name','last_name','address','contact','scid')
           ->where('accounts',$id)
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);

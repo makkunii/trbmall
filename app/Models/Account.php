@@ -15,7 +15,7 @@ class Category extends Model
            'email_verified_at',
            'is_admin',
            'is_active',
-           'firs_name',
+           'first_name',
            'last_name',
            'contact',
            'scid',
