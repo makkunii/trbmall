@@ -94,7 +94,7 @@ public function insertaccount(Request $request) {
        ]); // this is validation for api before update
 
        //update in database
-       $update = DB::table('accounts')
+       $update = DB::table('users')
        ->where('id', $request->id)
        ->update([
            'is_active' => $request->is_active
@@ -105,7 +105,7 @@ public function insertaccount(Request $request) {
 
    //**************************SHOW VIEW**************************//
    public function showaccount(){
-           $fetchedit = DB::table('accounts')
+           $fetchedit = DB::table('users')
            ->select('name','email','email_verified_at','password','is_admin','is_active','firs_name','last_name','address','contact','scid')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
@@ -113,7 +113,7 @@ public function insertaccount(Request $request) {
 
   //**************************EDIT VIEW**************************//
   public function editaccount($id){
-          $fetchedit = DB::table('accounts')
+          $fetchedit = DB::table('users')
           ->select('name','email','email_verified_at','password','is_admin','is_active','firs_name','last_name','address','contact','scid')
           ->where('accounts',$id)
           ->first();
