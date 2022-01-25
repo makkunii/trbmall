@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiProductController;
 use App\Http\Controllers\ApiAccountController;
 use App\Http\Controllers\ApiCategoryController;
+use App\Http\Controllers\ApiSubCategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,3 +31,12 @@ Route::get('/editaccount/{id}',[ApiAccountController::class, 'editaccount']);
 Route::post('/insertaccount',[ApiAccountController::class, 'insertaccount']);
 Route::post('/updateaccount/{id}',[ApiAccountController::class, 'updateaccount']);
 //********************Category********************\\
+Route::get('/showcategory',[ApiCategoryController::class, 'showcategory']);
+Route::get('/editcategory/{id}',[ApiCategoryController::class, 'editcategory']);
+Route::post('/insertcategory',[ApiCategoryController::class, 'insertcategory']);
+Route::post('/updatecategory/{id}',[ApiCategoryController::class, 'updatecategory']);
+//********************SubCategory********************\\
+Route::get('/showsubcategory',[ApiSubCategoryController::class, 'showsubcategory']);
+Route::get('/editsubcategory/{id}',[ApiSubCategoryController::class, 'editsubcategory']);
+Route::post('/insertsubcategory',[ApiSubCategoryController::class, 'insertsubcategory']);
+Route::post('/updatesubcategory/{id}',[ApiSubCategoryController::class, 'updatesubcategory']);
