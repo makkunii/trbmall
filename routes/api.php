@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiProductController;
 use App\Http\Controllers\ApiAccountController;
 use App\Http\Controllers\ApiCategoryController;
 use App\Http\Controllers\ApiSubCategoryController;
+use App\Http\Controllers\ApiOrdersController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,3 +41,8 @@ Route::get('/showsubcategory',[ApiSubCategoryController::class, 'showsubcategory
 Route::get('/editsubcategory/{id}',[ApiSubCategoryController::class, 'editsubcategory']);
 Route::post('/insertsubcategory',[ApiSubCategoryController::class, 'insertsubcategory']);
 Route::post('/updatesubcategory/{id}',[ApiSubCategoryController::class, 'updatesubcategory']);
+//********************Orders********************\\
+Route::get('/showorder',[ApiSubCategoryController::class, 'showorder']);
+Route::get('/editorder/{id}',[ApiSubCategoryController::class, 'showorder']);
+Route::post('/insertorder',[ApiSubCategoryController::class, 'insertorder']);
+Route::post('/updateorder/{id}',[ApiSubCategoryController::class, 'updateorder']);
