@@ -16,7 +16,6 @@
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" data-setbg="images/testing.png">
                         <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
 
                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -24,6 +23,7 @@
                             <input type="hidden" value="{{ $product->name }}" name="name">
                             <input type="hidden" value="{{ $product->price }}" name="price">
                             <input type="hidden" value="1" name="quantity">
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><button class="btn btn-block btn-warning"><i class="fa fa-shopping-cart"></i> Add to Cart</button></li>
                             </form>
 

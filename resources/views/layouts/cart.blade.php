@@ -81,14 +81,14 @@
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $item->id}}" >
                                                   <input type="number" name="quantity" value="{{ $item->quantity }}"
-                                                  class="form-control .col-3" /><br>
+                                                  class="form-control" /><br>
                                                   <button type="submit" class="btn btn-block btn-danger">update</button>
                                                   </form>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        P{{ Cart::getTotal() }}
+                                        P{{ ($item->quantity* $item->price)  }}
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <form action="{{ route('cart.remove') }}" method="POST">
