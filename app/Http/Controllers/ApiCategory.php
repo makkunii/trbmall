@@ -70,10 +70,10 @@ public function insertcategory(Request $request) {
        }
 
   //**************************EDIT VIEW**************************//
-  public function editcate(){
+  public function editcategory($id){
           $fetchedit = DB::table('category')
           ->select('name','is_active')
-          ->where('accounts',$id)
+          ->where('id',$id)
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);
       }

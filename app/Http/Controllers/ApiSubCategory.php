@@ -70,10 +70,10 @@ public function insertsubcategory(Request $request) {
        }
 
   //**************************EDIT VIEW**************************//
-  public function editsubcategory(){
+  public function editsubcategory($id){
           $fetchedit = DB::table('sub_category')
           ->select('name','is_active')
-          ->where('accounts',$id)
+          ->where('id',$id)
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);
       }
