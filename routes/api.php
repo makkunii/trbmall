@@ -42,7 +42,7 @@ Route::get('/editsubcategory/{id}',[ApiSubCategoryController::class, 'editsubcat
 Route::post('/insertsubcategory',[ApiSubCategoryController::class, 'insertsubcategory']);
 Route::post('/updatesubcategory/{id}',[ApiSubCategoryController::class, 'updatesubcategory']);
 //********************Orders********************\\
-Route::get('/showorder',[ApiSubCategoryController::class, 'showorder']);
-Route::get('/editorder/{id}',[ApiSubCategoryController::class, 'showorder']);
-Route::post('/insertorder',[ApiSubCategoryController::class, 'insertorder']);
-Route::post('/updateorder/{id}',[ApiSubCategoryController::class, 'updateorder']);
+Route::get('/showorder',[ApiOrdersController::class, 'showorder']);
+Route::get('/editorder/{id}',[ApiOrdersController::class, 'showorder']);
+Route::post('/insertorder',[ApiOrdersController::class, 'insertorder']);
+Route::post('/updateorder/{id}',[ApiOrdersController::class, 'updateorder']);
