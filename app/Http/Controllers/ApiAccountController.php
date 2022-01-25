@@ -112,7 +112,7 @@ public function insertaccount(Request $request) {
        }
 
   //**************************EDIT VIEW**************************//
-  public function editaccount(){
+  public function editaccount($id){
           $fetchedit = DB::table('accounts')
           ->select('name','email','email_verified_at','password','is_admin','is_active','firs_name','last_name','address','contact','scid')
           ->where('accounts',$id)
