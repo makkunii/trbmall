@@ -18,7 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->float('price')->nullable();
-            $table->foreignId('category_id')->nullable();
+            $table->foreignId('subcategory_id')->nullable();
+            $table->foreignId('merchant_id')->nullable();
             $table->string('weight')->nullable();
             $table->string('length')->nullable();
             $table->string('height')->nullable();

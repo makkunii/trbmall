@@ -38,7 +38,7 @@
                 <a href="{{ route('login')}}" class="nav-link">Login</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="{{ route('cart')}}">
+                <a class="nav-link" href="{{ route('cart.list')}}">
                   <i class="fas fa-shopping-cart text-danger btn-lg"></i>
                   <span class="badge badge-warning navbar-badge">{{ Cart::getTotalQuantity()}}</span>
                 </a>
