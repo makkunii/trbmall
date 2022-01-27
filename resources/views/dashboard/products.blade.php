@@ -69,31 +69,19 @@
                   </thead>
 
                   <tbody>
-                  @foreach ($productdata as $vproducts)
+                  
                   <tr>
-                    <td>{{ $vproducts['id'] }</td>
-                    <td>{{ $vproducts['name'] }</td>
                     <td></td>
-                    <td>{{ $vproducts['description'] }</td>
-                    <td>{{ $vproducts['price'] }</td>
                     <td></td>
-                    <td>
-                    @if($vproducts['status'] == 'Active')
-
-                    <div class="badge bg-green text-white">{{ $vproducts['status'] }}</div>
-
-                    @elseif($vproducts['status'] == 'Disabled')
-
-                    <div class="badge bg-red text-white">{{ $vproducts['status'] }}</div>
-
-                    @endif
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
                     </td>
                   </tr>
-                  @endforeach
                   </tbody>
 
                 </table>
@@ -126,7 +114,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="" method="POST">
+            <form action="{{ route('insertproduct') }}" method="POST">
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>

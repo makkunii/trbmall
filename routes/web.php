@@ -30,9 +30,10 @@ DASHBOARD
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 //PRODUCT
 Route::get('/dashboard/products', [DashboardController::class, 'products'])->name('products');
-Route::post('/dashboard/products/insert', [AcademicsController::class, 'insertproduct'])->name('insertproduct');
-Route::get('/dashboard/products/edit', [AcademicsController::class, 'editproduct'])->name('editproduct');
+Route::post('/dashboard/products/insert', [DashboardController::class, 'insertproduct'])->name('insertproduct');
 Route::post('/dashboard/products/update', [AcademicsController::class, 'updateproduct'])->name('updateproduct');
+
+
 //ACCOUNTS
 Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
 
