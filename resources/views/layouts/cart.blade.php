@@ -1,9 +1,5 @@
 @extends('home')
-
-
 @section('content')
-
-
 @section('title', 'Cart')
 
 @section('content')
@@ -30,7 +26,7 @@
     <!-- Categories Section End -->
 
     <!-- Title Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('assets/img/breadcrumb.jpg') }}">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('public/assets/img/breadcrumb.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -68,7 +64,7 @@
                                 @foreach ($cartItems as $item)
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="{{ asset('assets/img/cart/cart-1.jpg') }}" alt="">
+                                        <img src="{{ asset('public/assets/img/cart/cart-1.jpg') }}" alt="">
                                         <h5>{{ $item->name }}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
