@@ -23,7 +23,7 @@ public function insertproduct(Request $request) {
        ]);
 
        // CREATE PRODUCT
-       $insert = DB::table('tbl_school_year')
+       $insert = DB::table('products')
        ->insertGetId([
         'name' => $request->name,
         'description' => $request->description,
