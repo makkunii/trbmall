@@ -27,7 +27,7 @@ public function insertaccount(Request $request) {
        ]);
 
        // CREATE PRODUCT
-       $insert = DB::table('products')
+       $insert = DB::table('accounts')
        ->insertGetId([
            'name' => $request->input('name'),
            'email' => $request->input('email'),
@@ -45,7 +45,7 @@ public function insertaccount(Request $request) {
        ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return redirect()->route('index')->with('message', $request->name . ' has been saved.');
+       return response()->json(['Success' => 'Account Created'],200);
    }
 
   //**************************UPDATE**************************//
@@ -67,7 +67,7 @@ public function insertaccount(Request $request) {
           ]);
 
           // UPDATE PRODUCT
-          $update = DB::table('products')
+          $update = DB::table('accounts')
           ->where('id', $request->id)
                 ->update([
                  'name' => $request->input('name'),
@@ -86,7 +86,7 @@ public function insertaccount(Request $request) {
            ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return redirect()->route('index')->with('message', $request->name . ' has been updated.');
+       return response()->json(['Success' => 'Product Updated'],200);
    }
 
 
