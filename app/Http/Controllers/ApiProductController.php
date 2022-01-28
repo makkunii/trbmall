@@ -15,7 +15,7 @@ public function insertproduct(Request $request) {
            'name' => 'required|string|max:255',
            'description' => 'required',
            'price' => 'float',
-           'sub_category_id' => 'required',
+           'subcategory_id' => 'required',
            'weight' => 'nullable',
            'length' => 'nullable',
            'height' => 'nullable',
@@ -28,7 +28,7 @@ public function insertproduct(Request $request) {
         'name' => $request->name,
         'description' => $request->description,
         'price' => $request->price,
-        'sub_category_id' => $request->category_id,
+        'subcategory_id' => $request->category_id,
         'weight' => $request->weight,
         'length' => $request->length,
         'height' => $request->height,
@@ -48,7 +48,7 @@ public function insertproduct(Request $request) {
             'name' => 'required|string|max:255',
            'description' => 'required',
            'price' => 'float',
-           'sub_category_id' => 'required',
+           'subcategory_id' => 'required',
            'weight' => 'nullable',
            'length' => 'nullable',
            'height' => 'nullable',
@@ -62,7 +62,7 @@ public function insertproduct(Request $request) {
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-            'sub_category_id' => $request->input('category_id'),
+            'subcategory_id' => $request->input('category_id'),
             'weight' => $request->input('weight'),
             'length' => $request->input('length'),
             'height' => $request->input('height'),
@@ -97,7 +97,7 @@ public function insertproduct(Request $request) {
            'name',
            'description',
            'price',
-           'sub_category_id',
+           'subcategory_id',
            'weight',
            'length',
            'height',
@@ -105,7 +105,7 @@ public function insertproduct(Request $request) {
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
 
-           return redirect()->route('index.showproduct')->with('message', $request->name . ' has been updated.');
+           
        }
 
   //**************************EDIT VIEW**************************//
@@ -114,7 +114,7 @@ public function insertproduct(Request $request) {
           ->select( 'name',
           'description',
           'price',
-          'sub_category_id',
+          'subcategory_id',
           'weight',
           'length',
           'height',
