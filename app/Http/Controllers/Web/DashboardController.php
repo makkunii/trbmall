@@ -45,7 +45,6 @@ class DashboardController extends Controller
     public function insertproduct(Request $request) {
 
             $this->validate($request,[
-
                 'name' => 'required',
                 'description' => 'required',
                 'price' => 'required',
@@ -53,13 +52,9 @@ class DashboardController extends Controller
                 'length' => 'nullable',
                 'height' => 'nullable',
                 'status' => 'required'
-
             ]);
 
-
             $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/insert',[
-
-                
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
@@ -67,10 +62,7 @@ class DashboardController extends Controller
                 'length' => $request->length,
                 'height' => $request->height,
                 'status' => $request->status
-
             ]);
-
-            
 
             if($insert->successful()) {
 
@@ -78,9 +70,7 @@ class DashboardController extends Controller
 
             } else {
                 return view('dashboard/dashboard');
-
             }
-
     }
 
     public function updateproduct(Request $request)
