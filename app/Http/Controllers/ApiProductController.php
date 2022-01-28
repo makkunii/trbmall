@@ -23,7 +23,8 @@ public function insertproduct(Request $request) {
        ]);
 
        // CREATE PRODUCT
-       Product::create([
+       $insert = DB::table('tbl_school_year')
+       ->insertGetId([
         'name' => $request->input('name'),
         'description' => $request->input('description'),
         'price' => $request->input('price'),
@@ -37,7 +38,7 @@ public function insertproduct(Request $request) {
        ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return redirect()->route('index')->with('message', $request->name . ' has been saved.');
+       return response()->json(['Success' => 'Product Created'],200);
    }
 
   //**************************UPDATE**************************//
@@ -69,7 +70,7 @@ public function insertproduct(Request $request) {
 
 
        // REDIRECT TO PRODUCT INDEX
-       return redirect()->route('index')->with('message', $request->name . ' has been updated.');
+       return response()->json(['Success' => 'Product Updated'],200);
    }
 
 
