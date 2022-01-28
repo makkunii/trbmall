@@ -19,7 +19,6 @@ class DashboardController extends Controller
     }
 
 
-    //VIEW PRODUCTS
     public function products(Request $request)
     {
 
@@ -43,53 +42,44 @@ class DashboardController extends Controller
 
     }
 
-    //INSERT PRODUCT
-    public function insertproduct(Request $request)
-    {
+    public function insertproduct(Request $request) {
 
-        $this->validate($request,[
+            $this->validate($request,[
 
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'nullable',
-            'category_id' => 'nullable',
-            'weight' => 'nullable',
-            'length' => 'nullable',
-            'height' => 'nullable',
-            'status'  => 'nullable'
+                'name' => 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'weight' => 'nullable',
+                'length' => 'nullable',
+                'height' => 'nullable',
+                'status' => 'required'
 
-        ]);
+            ]);
 
 
-        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/insert',[
+            $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/insert',[
 
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'category_id' => $request->category_id,
-            'weight' => $request->weight,
-            'length' => $request->length,
-            'height' => $request->height,
-            'status' => $request->status
+                
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'weight' => $request->weight,
+                'length' => $request->length,
+                'height' => $request->height,
+                'status' => $request->status
 
-        ]);
+            ]);
 
+            
 
-        if ($insert->successful())
-        {
+            if($insert->successful()) {
 
-            return redirect()
-                ->route('dashboard/products');
+                return redirect()->route('dashboard/products');
 
-        }
+            } else {
+                return view('dashboard/dashboard');
 
-        else
-        {
-
-            return redirect()
-                ->route('dashboard/dashboard');
-
-        }
+            }
 
     }
 
@@ -102,7 +92,6 @@ class DashboardController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'category_id' => 'required',
             'weight' => 'required',
             'length' => 'required',
             'height' => 'required',
@@ -118,7 +107,6 @@ class DashboardController extends Controller
         'name' => $request->name,
         'description' => $request->description,
         'price' => $request->price,
-        'category_id' => $request->category_id,
         'weight' => $request->weight,
         'length' => $request->length,
         'height' => $request->height,
@@ -128,8 +116,7 @@ class DashboardController extends Controller
         if ($update->successful())
         {
 
-            return redirect()
-                ->route('dashboard/products');
+            return redirect()->route('dashboard/products');
 
         }
 
@@ -143,4 +130,3 @@ class DashboardController extends Controller
     }
 
 }
-

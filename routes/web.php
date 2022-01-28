@@ -34,6 +34,7 @@ Route::post('/dashboard/products/insert', [DashboardController::class, 'insertpr
 Route::post('/dashboard/products/update', [DashboardController::class, 'updateproduct'])->name('updateproduct');
 
 
+
 //ACCOUNTS
 Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
 
@@ -52,3 +53,14 @@ Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+
+
+/*-------------------------------------
+CLEAR CACHE
+--------------------------------------*/
+Route::get('/clear-cache', function(){
+    $run = Artisan::call('config:clear');
+    $run = Artisan::call('cache:clear');
+    $run = Artisan::call('config:cache');
+    return 'Clear cache finished!';
+});
