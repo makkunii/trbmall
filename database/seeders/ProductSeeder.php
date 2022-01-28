@@ -1,33 +1,17 @@
-<?php
+public function getcategory(){
+            $province =  DB::table('category')
+            ->select('name')
+            ->get();
 
-namespace Database\Seeders;
+            return response()->json(['Category' => $category]);
+      }
 
-use App\Models\Product;
-use Illuminate\Database\Seeder;
+      public function getsubcategory($category){
+            $subcategory =  DB::table('sub_category')
+            ->leftJoin('category','category.id','=','id')
+            ->where('category.id',$category)
+            ->select('name')
+            ->get();
 
-class ProductSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        Product::create([
-            'name' => 'Watch',
-            'price' => 250,
-            'description' => 'Good watch',
-             ]);
-        Product::create([
-            'name' => 'Bag',
-            'price' => 350,
-            'description' => 'Good Bag',
-            ]);
-        Product::create([
-            'name' => 'perfume',
-            'price' => 100,
-            'description' => 'Good perfume',
-             ]);
-    }
-}
+            return response()->json(['Sub Category' => $subcategory]);
+      }
