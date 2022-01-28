@@ -69,7 +69,7 @@
                   <tbody>
 
                   @foreach ($productdata as $productdatas)
-                  
+
                   <tr>
                     <td>{{ $productdatas['name'] }}</td>
                     <td></td>
@@ -126,7 +126,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="{{ route('insertproduct') }}" method="POST">
+            <form action="{{ route('insertproduct') }}" method="POST" enctype="multipart/form-data">
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>
@@ -140,6 +140,7 @@
                     <label for="price">Price</label>
                     <input type="text" class="form-control" name="price" id="price" placeholder="Enter price">
                   </div>
+                  <!--
                    <div class="form-group">
                         <label>Category</label>
                         <div class="select2-danger">
@@ -160,26 +161,28 @@
                             </select>
                             </div>
                     </div>
+                    -->
                   <div class="form-group">
                     <label for="weight">Weight</label>
-                    <input type="text" class="form-control" id="weight" placeholder="Enter weight">
+                    <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight">
                   </div>
                   <div class="form-group">
                     <label for="length">Length</label>
-                    <input type="text" class="form-control" id="length" placeholder="Enter length">
+                    <input type="text" class="form-control" name="length" id="length" placeholder="Enter length">
                   </div>
                   <div class="form-group">
                     <label for="height">Height</label>
-                    <input type="text" class="form-control" id="height" placeholder="Enter height">
+                    <input type="text" class="form-control" name="height" id="height" placeholder="Enter height">
                   </div>
                   <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control" id="status">
+                        <select class="form-control" name="status" id="status">
                           <option selected disabled>Select status</option>
                           <option>Active</option>
                           <option>Disabled</option>
                         </select>
                       </div>
+                      <!--
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
@@ -192,12 +195,14 @@
                       </div>
                     </div>
                   </div>
-            </form>
+                  -->
+
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Add product</button>
             </div>
+        </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -217,7 +222,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form>
+            <form action="{{ route('updateproduct') }}" method="POST">
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>
@@ -231,6 +236,7 @@
                     <label for="price">Price</label>
                     <input type="text" class="form-control" id="price" placeholder="Enter price">
                   </div>
+                  <!--
                   <div class="form-group">
                         <label>Category</label>
                         <select class="form-control">
@@ -251,6 +257,7 @@
                           <option>option 5</option>
                         </select>
                       </div>
+                    -->
                   <div class="form-group">
                     <label for="weight">Weight</label>
                     <input type="text" class="form-control" id="weight" placeholder="Enter weight">
@@ -271,6 +278,7 @@
                           <option>Disabled</option>
                         </select>
                       </div>
+                      <!--
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
@@ -283,6 +291,7 @@
                       </div>
                     </div>
                   </div>
+                -->
             </form>
             </div>
             <div class="modal-footer justify-content-between">
@@ -295,3 +304,44 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
+
+      <script>
+
+      function getProductID(id) {
+
+          showProduct(id)
+
+      }
+
+      const showProduct = async (id) => {
+
+          const base = 'https://dev.trbmall.trbexpressinc.net/api/dashboard/products/edit/';
+
+          const query = `${id}`;
+
+          const res = await fetch (base + query);
+
+          const data = await res.json();
+
+
+          document.querySelector("#edit-ide").value = data.Edit.id;
+
+          document.querySelector("#edit-idd").value = data.Edit.id;
+
+          document.querySelector("#edit-name").value = data.Edit.name;
+
+          document.querySelector("#edit-description").value = data.Edit.description;
+
+          document.querySelector("#edit-price").value = data.Edit.price;
+
+          document.querySelector("#edit-weight").value = data.Edit.weight;
+
+          document.querySelector("#edit-length").value = data.Edit.length;
+
+          document.querySelector("#edit-height").value = data.Edit.height;
+
+          document.querySelector("#edit-status").value = data.Edit.status;
+
+      }
+
+  </script>
