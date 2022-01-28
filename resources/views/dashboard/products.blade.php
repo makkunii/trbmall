@@ -57,31 +57,33 @@
 
                   <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Image</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>Category</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
 
                   <tbody>
+
+                  @foreach ($productdata as $productdatas)
                   
                   <tr>
+                    <td>{{ $productdatas['name'] }}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $productdatas['description'] }}</td>
+                    <td>{{ $productdatas['price'] }}</td>
                     <td></td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
                     </td>
                   </tr>
+
+                  @endforeach
+
                   </tbody>
 
                 </table>

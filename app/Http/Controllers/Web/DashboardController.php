@@ -22,12 +22,12 @@ class DashboardController extends Controller
     public function products(Request $request)
     {
 
-        $vproduct = Http::accept('application/json')->get('https://dev.trbmall.trbexpress.net/api/dashboard/products');
+        $vproduct = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/products');
 
         if ($vproduct->successful())
         {
 
-            $productdata = $vproduct['products'];
+            $productdata = $vproduct['Show'];
 
             return view('dashboard/products')->with(compact('productdata'));
 
@@ -59,7 +59,7 @@ class DashboardController extends Controller
         ]);
 
 
-        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpress.net/api/dashboard/products/insert',[
+        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/insert',[
 
             'name' => $request->name,
             'description' => $request->description,
@@ -108,7 +108,7 @@ class DashboardController extends Controller
 
        ]);
 
-       $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpress.net/api/dashboard/products/update',[
+       $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/update',[
 
         //your data
 
