@@ -30,6 +30,10 @@ DASHBOARD
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 //PRODUCT
 Route::get('/dashboard/products', [DashboardController::class, 'products'])->name('products');
+Route::post('/dashboard/products/insert', [DashboardController::class, 'insertproduct'])->name('insertproduct');
+Route::post('/dashboard/products/update', [DashboardController::class, 'updateproduct'])->name('updateproduct');
+
+
 //ACCOUNTS
 Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
 

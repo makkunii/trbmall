@@ -33,7 +33,7 @@ public function insertproduct(Request $request) {
         'length' => $request->input('length'),
         'height' => $request->input('height'),
         'status' => $request->input('status')
-        
+
 
        ]);
 
@@ -92,8 +92,9 @@ public function insertproduct(Request $request) {
    //**************************SHOW VIEW**************************//
    public function showproduct(){
            $fetchedit = DB::table('products')
-           ->select( 'name',
-           'description', 
+           ->select( 'id',
+           'name',
+           'description',
            'price',
            'category_id',
            'weight',

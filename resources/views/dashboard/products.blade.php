@@ -57,29 +57,43 @@
 
                   <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Image</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>Category</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
 
                   <tbody>
+
+                  @foreach ($productdata as $productdatas)
+                  
                   <tr>
-                    <td>1</td>
-                    <td>Iphone</td>
+                    <td>{{ $productdatas['name'] }}</td>
                     <td></td>
-                    <td>Iphone XR</td>
-                    <td>35,000</td>
-                    <td>Gadget</td>
+                    <td>{{ $productdatas['description'] }}</td>
+                    <td>{{ $productdatas['price'] }}</td>
+                    <td>
+                    @if($productdatas['status'] == 'Active')
+
+                    <div class="badge bg-green text-white">{{ $productdatas['status'] }}</div>
+
+                    @elseif($productdatas['status'] == 'Disabled')
+
+                    <div class="badge bg-red text-white">{{ $productdatas['status'] }}</div>
+
+                    @endif
+                    </td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
                     </td>
                   </tr>
+
+                  @endforeach
+
                   </tbody>
 
                 </table>
@@ -112,24 +126,24 @@
               </button>
             </div>
             <div class="modal-body">
-            <form>
+            <form action="{{ route('insertproduct') }}" method="POST">
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>
-                    <input type="text" class="form-control" id="productname" placeholder="Enter product name" required>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter product name">
                   </div>
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter description" required></textarea>
+                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter description"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" placeholder="Enter price" required>
+                    <input type="text" class="form-control" name="price" id="price" placeholder="Enter price">
                   </div>
                    <div class="form-group">
                         <label>Category</label>
                         <div class="select2-danger">
-                            <select class="select2" name="Category[]" multiple="multiple" data-placeholder="Category" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                            <select class="select2" name="Category[]" id="category_id" multiple="multiple" data-placeholder="Category" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                 <option>Gadget</option>
                                 <option>Beauty Products</option>
                                 <option>Testing</option>
@@ -160,7 +174,7 @@
                   </div>
                   <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control">
+                        <select class="form-control" id="status">
                           <option selected disabled>Select status</option>
                           <option>Active</option>
                           <option>Disabled</option>
@@ -182,7 +196,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger">Add product</button>
+              <button type="submit" class="btn btn-danger">Add product</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -207,15 +221,15 @@
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>
-                    <input type="text" class="form-control" id="productname" placeholder="Enter product name" required>
+                    <input type="text" class="form-control" id="productname" placeholder="Enter product name">
                   </div>
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter description" required></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Enter description"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" placeholder="Enter price" required>
+                    <input type="text" class="form-control" id="price" placeholder="Enter price">
                   </div>
                   <div class="form-group">
                         <label>Category</label>

@@ -33,7 +33,7 @@ public function insertproduct(Request $request) {
         'length' => $request->input('length'),
         'height' => $request->input('height'),
         'status' => $request->input('status')
-        
+
 
        ]);
 
@@ -93,7 +93,7 @@ public function insertproduct(Request $request) {
    public function showproduct(){
            $fetchedit = DB::table('products')
            ->select( 'name',
-           'description', 
+           'description',
            'price',
            'category_id',
            'weight',
@@ -120,3 +120,4 @@ public function insertproduct(Request $request) {
           return response()->json(['Edit' => $fetchedit], 200);
       }
 }
+
