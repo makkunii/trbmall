@@ -25,14 +25,14 @@ public function insertproduct(Request $request) {
        // CREATE PRODUCT
        $insert = DB::table('tbl_school_year')
        ->insertGetId([
-        'name' => $request->'name',
-        'description' => $request->'description',
-        'price' => $request->'price',
-        'category_id' => $request->'category_id',
-        'weight' => $request->'weight',
-        'length' => $request->'length',
-        'height' => $request->'height',
-        'status' => $request->'status'
+        'name' => $request->name,
+        'description' => $request->description,
+        'price' => $request->price,
+        'category_id' => $request->category_id,
+        'weight' => $request->weight,
+        'length' => $request->length,
+        'height' => $request->height,
+        'status' => $request->status
 
 
        ]);
