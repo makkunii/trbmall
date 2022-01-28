@@ -17,13 +17,14 @@ public function insertcategory(Request $request) {
        ]);
 
        // CREATE PRODUCT
-       Product::create([
+       $insert = DB::table('category')
+       ->insertGetId([
            'name' => $request->input('name'),
            'is_active' => $request->input('is_active')
        ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return redirect()->route('index')->with('message', $request->name . ' has been saved.');
+       return response()->json(['Success' => 'Category Created'],200);
    }
 
   //**************************UPDATE**************************//
@@ -35,14 +36,15 @@ public function insertcategory(Request $request) {
           ]);
 
           // UPDATE PRODUCT
-           Product::where('id', $id)
-               ->update([
+          $update = DB::table('category')
+          ->where('id', $request->id)
+        ->update([
                  'name' => $request->input('name'),
                  'is_active' => $request->input('is_active')
            ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return redirect()->route('index')->with('message', $request->name . ' has been updated.');
+       return response()->json(['Success' => 'Category Updated'],200);
    }
 
 
@@ -57,7 +59,7 @@ public function insertcategory(Request $request) {
        ->update([
            'is_active' => $request->is_active
        ]);
-       return response()->json(['Success' => 'Account Disable'],200);
+       return response()->json(['Success' => 'Category Updated'],200);
 
 }
 

@@ -43,7 +43,8 @@ public function insertorder(Request $request) {
        ]);
 
        // CREATE PRODUCT
-       Product::create([
+       $insert = DB::table('orders')
+       ->insertGetId([
            'user_id'=> $request->input('user_id'),
            'status'=> $request->input('status'),
            'ref_no'=> $request->input('ref_no'),
@@ -75,7 +76,7 @@ public function insertorder(Request $request) {
        ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return redirect()->route('index')->with('message', $request->name . ' has been saved.');
+       return response()->json(['Success' => 'Orders Created'],200);
    }
 
   //**************************UPDATE**************************//
@@ -111,8 +112,9 @@ public function insertorder(Request $request) {
           ]);
 
           // UPDATE PRODUCT
-           Product::where('id', $id)
-               ->update([
+          $update = DB::table('orders')
+          ->where('id', $request->id)
+        ->update([
                 'user_id'=> $request->input('user_id'),
                 'status'=> $request->input('status'),
                 'ref_no'=> $request->input('ref_no'),
@@ -142,7 +144,7 @@ public function insertorder(Request $request) {
            ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return redirect()->route('index')->with('message', $request->name . ' has been updated.');
+       return response()->json(['Success' => 'Orders Updated'],200);
    }
 
 
