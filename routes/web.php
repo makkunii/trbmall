@@ -31,7 +31,7 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 //PRODUCT
 Route::get('/dashboard/products', [DashboardController::class, 'products'])->name('products');
 Route::post('/dashboard/products/insert', [DashboardController::class, 'insertproduct'])->name('insertproduct');
-Route::post('/dashboard/products/update', [AcademicsController::class, 'updateproduct'])->name('updateproduct');
+Route::post('/dashboard/products/update', [DashboardController::class, 'updateproduct'])->name('updateproduct');
 
 
 //ACCOUNTS

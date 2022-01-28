@@ -75,7 +75,17 @@
                     <td></td>
                     <td>{{ $productdatas['description'] }}</td>
                     <td>{{ $productdatas['price'] }}</td>
-                    <td></td>
+                    <td>
+                    @if($productdatas['status'] == 'Active')
+
+                    <div class="badge bg-green text-white">{{ $productdatas['status'] }}</div>
+
+                    @elseif($productdatas['status'] == 'Disabled')
+
+                    <div class="badge bg-red text-white">{{ $productdatas['status'] }}</div>
+
+                    @endif
+                    </td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
@@ -120,20 +130,20 @@
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter product name" required>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter product name">
                   </div>
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" id="description" rows="3" placeholder="Enter description" required></textarea>
+                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter description"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" placeholder="Enter price" required>
+                    <input type="text" class="form-control" name="price" id="price" placeholder="Enter price">
                   </div>
                    <div class="form-group">
                         <label>Category</label>
                         <div class="select2-danger">
-                            <select class="select2" name="Category[]" multiple="multiple" data-placeholder="Category" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                            <select class="select2" name="Category[]" id="category_id" multiple="multiple" data-placeholder="Category" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                 <option>Gadget</option>
                                 <option>Beauty Products</option>
                                 <option>Testing</option>
@@ -211,15 +221,15 @@
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>
-                    <input type="text" class="form-control" id="productname" placeholder="Enter product name" required>
+                    <input type="text" class="form-control" id="productname" placeholder="Enter product name">
                   </div>
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter description" required></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Enter description"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" placeholder="Enter price" required>
+                    <input type="text" class="form-control" id="price" placeholder="Enter price">
                   </div>
                   <div class="form-group">
                         <label>Category</label>

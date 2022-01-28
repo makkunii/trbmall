@@ -19,6 +19,7 @@ class DashboardController extends Controller
     }
 
 
+    //VIEW PRODUCTS
     public function products(Request $request)
     {
 
@@ -42,6 +43,7 @@ class DashboardController extends Controller
 
     }
 
+    //INSERT PRODUCT
     public function insertproduct(Request $request)
     {
 
@@ -49,12 +51,12 @@ class DashboardController extends Controller
 
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required',
-            'category_id' => 'required',
-            'weight' => 'required',
-            'length' => 'required',
-            'height' => 'required',
-            'status'  => 'required'
+            'price' => 'nullable',
+            'category_id' => 'nullable',
+            'weight' => 'nullable',
+            'length' => 'nullable',
+            'height' => 'nullable',
+            'status'  => 'nullable'
 
         ]);
 
