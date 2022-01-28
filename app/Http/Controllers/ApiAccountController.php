@@ -27,7 +27,8 @@ public function insertaccount(Request $request) {
        ]);
 
        // CREATE PRODUCT
-       Product::create([
+       $insert = DB::table('products')
+       ->insertGetId([
            'name' => $request->input('name'),
            'email' => $request->input('email'),
            'email_verified_at' => $request->input('email_verified_at'),
@@ -66,8 +67,9 @@ public function insertaccount(Request $request) {
           ]);
 
           // UPDATE PRODUCT
-           Product::where('id', $id)
-               ->update([
+          $update = DB::table('products')
+          ->where('id', $request->id)
+                ->update([
                  'name' => $request->input('name'),
                  'email' => $request->input('email'),
                  'email_verified_at' => $request->input('email_verified_at'),
