@@ -69,7 +69,7 @@
                   <tbody>
 
                   @foreach ($productdata as $productdatas)
-                  
+
                   <tr>
                     <td>{{ $productdatas['name'] }}</td>
                     <td></td>
@@ -196,12 +196,13 @@
                     </div>
                   </div>
                   -->
-            </form>
+
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Add product</button>
             </div>
+        </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -303,4 +304,3 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
-  </script>
