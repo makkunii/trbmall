@@ -61,7 +61,6 @@
                     <th>Image</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -75,17 +74,6 @@
                     <td></td>
                     <td>{{ $productdatas['description'] }}</td>
                     <td>{{ $productdatas['price'] }}</td>
-                    <td>
-                    @if($productdatas['status'] == 'Active')
-
-                    <div class="badge bg-green text-white">{{ $productdatas['status'] }}</div>
-
-                    @elseif($productdatas['status'] == 'Disabled')
-
-                    <div class="badge bg-red text-white">{{ $productdatas['status'] }}</div>
-
-                    @endif
-                    </td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
@@ -126,7 +114,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('insertproduct') }}" method="POST" enctype="multipart/form-data">
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>
@@ -174,6 +162,7 @@
                     <label for="height">Height</label>
                     <input type="text" class="form-control" name="height" id="height" placeholder="Enter height">
                   </div>
+                  <!--
                   <div class="form-group">
                         <label>Status</label>
                         <select class="form-control" name="status" id="status">
@@ -182,6 +171,7 @@
                           <option>Disabled</option>
                         </select>
                       </div>
+                  -->
                       <!--
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>

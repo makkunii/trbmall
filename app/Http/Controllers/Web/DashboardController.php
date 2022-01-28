@@ -50,8 +50,7 @@ class DashboardController extends Controller
                 'price' => 'required',
                 'weight' => 'nullable',
                 'length' => 'nullable',
-                'height' => 'nullable',
-                'status' => 'required'
+                'height' => 'nullable'
             ]);
 
             $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/insert',[
@@ -60,8 +59,7 @@ class DashboardController extends Controller
                 'price' => $request->price,
                 'weight' => $request->weight,
                 'length' => $request->length,
-                'height' => $request->height,
-                'status' => $request->status
+                'height' => $request->height
             ]);
 
             if($insert->successful()) {
