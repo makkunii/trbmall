@@ -15,7 +15,7 @@ public function insertproduct(Request $request) {
            'name' => 'required|string|max:255',
            'description' => 'required',
 <<<<<<< HEAD
-           'price' => 'required|float',
+           'price' => 'required',
            'subcategory_id' => 'required',
 =======
            'price' => 'required|numeric|between:0,9999999.99',
