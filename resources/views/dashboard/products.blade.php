@@ -66,6 +66,11 @@
                   </thead>
 
                   <tbody>
+                  @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
 
                   @foreach ($productdata as $productdatas)
 
@@ -128,6 +133,10 @@
                     <label for="price">Price</label>
                     <input type="text" class="form-control" name="price" id="price" placeholder="Enter price">
                   </div>
+                  <div class="form-group">
+                    <label for="price">Category</label>
+                    <input type="text" class="form-control" name="category_id" id="category_id" placeholder="Enter category">
+                  </div>
                   <!--
                    <div class="form-group">
                         <label>Category</label>
@@ -189,6 +198,7 @@
 
             </div>
             <div class="modal-footer justify-content-between">
+            <input type="hidden" name="status" id="status" value="0">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Add product</button>
             </div>

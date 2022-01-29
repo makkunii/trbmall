@@ -48,23 +48,27 @@ class DashboardController extends Controller
                 'name' => 'required',
                 'description' => 'required',
                 'price' => 'required',
+                'category_id' => 'required',
                 'weight' => 'nullable',
                 'length' => 'nullable',
-                'height' => 'nullable'
+                'height' => 'nullable',
+                'status' => 'required'
             ]);
 
             $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/insert',[
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
+                'category_id' => $request->category_id,
                 'weight' => $request->weight,
                 'length' => $request->length,
-                'height' => $request->height
+                'height' => $request->height,
+                'status' => $request->status
             ]);
 
             if($insert->successful()) {
 
-                return redirect()->route('dashboard/products');
+                return redirect()->back()->with('message', 'Product saved');
 
             } else {
                 return view('dashboard/dashboard');
