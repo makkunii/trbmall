@@ -14,7 +14,7 @@ public function insertproduct(Request $request) {
        $request->validate([
            'name' => 'required|string|max:255',
            'description' => 'required',
-           'price' => 'float',
+           'price' => 'required|float',
            'subcategory_id' => 'required',
            'weight' => 'nullable',
            'length' => 'nullable',
