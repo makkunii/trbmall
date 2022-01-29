@@ -61,7 +61,6 @@
                     <th>Image</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -75,17 +74,6 @@
                     <td></td>
                     <td>{{ $productdatas['description'] }}</td>
                     <td>{{ $productdatas['price'] }}</td>
-                    <td>
-                    @if($productdatas['status'] == 'Active')
-
-                    <div class="badge bg-green text-white">{{ $productdatas['status'] }}</div>
-
-                    @elseif($productdatas['status'] == 'Disabled')
-
-                    <div class="badge bg-red text-white">{{ $productdatas['status'] }}</div>
-
-                    @endif
-                    </td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
@@ -174,6 +162,7 @@
                     <label for="height">Height</label>
                     <input type="text" class="form-control" name="height" id="height" placeholder="Enter height">
                   </div>
+                  <!--
                   <div class="form-group">
                         <label>Status</label>
                         <select class="form-control" name="status" id="status">
@@ -182,6 +171,7 @@
                           <option>Disabled</option>
                         </select>
                       </div>
+                  -->
                       <!--
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -222,7 +212,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="{{ route('updateproduct') }}" method="POST">
+            <form action="" method="POST">
               @csrf
                   <div class="form-group">
                     <label for="productname">Product name</label>
@@ -304,44 +294,3 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
-
-      <script>
-
-      function getProductID(id) {
-
-          showProduct(id)
-
-      }
-
-      const showProduct = async (id) => {
-
-          const base = 'https://dev.trbmall.trbexpressinc.net/api/dashboard/products/edit/';
-
-          const query = `${id}`;
-
-          const res = await fetch (base + query);
-
-          const data = await res.json();
-
-
-          document.querySelector("#edit-ide").value = data.Edit.id;
-
-          document.querySelector("#edit-idd").value = data.Edit.id;
-
-          document.querySelector("#edit-name").value = data.Edit.name;
-
-          document.querySelector("#edit-description").value = data.Edit.description;
-
-          document.querySelector("#edit-price").value = data.Edit.price;
-
-          document.querySelector("#edit-weight").value = data.Edit.weight;
-
-          document.querySelector("#edit-length").value = data.Edit.length;
-
-          document.querySelector("#edit-height").value = data.Edit.height;
-
-          document.querySelector("#edit-status").value = data.Edit.status;
-
-      }
-
-  </script>

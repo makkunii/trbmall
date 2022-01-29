@@ -14,33 +14,31 @@ public function insertproduct(Request $request) {
        $request->validate([
            'name' => 'required|string|max:255',
            'description' => 'required',
-<<<<<<< HEAD
-           'price' => 'required|float',
-           'subcategory_id' => 'required',
-=======
-           'price' => 'required|numeric|between:0,9999999.99',
+           'price' => 'float',
            'category_id' => 'required',
->>>>>>> 0bb494355ddf46215cbb60ab0461b5e0048be71a
            'weight' => 'nullable',
            'length' => 'nullable',
            'height' => 'nullable',
+           'status' => 'required|string|max:255'
+
        ]);
 
        // CREATE PRODUCT
-       $insert = DB::table('products')
-       ->insertGetId([
-        'name' => $request->name,
-        'description' => $request->description,
-        'price' => $request->price,
-        'subcategory_id' => $request->category_id,
-        'weight' => $request->weight,
-        'length' => $request->length,
-        'height' => $request->height,
-        'status' => 1,
+       Product::create([
+        'name' => $request->input('name'),
+        'description' => $request->input('description'),
+        'price' => $request->input('price'),
+        'category_id' => $request->input('category_id'),
+        'weight' => $request->input('weight'),
+        'length' => $request->input('length'),
+        'height' => $request->input('height'),
+        'status' => $request->input('status')
+
+
        ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return response()->json(['Success' => 'Product Created'],200);
+       return redirect()->route('index')->with('message', $request->name . ' has been saved.');
    }
 
   //**************************UPDATE**************************//
@@ -50,7 +48,7 @@ public function insertproduct(Request $request) {
             'name' => 'required|string|max:255',
            'description' => 'required',
            'price' => 'float',
-           'subcategory_id' => 'required',
+           'category_id' => 'required',
            'weight' => 'nullable',
            'length' => 'nullable',
            'height' => 'nullable',
@@ -58,13 +56,12 @@ public function insertproduct(Request $request) {
         ]);
 
           // UPDATE PRODUCT
-          $update = DB::table('products')
-            ->where('id', $request->id)
+          Product::where('id', $id)
           ->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-            'sub_category_id' => $request->input('category_id'),
+            'category_id' => $request->input('category_id'),
             'weight' => $request->input('weight'),
             'length' => $request->input('length'),
             'height' => $request->input('height'),
@@ -73,7 +70,7 @@ public function insertproduct(Request $request) {
 
 
        // REDIRECT TO PRODUCT INDEX
-       return response()->json(['Success' => 'Product Updated'],200);
+       return redirect()->route('index')->with('message', $request->name . ' has been updated.');
    }
 
 
@@ -95,19 +92,16 @@ public function insertproduct(Request $request) {
    //**************************SHOW VIEW**************************//
    public function showproduct(){
            $fetchedit = DB::table('products')
-           ->select( 'id',
-           'name',
+           ->select( 'name',
            'description',
            'price',
-           'subcategory_id',
+           'category_id',
            'weight',
            'length',
            'height',
            'status')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
-
-           return redirect()->route('index.showproduct')->with('message', $request->name . ' has been updated.');
        }
 
   //**************************EDIT VIEW**************************//
@@ -116,7 +110,7 @@ public function insertproduct(Request $request) {
           ->select( 'name',
           'description',
           'price',
-          'sub_category_id',
+          'category_id',
           'weight',
           'length',
           'height',
@@ -126,3 +120,4 @@ public function insertproduct(Request $request) {
           return response()->json(['Edit' => $fetchedit], 200);
       }
 }
+
