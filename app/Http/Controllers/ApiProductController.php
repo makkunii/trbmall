@@ -14,13 +14,8 @@ public function insertproduct(Request $request) {
        $request->validate([
            'name' => 'required|string|max:255',
            'description' => 'required',
-<<<<<<< HEAD
-           'price' => 'required',
-           'subcategory_id' => 'required',
-=======
            'price' => 'required|numeric|between:0,9999999.99',
            'category_id' => 'required',
->>>>>>> 0bb494355ddf46215cbb60ab0461b5e0048be71a
            'weight' => 'nullable',
            'length' => 'nullable',
            'height' => 'nullable',
