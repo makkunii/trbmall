@@ -39,7 +39,7 @@ public function insertproduct(Request $request) {
    }
 
   //**************************UPDATE**************************//
-   public function updateproduct(Request $request, $id){
+   public function updateproduct(Request $request){
           // VALIDATE PRODUCT
           $request->validate([
             'name' => 'required|string|max:255',
@@ -65,7 +65,6 @@ public function insertproduct(Request $request) {
             'height' => $request->input('height'),
             'status' => $request->input('status')
       ]);
-
 
        // REDIRECT TO PRODUCT INDEX
        return response()->json(['Success' => 'Product Updated'],200);

@@ -68,13 +68,15 @@
 
                   <tbody>
                   @if(session()->has('insertsuccess'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissible fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         {{ session()->get('insertsuccess') }}
                     </div>
                   @endif
 
                   @if(session()->has('insertfailed'))
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger alert-dismissible fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         {{ session()->get('insertfailed') }}
                     </div>
                   @endif
@@ -317,6 +319,7 @@
             </form>
             </div>
             <div class="modal-footer justify-content-between">
+            <input type="hidden" name="id" id="edit-id" value="">
             <input type="hidden" name="status" id="edit-status" value="0">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-danger">Save changes</button>
