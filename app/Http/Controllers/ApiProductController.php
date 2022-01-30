@@ -108,7 +108,8 @@ public function insertproduct(Request $request) {
   //**************************EDIT VIEW**************************//
   public function editproduct($id){
           $fetchedit = DB::table('products')
-          ->select( 'name',
+          ->select( 'id',
+          'name',
           'description',
           'price',
           'subcategory_id',

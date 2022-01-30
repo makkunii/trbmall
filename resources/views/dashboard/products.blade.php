@@ -96,7 +96,7 @@
                     @endif
                     </td>
                     <td>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2" onclick="showDiscount(<?php echo $productdatas['id'] ?>)"><i class="fa fa-edit" ></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
                     </td>
                   </tr>
@@ -238,19 +238,23 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="" method="POST">
+            <form action="{{ route('updateproduct') }}" method="POST">
               @csrf
-                  <div class="form-group">
+              <div class="form-group">
                     <label for="productname">Product name</label>
-                    <input type="text" class="form-control" id="productname" placeholder="Enter product name">
+                    <input type="text" class="form-control" name="name" id="edit-name" placeholder="Enter product name">
                   </div>
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter description"></textarea>
+                    <textarea class="form-control" name="description" id="edit-description" rows="3" placeholder="Enter description"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="price" placeholder="Enter price">
+                    <input type="text" class="form-control" name="price" id="edit-price" placeholder="Enter price">
+                  </div>
+                  <div class="form-group">
+                    <label for="price">Category</label>
+                    <input type="text" class="form-control" name="subcategory_id" id="edit-subcategory_id" placeholder="Enter category">
                   </div>
                   <!--
                   <div class="form-group">
@@ -274,18 +278,19 @@
                         </select>
                       </div>
                     -->
-                  <div class="form-group">
+                    <div class="form-group">
                     <label for="weight">Weight</label>
-                    <input type="text" class="form-control" id="weight" placeholder="Enter weight">
+                    <input type="text" class="form-control" name="weight" id="edit-weight" placeholder="Enter weight">
                   </div>
                   <div class="form-group">
                     <label for="length">Length</label>
-                    <input type="text" class="form-control" id="length" placeholder="Enter length">
+                    <input type="text" class="form-control" name="length" id="edit-length" placeholder="Enter length">
                   </div>
                   <div class="form-group">
                     <label for="height">Height</label>
-                    <input type="text" class="form-control" id="height" placeholder="Enter height">
+                    <input type="text" class="form-control" name="height" id="edit-height" placeholder="Enter height">
                   </div>
+                  <!--
                   <div class="form-group">
                         <label>Status</label>
                         <select class="form-control">
@@ -294,6 +299,7 @@
                           <option>Disabled</option>
                         </select>
                       </div>
+                    -->
                       <!--
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -311,6 +317,7 @@
             </form>
             </div>
             <div class="modal-footer justify-content-between">
+            <input type="hidden" name="status" id="edit-status" value="0">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-danger">Save changes</button>
             </div>
@@ -320,3 +327,35 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
+
+      <script>
+         const showProduct = async (id) => {
+
+          const base = 'https://dev.trbmall.trbexpressinc.net/api/dashboard/products/edit/';
+
+          const query = `${id}`;
+
+          const res = await fetch (base + query);
+
+          const data = await res.json();
+
+          document.querySelector("#edit-id").value = data.Edit.id;
+
+          document.querySelector("#edit-name").value = data.Edit.name;
+
+          document.querySelector("#edit-description").value = data.Edit.description;
+
+          document.querySelector("#edit-price").value = data.Edit.price;
+
+          document.querySelector("#edit-subcategory_id").value = data.Edit.subcategory_id;
+
+          document.querySelector("#edit-weight").value = data.Edit.weight;
+
+          document.querySelector("#edit-length").value = data.Edit.length;
+
+          document.querySelector("#edit-height").value = data.Edit.height;
+
+          document.querySelector("#edit-status").value = data.Edit.status;
+
+          }
+      </script>
