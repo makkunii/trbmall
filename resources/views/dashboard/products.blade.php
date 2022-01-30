@@ -61,16 +61,23 @@
                     <th>Image</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
 
                   <tbody>
-                  @if(session()->has('message'))
+                  @if(session()->has('insertsuccess'))
                     <div class="alert alert-success">
-                        {{ session()->get('message') }}
+                        {{ session()->get('insertsuccess') }}
                     </div>
-                @endif
+                  @endif
+
+                  @if(session()->has('insertfailed'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('insertfailed') }}
+                    </div>
+                  @endif
 
                   @foreach ($productdata as $productdatas)
 
@@ -79,6 +86,15 @@
                     <td></td>
                     <td>{{ $productdatas['description'] }}</td>
                     <td>{{ $productdatas['price'] }}</td>
+                    <td>
+                    @if($productdatas['status'] == '1')
+
+                    <div class="badge bg-green text-white">Active</div>
+
+                    @elseif($productdatas['status'] == '0')
+                    <div class="badge bg-red text-white">Disabled</div>
+                    @endif
+                    </td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
@@ -135,7 +151,7 @@
                   </div>
                   <div class="form-group">
                     <label for="price">Category</label>
-                    <input type="text" class="form-control" name="category_id" id="category_id" placeholder="Enter category">
+                    <input type="text" class="form-control" name="subcategory_id" id="subcategory_id" placeholder="Enter category">
                   </div>
                   <!--
                    <div class="form-group">

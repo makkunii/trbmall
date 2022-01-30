@@ -48,7 +48,7 @@ class DashboardController extends Controller
                 'name' => 'required',
                 'description' => 'required',
                 'price' => 'required',
-                'category_id' => 'required',
+                'subcategory_id' => 'required',
                 'weight' => 'nullable',
                 'length' => 'nullable',
                 'height' => 'nullable',
@@ -59,7 +59,7 @@ class DashboardController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
-                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
                 'weight' => $request->weight,
                 'length' => $request->length,
                 'height' => $request->height,
@@ -68,10 +68,10 @@ class DashboardController extends Controller
 
             if($insert->successful()) {
 
-                return redirect()->back()->with('message', 'Product saved');
+                return redirect()->back()->with('insertsuccess', 'Product saved');
 
             } else {
-                return view('dashboard/dashboard');
+                return redirect()->back()->with('insertfailed', 'Product failed to save');
             }
     }
 
@@ -84,6 +84,7 @@ class DashboardController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'subcategory_id' => 'required',
             'weight' => 'required',
             'length' => 'required',
             'height' => 'required',
@@ -99,6 +100,7 @@ class DashboardController extends Controller
         'name' => $request->name,
         'description' => $request->description,
         'price' => $request->price,
+        'subcategory_id' => $request->subcategory_id,
         'weight' => $request->weight,
         'length' => $request->length,
         'height' => $request->height,
