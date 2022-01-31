@@ -19,8 +19,8 @@ public function insertcategory(Request $request) {
        // CREATE PRODUCT
        $insert = DB::table('category')
        ->insertGetId([
-           'name' => $request->input('name'),
-           'is_active' => $request->input('is_active')
+           'name' => $request->name,
+           'is_active' => $request->is_active
        ]);
 
        // REDIRECT TO PRODUCT INDEX
@@ -39,8 +39,8 @@ public function insertcategory(Request $request) {
           $update = DB::table('category')
           ->where('id', $request->id)
         ->update([
-                 'name' => $request->input('name'),
-                 'is_active' => $request->input('is_active')
+            'name' => $request->name,
+            'is_active' => $request->is_active
            ]);
 
        // REDIRECT TO PRODUCT INDEX

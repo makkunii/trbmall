@@ -22,11 +22,11 @@ public function insertpromo(Request $request) {
        // CREATE PRODUCT
        $insert = DB::table('promos')
        ->insertGetId([
-           'name' => $request->input('name'),
-           'rate' => $request->input('rate'),
-           'is_active' => $request->input('is_active'),
-           'created_at' => $request->input('created_at'),
-           'expired_at' => $request->input('expired_at')
+           'name' => $request->name,
+           'rate' => $request->rate,
+           'is_active' => $request->is_active,
+           'created_at' => $request->created_at,
+           'expired_at' => $request->expired_at
 
        ]);
 
@@ -49,11 +49,11 @@ public function insertpromo(Request $request) {
           $update = DB::table('promos')
           ->where('id', $request->id)
                 ->update([
-                    'name' => $request->input('name'),
-                    'rate' => $request->input('rate'),
-                    'is_active' => $request->input('is_active'),
-                    'created_at' => $request->input('created_at'),
-                    'expired_at' => $request->input('expired_at')
+                    'name' => $request->name,
+                    'rate' => $request->rate,
+                    'is_active' => $request->is_active,
+                    'created_at' => $request->created_at,
+                    'expired_at' => $request->expired_at
 
            ]);
 
