@@ -80,7 +80,6 @@ class DashboardController extends Controller
 
         $this->validate($request,[
 
-            'id' => 'required',
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
@@ -91,6 +90,8 @@ class DashboardController extends Controller
             'status'  => 'required'
 
        ]);
+
+       $id = $request->input('id'); // CALL ID INPUTFIELD NAME FOR ID(MIGHT BE HIDDEN IF ID ISNT DISPLAYED ON BLADE)
 
        $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/update',[
 

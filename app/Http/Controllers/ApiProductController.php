@@ -42,7 +42,7 @@ public function insertproduct(Request $request) {
    public function updateproduct(Request $request){
           // VALIDATE PRODUCT
           $request->validate([
-            'name' => 'required|string|max:255',
+           'name' => 'required|string|max:255',
            'description' => 'required',
            'price' => 'required|numeric|between:0,9999999.99',
            'subcategory_id' => 'required',
