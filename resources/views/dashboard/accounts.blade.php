@@ -43,19 +43,33 @@
 
                   <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <th>Role</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
 
                   <tbody>
+                  @foreach ($accountdata as $accountdatas)
                   <tr>
-                    <td></td>
+                    <td>{{ $accountdata['id'] }}</td>
+                    <td>{{ $accountdata['name'] }}</td>
+                    <td>{{ $accountdata['email'] }}</td>
+                    <td>{{ $accountdata['address'] }}</td>
+                    <td>{{ $accountdata['contact'] }}</td>
+                    <td>{{ $accountdata['role'] }}</td>
+                    <td>{{ $accountdata['status'] }}</td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
                     </td>
                   </tr>
+                  @endforeach
                   </tbody>
 
                 </table>
