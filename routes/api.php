@@ -7,6 +7,7 @@ use App\Http\Controllers\ApiAccountController;
 use App\Http\Controllers\ApiCategoryController;
 use App\Http\Controllers\ApiSubCategoryController;
 use App\Http\Controllers\ApiOrdersController;
+use App\Http\Controllers\ApiPromoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,3 +47,8 @@ Route::get('/showorder',[ApiOrdersController::class, 'showorder']);
 Route::get('/editorder/{id}',[ApiOrdersController::class, 'showorder']);
 Route::post('/insertorder',[ApiOrdersController::class, 'insertorder']);
 Route::post('/updateorder/{id}',[ApiOrdersController::class, 'updateorder']);
+//********************Promo********************\\
+Route::get('/showpromo',[ApiPromoController::class, 'showpromo']);
+Route::get('/editpromo/{id}',[ApiPromoController::class, 'editpromo']);
+Route::post('/insertpromo',[ApiPromoController::class, 'insertpromo']);
+Route::post('/updatepromo/{id}',[ApiPromoController::class, 'updatepromo']);
