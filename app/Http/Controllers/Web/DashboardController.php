@@ -131,8 +131,7 @@ class DashboardController extends Controller
 
         else
         {
-            return $update;
-            //return redirect()->back()->with('updatefailed', 'Product failed to update');
+            return redirect()->back()->with('updatefailed', 'Product failed to update');
         }
 
     }
