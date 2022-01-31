@@ -18,9 +18,9 @@ class ApiCategoriesController extends Controller
 
       public function getsubcategory($category){
             $subcategory =  DB::table('sub_category')
-            ->leftJoin('category','category.id','=','id')
-            ->where('category.id',$category)
-            ->select('name')
+            ->leftJoin('category','category.id','=','sub_category.category_id')
+            ->select('sub_category.name','sub_category.category_id')
+            ->where('sub_category.category_id',$category)
             ->get();
 
             return response()->json(['Sub Category' => $subcategory]);

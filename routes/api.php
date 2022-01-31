@@ -55,4 +55,4 @@ Route::post('/insertpromo',[ApiPromoController::class, 'insertpromo']);
 Route::post('/updatepromo/{id}',[ApiPromoController::class, 'updatepromo']);
 //********************SubCategory********************\\
 Route::get('/getcategory',[ApiCategoriesController::class, 'getcategory']);
-Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getcategory']);
+Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcategory']);
