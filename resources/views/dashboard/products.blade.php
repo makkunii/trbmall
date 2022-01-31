@@ -340,7 +340,7 @@
                 -->
             </div>
             <div class="modal-footer justify-content-between">
-            <input type="hidden" name="status" id="edit-id" value="">
+            <input type="hidden" name="id" id="id" value="">
             <input type="hidden" name="status" id="edit-status" value="0">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Save changes</button>
