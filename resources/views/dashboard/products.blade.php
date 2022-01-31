@@ -57,6 +57,7 @@
 
                   <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Image</th>
                     <th>Description</th>
@@ -102,6 +103,7 @@
                   @foreach ($productdata as $productdatas)
 
                   <tr onclick="showDiscount(this)">
+                    <td>{{ $productdatas['id'] }}</td>
                     <td>{{ $productdatas['name'] }}</td>
                     <td></td>
                     <td>{{ $productdatas['description'] }}</td>
@@ -340,7 +342,7 @@
                 -->
             </div>
             <div class="modal-footer justify-content-between">
-            <input type="hidden" name="id" id="id" value="">
+            <input type="hidden" name="id" id="id">
             <input type="hidden" name="status" id="edit-status" value="0">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Save changes</button>
@@ -357,14 +359,15 @@
       <script>
           function showDiscount(row)
           {
-           var j = row.cells;
+          var j = row.cells;
           document.getElementById("edit-name").value = j[0].innerHTML;
-          document.getElementById("edit-description").value = j[2].innerHTML;
-          document.getElementById("edit-price").value = j[3].innerHTML;
-          document.getElementById("edit-subcategory_id").value = j[4].innerHTML;
-          document.getElementById("edit-weight").value = j[5].innerHTML;
-          document.getElementById("edit-length").value = j[6].innerHTML;
-          document.getElementById("edit-height").value = j[7].innerHTML;
-          document.getElementById("edit-status").value = j[8].innerHTML;
+          document.getElementById("edit-name").value = j[1].innerHTML;
+          document.getElementById("edit-description").value = j[3].innerHTML;
+          document.getElementById("edit-price").value = j[4].innerHTML;
+          document.getElementById("edit-subcategory_id").value = j[5].innerHTML;
+          document.getElementById("edit-weight").value = j[6].innerHTML;
+          document.getElementById("edit-length").value = j[7].innerHTML;
+          document.getElementById("edit-height").value = j[8].innerHTML;
+          document.getElementById("edit-status").value = j[9].innerHTML;
           }
       </script>
