@@ -213,16 +213,14 @@
                     <label for="height">Height</label>
                     <input type="text" class="form-control" name="height" id="height" placeholder="Enter height">
                   </div>
-                  <!--
                   <div class="form-group">
                         <label>Status</label>
                         <select class="form-control" name="status" id="status">
                           <option selected disabled>Select status</option>
-                          <option>Active</option>
-                          <option>Disabled</option>
+                          <option value="1">Active</option>
+                          <option value="0">Disabled</option>
                         </select>
                       </div>
-                  -->
                       <!--
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -240,7 +238,7 @@
 
             </div>
             <div class="modal-footer justify-content-between">
-            <input type="hidden" name="status" id="status" value="0">
+            <!--<input type="hidden" name="status" id="status" value="0">-->
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Add product</button>
             </div>
@@ -316,16 +314,14 @@
                     <label for="height">Height</label>
                     <input type="text" class="form-control" name="height" id="edit-height" placeholder="Enter height">
                   </div>
-                  <!--
                   <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control">
+                        <select class="form-control" name="status" id="edit-status">
                           <option selected disabled>Select status</option>
-                          <option>Active</option>
-                          <option>Disabled</option>
+                          <option value="1">Active</option>
+                          <option value="0">Disabled</option>
                         </select>
                       </div>
-                    -->
                       <!--
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -342,8 +338,8 @@
                 -->
             </div>
             <div class="modal-footer justify-content-between">
-            <input type="hidden" name="id" id="id">
-            <input type="hidden" name="status" id="edit-status" value="0">
+            <input type="hidden" name="id" id="edit-id">
+            <!--<input type="hidden" name="status" id="edit-status" value="0">-->
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Save changes</button>
             </div>
@@ -360,7 +356,7 @@
           function showDiscount(row)
           {
           var j = row.cells;
-          document.getElementById("edit-name").value = j[0].innerHTML;
+          document.getElementById("edit-id").value = j[0].innerHTML;
           document.getElementById("edit-name").value = j[1].innerHTML;
           document.getElementById("edit-description").value = j[3].innerHTML;
           document.getElementById("edit-price").value = j[4].innerHTML;
