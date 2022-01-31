@@ -15,7 +15,7 @@ public function insertpromo(Request $request) {
            'rate' => 'required',
            'is_active' => 'required',
            'created_at' => 'required',
-           'expired_at' => 'required|date|after:tomorrow'
+           'expired_at' => 'required'
 
        ]);
 
