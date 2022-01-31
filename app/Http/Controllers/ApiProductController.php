@@ -56,7 +56,6 @@ public function insertproduct(Request $request) {
           $update = DB::table('products')
             ->where('id', $request->id)
           ->update([
-            'id' =>$request->id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
