@@ -48,6 +48,9 @@ Route::post('/dashboard/category/update', [DashboardController::class, 'updateca
 //SUB CATEGORY
 Route::get('/dashboard/subcategory', [DashboardController::class, 'subcategory'])->name('subcategory');
 
+//PROMO
+Route::get('/dashboard/promo', [DashboardController::class, 'promo'])->name('promo');
+
 /*-------------------------------------
 TRB MALL
 --------------------------------------*/

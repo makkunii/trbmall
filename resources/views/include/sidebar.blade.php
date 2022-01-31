@@ -44,6 +44,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('promo')}}" class="nav-link">
+              <i class="fas fa-money-check-alt nav-icon"></i>
+              <p>Promo</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-sitemap nav-icon"></i>
                 <p>

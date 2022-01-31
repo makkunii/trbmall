@@ -28,7 +28,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            
+
 
             <div class="card">
               <div class="card-header text-right bg-light">
@@ -43,7 +43,7 @@
 
                   <thead>
                   <tr>
-                    <th>ID<th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Address</th>
@@ -119,7 +119,7 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Enter password" required>
                   </div>
-                 
+
                   <div class="form-group">
                         <label>Role</label>
                         <select class="form-control">
@@ -185,7 +185,7 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Enter password" required>
                   </div>
-                 
+
                   <div class="form-group">
                         <label>Role</label>
                         <select class="form-control">

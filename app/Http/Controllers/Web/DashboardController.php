@@ -13,6 +13,26 @@ class DashboardController extends Controller
         return view('dashboard/dashboard');
     }
 
+    //PROMO
+    public function promo(Request $request)
+    {
+        // $vpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo');
+
+        // if ($vpromo->successful())
+        // {
+
+        //     $promodata = $vpromo['Show'];
+
+        //     return view('dashboard/promo')->with(compact('promodata'));
+
+        // }
+
+        // else
+        // {
+            return view('dashboard/promo');
+    //    }
+    }
+
     //CATEGORY
     public function category(Request $request)
     {
