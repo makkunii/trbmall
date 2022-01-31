@@ -108,7 +108,7 @@ public function insertaccount(Request $request) {
    //**************************SHOW VIEW**************************//
    public function showaccount(){
            $fetchedit = DB::table('users')
-           ->select('id','name','email','email_verified_at','password','is_admin','is_active','first_name','last_name','address','contact','scid')
+           ->select('name','email','email_verified_at','password','is_admin','is_active','first_name','last_name','address','contact','scid')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }
