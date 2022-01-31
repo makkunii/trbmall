@@ -56,14 +56,14 @@ public function insertproduct(Request $request) {
           $update = DB::table('products')
             ->where('id', $request->id)
           ->update([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'subcategory_id' => $request->input('subcategory_id'),
-            'weight' => $request->input('weight'),
-            'length' => $request->input('length'),
-            'height' => $request->input('height'),
-            'status' => $request->input('status')
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'subcategory_id' => $request->subcategory_id,
+            'weight' => $request->weight,
+            'length' => $request->length,
+            'height' => $request->height,
+            'status' => $request->status
       ]);
 
        // REDIRECT TO PRODUCT INDEX
