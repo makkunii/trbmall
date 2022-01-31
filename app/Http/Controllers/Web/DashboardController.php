@@ -13,11 +13,28 @@ class DashboardController extends Controller
         return view('dashboard/dashboard');
     }
 
-    public function accounts()
+    //ACCOUNTS
+    public function accounts(Request $request)
     {
-        return view('dashboard/accounts');
+        $vaccount = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/accounts');
+
+        if ($vaccount->successful())
+        {
+
+            $accountdata = $vaccount['Show'];
+
+            return view('dashboard/accounts')->with(compact('accountdata'));
+
+        }
+
+        else
+        {
+            return view('dashboard/dashboard');
+        }
     }
 
+
+    //PRODUCT
 
     public function products(Request $request)
     {
@@ -91,13 +108,10 @@ class DashboardController extends Controller
 
        ]);
 
-       $id = $request->input('id'); // CALL ID INPUTFIELD NAME FOR ID(MIGHT BE HIDDEN IF ID ISNT DISPLAYED ON BLADE)
 
        $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/update',[
 
         //your data
-
-        'id'=>$request->id,
         'name' => $request->name,
         'description' => $request->description,
         'price' => $request->price,
@@ -110,16 +124,12 @@ class DashboardController extends Controller
 
         if ($update->successful())
         {
-
-            return redirect()->route('dashboard/products');
-
+            return redirect()->back()->with('updatesuccess', 'Product updated');
         }
 
         else
         {
-
-            return view('dashboard/dashboard');
-
+            return redirect()->back()->with('updatefailed', 'Product failed to update');
         }
 
     }

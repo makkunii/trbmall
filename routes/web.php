@@ -30,8 +30,14 @@ DASHBOARD
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 //PRODUCT
 Route::get('/dashboard/products', [DashboardController::class, 'products'])->name('products');
+Route::get('/dashboard/products/edit', [DashboardController::class, 'editproduct'])->name('editproduct');
 Route::post('/dashboard/products/insert', [DashboardController::class, 'insertproduct'])->name('insertproduct');
 Route::post('/dashboard/products/update', [DashboardController::class, 'updateproduct'])->name('updateproduct');
+//ACCOUNT
+Route::get('/dashboard/accounts', [DashboardController::class, 'products'])->name('products');
+Route::get('/dashboard/accounts/edit', [DashboardController::class, 'editaccount'])->name('editaccount');
+Route::post('/dashboard/accounts/insert', [DashboardController::class, 'insertaccount'])->name('insertaccount');
+Route::post('/dashboard/accounts/update', [DashboardController::class, 'updateaccount'])->name('updateaccount');
 
 
 

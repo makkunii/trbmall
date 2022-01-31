@@ -27,10 +27,10 @@ Route::get('/dashboard/products/edit/{id}',[ApiProductController::class, 'editpr
 Route::post('/dashboard/products/insert',[ApiProductController::class, 'insertproduct']);
 Route::post('/dashboard/products/update',[ApiProductController::class, 'updateproduct']);
 //********************Account********************\\
-Route::get('/showaccount',[ApiAccountController::class, 'showaccount']);
-Route::get('/editaccount/{id}',[ApiAccountController::class, 'editaccount']);
-Route::post('/insertaccount',[ApiAccountController::class, 'insertaccount']);
-Route::post('/updateaccount/{id}',[ApiAccountController::class, 'updateaccount']);
+Route::get('/dashboard/accounts',[ApiAccountController::class, 'showaccount']);
+Route::get('/dashboard/accounts/edit/{id}',[ApiAccountController::class, 'editaccount']);
+Route::post('/dashboard/accounts/insert',[ApiAccountController::class, 'insertaccount']);
+Route::post('/dashboard/accounts/update/{id}',[ApiAccountController::class, 'updateaccount']);
 //********************Category********************\\
 Route::get('/showcategory',[ApiCategoryController::class, 'showcategory']);
 Route::get('/editcategory/{id}',[ApiCategoryController::class, 'editcategory']);
