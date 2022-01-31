@@ -61,6 +61,10 @@
                     <th>Image</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Category</th>
+                    <th>Weight</th>
+                    <th>Length</th>
+                    <th>Height</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -81,13 +85,31 @@
                     </div>
                   @endif
 
+                  @if(session()->has('updatesuccess'))
+                    <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ session()->get('updatesuccess') }}
+                    </div>
+                  @endif
+
+                  @if(session()->has('updatefailed'))
+                    <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ session()->get('updatefailed') }}
+                    </div>
+                  @endif
+
                   @foreach ($productdata as $productdatas)
 
-                  <tr>
+                  <tr onclick="showDiscount(this)">
                     <td>{{ $productdatas['name'] }}</td>
                     <td></td>
                     <td>{{ $productdatas['description'] }}</td>
                     <td>{{ $productdatas['price'] }}</td>
+                    <td>{{ $productdatas['subcategory_id'] }}</td>
+                    <td>{{ $productdatas['weight'] }}</td>
+                    <td>{{ $productdatas['length'] }}</td>
+                    <td>{{ $productdatas['height'] }}</td>
                     <td>
                     @if($productdatas['status'] == '1')
 
@@ -98,7 +120,7 @@
                     @endif
                     </td>
                     <td>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2" onclick="showDiscount(<?php echo $productdatas['id'] ?>)"><i class="fa fa-edit" ></i></button>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit" ></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
                     </td>
                   </tr>
@@ -316,14 +338,13 @@
                     </div>
                   </div>
                 -->
-            </form>
             </div>
             <div class="modal-footer justify-content-between">
-            <input type="hidden" name="id" id="edit-id" value="">
             <input type="hidden" name="status" id="edit-status" value="0">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger">Save changes</button>
+              <button type="submit" class="btn btn-danger">Save changes</button>
             </div>
+            </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -331,34 +352,18 @@
       </div>
       <!-- /.modal -->
 
+      
       <script>
-         const showProduct = async (id) => {
-
-          const base = 'https://dev.trbmall.trbexpressinc.net/api/dashboard/products/edit/';
-
-          const query = `${id}`;
-
-          const res = await fetch (base + query);
-
-          const data = await res.json();
-
-          document.querySelector("#edit-id").value = data.Edit.id;
-
-          document.querySelector("#edit-name").value = data.Edit.name;
-
-          document.querySelector("#edit-description").value = data.Edit.description;
-
-          document.querySelector("#edit-price").value = data.Edit.price;
-
-          document.querySelector("#edit-subcategory_id").value = data.Edit.subcategory_id;
-
-          document.querySelector("#edit-weight").value = data.Edit.weight;
-
-          document.querySelector("#edit-length").value = data.Edit.length;
-
-          document.querySelector("#edit-height").value = data.Edit.height;
-
-          document.querySelector("#edit-status").value = data.Edit.status;
-
+          function showDiscount(row)
+          {
+           var j = row.cells;
+          document.getElementById("edit-name").value = j[0].innerHTML;
+          document.getElementById("edit-description").value = j[2].innerHTML;
+          document.getElementById("edit-price").value = j[3].innerHTML;
+          document.getElementById("edit-subcategory_id").value = j[4].innerHTML;
+          document.getElementById("edit-weight").value = j[5].innerHTML;
+          document.getElementById("edit-length").value = j[6].innerHTML;
+          document.getElementById("edit-height").value = j[7].innerHTML;
+          document.getElementById("edit-status").value = j[8].innerHTML;
           }
       </script>
