@@ -71,7 +71,7 @@ class DashboardController extends Controller
 
         'id' => $request->id,
         'name' => $request->name,
-        'is_active' => 1
+        'is_active' => $request->is_active
     ]);
 
         if ($update->successful())
@@ -81,8 +81,7 @@ class DashboardController extends Controller
 
         else
         {
-            return $update;
-            //return redirect()->back()->with('updatefailed', 'Category failed to update');
+            return redirect()->back()->with('updatefailed', 'Category failed to update');
         }
 
     }
@@ -203,7 +202,7 @@ class DashboardController extends Controller
         'weight' => $request->weight,
         'length' => $request->length,
         'height' => $request->height,
-        'status' => 1
+        'status' => $request->status
     ]);
 
         if ($update->successful())
