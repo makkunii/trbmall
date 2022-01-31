@@ -112,7 +112,7 @@ class DashboardController extends Controller
 
        $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/update',[
         
-        'id' => $id,
+        'id' => $request->id,
         'name' => $request->name,
         'description' => $request->description,
         'price' => $request->price,
