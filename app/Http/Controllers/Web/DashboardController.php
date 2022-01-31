@@ -121,7 +121,7 @@ class DashboardController extends Controller
         'weight' => $request->weight,
         'length' => $request->length,
         'height' => $request->height,
-        'status' => $request->status
+        'status' => 1
     ]);
 
         if ($update->successful())
