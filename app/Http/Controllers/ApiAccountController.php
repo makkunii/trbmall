@@ -29,18 +29,18 @@ public function insertaccount(Request $request) {
        // CREATE PRODUCT
        $insert = DB::table('accounts')
        ->insertGetId([
-           'name' => $request->input('name'),
-           'email' => $request->input('email'),
-           'email_verified_at' => $request->input('email_verified_at'),
-           'is_admin' => $request->input('is_admin'),
-           'is_active' => $request->input('is_active'),
-           'first_name' => $request->input('firs_name'),
-           'last_name' => $request->input('last_name'),
-           'contact' => $request->input('contact'),
-           'scid' => $request->input('scid'),
-           'remember_token' => $request->input('remember_token'),
-           'created_at' => $request->input('created_at'),
-           'updated_at' => $request->input('updated_at')
+        'name' => $request->name,
+        'email' => $request->email,
+        'email_verified_at' => $request->email_verified_at,
+        'is_admin' => $request->is_admin,
+        'is_active' => $request->is_active,
+        'first_name' => $request->firs_name,
+        'last_name' => $request->last_name,
+        'contact' => $request->contact,
+        'scid' => $request->scid,
+        'remember_token' => $request->remember_token,
+        'created_at' => $request->created_at,
+        'updated_at' => $request->pdated_at
 
        ]);
 
@@ -70,18 +70,18 @@ public function insertaccount(Request $request) {
           $update = DB::table('accounts')
           ->where('id', $request->id)
                 ->update([
-                 'name' => $request->input('name'),
-                 'email' => $request->input('email'),
-                 'email_verified_at' => $request->input('email_verified_at'),
-                 'is_admin' => $request->input('is_admin'),
-                 'is_active' => $request->input('is_active'),
-                 'first_name' => $request->input('firs_name'),
-                 'last_name' => $request->input('last_name'),
-                 'contact' => $request->input('contact'),
-                 'scid' => $request->input('scid'),
-                 'remember_token' => $request->input('remember_token'),
-                 'created_at' => $request->input('created_at'),
-                 'updated_at' => $request->input('updated_at')
+                 'name' => $request->name,
+                 'email' => $request->email,
+                 'email_verified_at' => $request->email_verified_at,
+                 'is_admin' => $request->is_admin,
+                 'is_active' => $request->is_active,
+                 'first_name' => $request->firs_name,
+                 'last_name' => $request->last_name,
+                 'contact' => $request->contact,
+                 'scid' => $request->scid,
+                 'remember_token' => $request->remember_token,
+                 'created_at' => $request->created_at,
+                 'updated_at' => $request->pdated_at
 
            ]);
 
