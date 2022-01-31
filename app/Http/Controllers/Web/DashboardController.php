@@ -13,6 +13,16 @@ class DashboardController extends Controller
         return view('dashboard/dashboard');
     }
 
+    //CATEGORY
+    public function category()
+    {
+        return view('dashboard/category');
+    }
+    public function subcategory()
+    {
+        return view('dashboard/subcategory');
+    }
+
     //ACCOUNTS
     public function accounts(Request $request)
     {
@@ -110,7 +120,7 @@ class DashboardController extends Controller
        ]);
 
        $id = $request->input('id');
-       
+
        $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/update',[
 
         'id' => $request->id,

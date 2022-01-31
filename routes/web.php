@@ -39,10 +39,13 @@ Route::get('/dashboard/accounts/edit', [DashboardController::class, 'editaccount
 Route::post('/dashboard/accounts/insert', [DashboardController::class, 'insertaccount'])->name('insertaccount');
 Route::post('/dashboard/accounts/update', [DashboardController::class, 'updateaccount'])->name('updateaccount');
 
-
-
 //ACCOUNTS
 Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
+
+
+//CATEGORY
+Route::get('/dashboard/category', [DashboardController::class, 'category'])->name('category');
+Route::get('/dashboard/subcategory', [DashboardController::class, 'subcategory'])->name('subcategory');
 
 /*-------------------------------------
 TRB MALL

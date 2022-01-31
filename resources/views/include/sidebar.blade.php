@@ -43,6 +43,29 @@
               <p>Products</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-sitemap nav-icon"></i>
+                <p>
+                    Categories
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('category')}}" class="nav-link">
+                        <i class="fas fa-list-alt"></i>
+                        <p>Category</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('subcategory')}}" class="nav-link">
+                        <i class="far fa-list-alt"></i>
+                        <p>Sub-Category</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
             </ul>
           </li>
 
