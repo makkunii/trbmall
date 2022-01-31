@@ -33,10 +33,10 @@ Route::get('/dashboard/accounts/edit/{id}',[ApiAccountController::class, 'editac
 Route::post('/dashboard/accounts/insert',[ApiAccountController::class, 'insertaccount']);
 Route::post('/dashboard/accounts/update',[ApiAccountController::class, 'updateaccount']);
 //********************Category********************\\
-Route::get('/showcategory',[ApiCategoryController::class, 'showcategory']);
-Route::get('/editcategory/{id}',[ApiCategoryController::class, 'editcategory']);
-Route::post('/insertcategory',[ApiCategoryController::class, 'insertcategory']);
-Route::post('/updatecategory/{id}',[ApiCategoryController::class, 'updatecategory']);
+Route::get('/dashboard/category',[ApiCategoryController::class, 'showcategory']);
+Route::get('/dashboard/category/edit/{id}',[ApiCategoryController::class, 'editcategory']);
+Route::post('/dashboard/category/insert',[ApiCategoryController::class, 'insertcategory']);
+Route::post('/dashboard/category/update',[ApiCategoryController::class, 'updatecategory']);
 //********************SubCategory********************\\
 Route::get('/showsubcategory',[ApiSubCategoryController::class, 'showsubcategory']);
 Route::get('/editsubcategory/{id}',[ApiSubCategoryController::class, 'editsubcategory']);

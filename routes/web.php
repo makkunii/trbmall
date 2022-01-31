@@ -34,17 +34,18 @@ Route::get('/dashboard/products/edit', [DashboardController::class, 'editproduct
 Route::post('/dashboard/products/insert', [DashboardController::class, 'insertproduct'])->name('insertproduct');
 Route::post('/dashboard/products/update', [DashboardController::class, 'updateproduct'])->name('updateproduct');
 //ACCOUNT
-Route::get('/dashboard/accounts', [DashboardController::class, 'products'])->name('products');
+Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
 Route::get('/dashboard/accounts/edit', [DashboardController::class, 'editaccount'])->name('editaccount');
 Route::post('/dashboard/accounts/insert', [DashboardController::class, 'insertaccount'])->name('insertaccount');
 Route::post('/dashboard/accounts/update', [DashboardController::class, 'updateaccount'])->name('updateaccount');
-
-//ACCOUNTS
-Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
-
-
 //CATEGORY
 Route::get('/dashboard/category', [DashboardController::class, 'category'])->name('category');
+Route::get('/dashboard/category/edit', [DashboardController::class, 'editcategory'])->name('editcategory');
+Route::post('/dashboard/category/insert', [DashboardController::class, 'insertcategory'])->name('insertcategory');
+Route::post('/dashboard/category/update', [DashboardController::class, 'updatecategory'])->name('updatecategory');
+
+
+//SUB CATEGORY
 Route::get('/dashboard/subcategory', [DashboardController::class, 'subcategory'])->name('subcategory');
 
 /*-------------------------------------

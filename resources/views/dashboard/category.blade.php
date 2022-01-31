@@ -90,25 +90,20 @@
                     </div>
                   @endif
 
-                 {{-- @foreach ($productdata as $productdatas) --}}
+                  @foreach ($categorydata as $categorydatas)
 
                   <tr onclick="showDiscount(this)">
 
-                    {{-- <td>{{ $productdatas['id'] }}</td>
-                    <td>{{ $productdatas['name'] }}</td> --}}
-                    <td>ID</td>
-                    <td>Name</td>
+                   <td>{{ $categorydatas['id'] }}</td>
+                    <td>{{ $categorydatas['name'] }}</td>
                     <td>
-
-                    </td>
-
-                    {{-- @if($productdatas['status'] == '1') --}}
+                    @if($categorydatas['is_active'] == '1')
 
                     <div class="badge bg-green text-white">Active</div>
 
-                    {{-- @elseif($productdatas['status'] == '0')
+                    @elseif($categorydatas['is_active'] == '0')
                     <div class="badge bg-red text-white">Disabled</div>
-                    @endif --}}
+                    @endif
                     </td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit" ></i></button>
@@ -116,7 +111,7 @@
                     </td>
                   </tr>
 
-                  {{-- @endforeach --}}
+                   @endforeach
 
                   </tbody>
 
@@ -150,7 +145,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="{{ route('insertproduct') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('insertcategory') }}" method="POST" enctype="multipart/form-data">
               @csrf
                   <div class="form-group">
                     <label for="productname">Category Name</label>
@@ -158,7 +153,7 @@
                 </div>
                 <div class="form-group">
                     <label>Status</label>
-                    <select class="form-control" name="status" id="status">
+                    <select class="form-control" name="is_active" id="is_active">
                       <option selected disabled>Select status</option>
                       <option value="1">Active</option>
                       <option value="0">Disabled</option>
@@ -205,7 +200,6 @@
                   </div>
                   -->
                   <div class="modal-footer justify-content-between">
-                    <!--<input type="hidden" name="status" id="status" value="0">-->
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-danger">Add Category</button>
                     </div>
@@ -231,7 +225,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="#" method="POST">
+            <form action="{{ route('updatecategory') }}" method="POST">
               @csrf
               <div class="form-group">
                     <label for="productname">Category Name</label>
@@ -263,7 +257,7 @@
 
                   <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control" name="status" id="edit-status">
+                        <select class="form-control" name="is_active" id="edit-is_active">
                           <option selected disabled>Select status</option>
                           <option value="1">Active</option>
                           <option value="0">Disabled</option>
@@ -286,7 +280,6 @@
             </div>
             <div class="modal-footer justify-content-between">
             <input type="hidden" name="id" id="edit-id">
-            <!--<input type="hidden" name="status" id="edit-status" value="0">-->
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Save changes</button>
             </div>
@@ -305,6 +298,6 @@
           var j = row.cells;
           document.getElementById("edit-id").value = j[0].innerHTML;
           document.getElementById("edit-name").value = j[1].innerHTML;
-          document.getElementById("edit-status").value = j[9].innerHTML;
+          document.getElementById("edit-is_active").value = j[2].innerHTML;
           }
       </script>
