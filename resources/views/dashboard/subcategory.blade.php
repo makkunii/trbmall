@@ -96,7 +96,7 @@
 
                     <td>{{ $subcategorydatas['id'] }}</td>
                     <td>{{ $subcategorydatas['name'] }}</td>
-                    <td>Category</td>
+                    <td>{{ $subcategorydatas['category_id'] }}</td>
                     <td>
 
                     @if($subcategorydatas['is_active'] == '1')
@@ -153,9 +153,16 @@
                     <label for="productname">Sub-Category Name</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Enter Sub-Category Name">
                 </div>
+                
                 <div class="form-group">
-                    <label for="productname">Category</label>
-                    <input type="text" class="form-control" name="category" id="category" placeholder="Select To base sa category">
+                    <label>Category</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                      <option value="null" selected disabled>Select category</option>
+                      <?php foreach ($vcategorydata as $vcategorydatas) { ?> 
+                      <option value="<?php echo $vcategorydatas['name'];?>"> <?php echo $vcategorydatas['name'];?> </option>
+                      <?php } ?> 
+                    </select>
+                    
                 </div>
                 <div class="form-group">
                     <label>Status</label>

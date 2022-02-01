@@ -13,6 +13,7 @@ public function insertsubcategory(Request $request) {
        // VALIDATE PRODUCT
        $request->validate([
         'name' => 'required|string|max:255',
+        'category_id' => 'required',
         'is_active' => 'required|integer'
 
        ]);
@@ -21,6 +22,7 @@ public function insertsubcategory(Request $request) {
        $insert = DB::table('sub_category')
        ->insertGetId([
         'name' => $request->name,
+        'category_id' => $request->category_id,
         'is_active' => $request->is_active
        ]);
 
@@ -34,6 +36,7 @@ public function insertsubcategory(Request $request) {
           $request->validate([
             'id' => 'required',
             'name' => 'required|string|max:255',
+            'category_id' => 'required',
             'is_active' => 'required|integer'
           ]);
 
@@ -43,6 +46,7 @@ public function insertsubcategory(Request $request) {
         ->update([
             'id' =>$request->id,
             'name' => $request->name,
+            'category_id' => $request->category_id,
             'is_active' => $request->is_active
            ]);
 
@@ -69,18 +73,18 @@ public function insertsubcategory(Request $request) {
    //**************************SHOW VIEW SUB CATEGORY**************************//
    public function showsubcategory(){
            $fetchedit = DB::table('sub_category')
-           ->select('id','name','is_active')
+           ->select('id','name','category_id','is_active')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }
 
     //**************************SHOW VIEW CATEGORY**************************//
-   public function showcategory(){
+   public function vshowcategory(){
     $fetchedit = DB::table('category')
-    ->select('id','name','is_active')
+    ->select('id','name')
     ->get();
-    return response()->json(['Show' => $fetchedit], 200);
-}
+    return response()->json(['ShowCategory' => $fetchedit], 200);
+  }
 
   //**************************EDIT VIEW**************************//
   public function editsubcategory($id){
