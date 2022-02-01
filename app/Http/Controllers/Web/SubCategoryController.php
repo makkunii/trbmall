@@ -84,8 +84,43 @@ class SubCategoryController extends Controller
             return redirect()->back()->with('insertsuccess', 'SubCategory saved');
 
         } else {
-            return $insert;
-            //return redirect()->back()->with('insertfailed', 'SubCategory failed to save');
+            return redirect()->back()->with('insertfailed', 'SubCategory failed to save');
         }
     }
-}
+
+    public function updatesubcategory(Request $request)
+    {
+
+        $this->validate($request,[
+
+            'id' => 'required',
+            'name' => 'required',
+            'category_id' => 'required',
+            'is_active' => 'required'
+
+       ]);
+
+       $id = $request->input('id');
+
+       $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/update',[
+
+        'id' => $request->id,
+        'name' => $request->name,
+        'category_id' => $request->category_id,
+        'is_active' => $request->is_active
+    ]);
+
+        if ($update->successful())
+        {
+            return redirect()->back()->with('updatesuccess', 'SubCategory updated');
+        }
+
+        else
+        {
+            return redirect()->back()->with('updatefailed', 'SubCategory failed to update');
+        }
+
+    }
+
+
+} //end

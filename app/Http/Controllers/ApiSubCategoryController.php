@@ -31,7 +31,7 @@ public function insertsubcategory(Request $request) {
    }
 
   //**************************UPDATE**************************//
-   public function updatesubcategory(Request $request, $id){
+   public function updatesubcategory(Request $request){
           // VALIDATE PRODUCT
           $request->validate([
             'id' => 'required',

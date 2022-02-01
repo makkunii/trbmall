@@ -25,12 +25,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Category</h1>
+            <h1>SubCategory</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Category</li>
+              <li class="breadcrumb-item active">SubCategory</li>
             </ol>
           </div>
         </div>
@@ -159,11 +159,11 @@
                     <select class="form-control" name="category_id" id="category_id">
                       <option value="null" selected disabled>Select category</option>
                       <?php foreach ($vcategorydata as $vcategorydatas) { ?> 
-                      <option value="<?php echo $vcategorydatas['name'];?>"> <?php echo $vcategorydatas['name'];?> </option>
+                      <option value="<?php echo $vcategorydatas['id'];?>"> <?php echo $vcategorydatas['name'];?> </option>
                       <?php } ?> 
                     </select>
-                    
                 </div>
+
                 <div class="form-group">
                     <label>Status</label>
                     <select class="form-control" name="is_active" id="is_active">
@@ -239,16 +239,21 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="#" method="POST">
+            <form action="{{ route('updatesubcategory') }}" method="POST">
               @csrf
               <div class="form-group">
                     <label for="productname">Sub-Category Name</label>
                     <input type="text" class="form-control" name="name" id="edit-name" placeholder="Enter Category Name">
                   </div>
                   <div class="form-group">
-                    <label for="productname">Category Name</label>
-                    <input type="text" class="form-control" name="category" id="edit-name" placeholder="Custom Select">
-                  </div>
+                    <label>Category</label>
+                    <select class="form-control" name="category_id" id="edit-category_id">
+                      <option value="null" selected disabled>Select category</option>
+                      <?php foreach ($vcategorydata as $vcategorydatas) { ?> 
+                      <option value="<?php echo $vcategorydatas['id'];?>"> <?php echo $vcategorydatas['name'];?> </option>
+                      <?php } ?> 
+                    </select>
+                </div>
                   <!--
                   <div class="form-group">
                         <label>Category</label>
@@ -297,7 +302,6 @@
             </div>
             <div class="modal-footer justify-content-between">
             <input type="hidden" name="id" id="edit-id">
-            <!--<input type="hidden" name="status" id="edit-status" value="0">-->
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Save changes</button>
             </div>
@@ -316,7 +320,7 @@
           var j = row.cells;
           document.getElementById("edit-id").value = j[0].innerHTML;
           document.getElementById("edit-name").value = j[1].innerHTML;
-          document.getElementById("edit-category").value = j[1].innerHTML;
-          document.getElementById("edit-status").value = j[9].innerHTML;
+          document.getElementById("edit-category_id").value = j[2].innerHTML;
+          document.getElementById("edit-status").value = j[3].innerHTML;
           }
       </script>
