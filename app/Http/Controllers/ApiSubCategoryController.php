@@ -25,7 +25,7 @@ public function insertsubcategory(Request $request) {
        ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return response()->json(['Success' => 'Category Created'],200);
+       return response()->json(['Success' => 'SubCategory Created'],200);
    }
 
   //**************************UPDATE**************************//
@@ -47,7 +47,7 @@ public function insertsubcategory(Request $request) {
            ]);
 
        // REDIRECT TO PRODUCT INDEX
-       return response()->json(['Success' => 'Category Updated'],200);
+       return response()->json(['Success' => 'SubCategory Updated'],200);
    }
 
 

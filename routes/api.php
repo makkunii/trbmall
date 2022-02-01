@@ -39,7 +39,7 @@ Route::post('/dashboard/category/insert',[ApiCategoryController::class, 'insertc
 Route::post('/dashboard/category/update',[ApiCategoryController::class, 'updatecategory']);
 //********************SubCategory********************\\
 Route::get('/dashboard/subcategory',[ApiSubCategoryController::class, 'showsubcategory']);
-Route::get('/dashboard/subcategory/view/category',[ApiSubCategoryController::class, 'showcategory']);
+Route::get('/dashboard/subcategory/view/vcategory',[ApiSubCategoryController::class, 'vshowcategory']);
 Route::get('/dashboard/subcategory/edit/{id}',[ApiSubCategoryController::class, 'editsubcategory']);
 Route::post('/dashboard/subcategory/insert',[ApiSubCategoryController::class, 'insertsubcategory']);
 Route::post('/dashboard/subcategory/update',[ApiSubCategoryController::class, 'updatesubcategory']);
