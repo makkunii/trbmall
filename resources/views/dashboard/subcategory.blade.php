@@ -101,8 +101,6 @@
                     <td>Category</td>
                     <td>
 
-                    </td>
-
                     {{-- @if($productdatas['status'] == '1') --}}
 
                     <div class="badge bg-green text-white">Active</div>

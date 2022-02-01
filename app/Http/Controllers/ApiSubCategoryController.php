@@ -12,16 +12,16 @@ class ApiSubCategoryController extends Controller
 public function insertsubcategory(Request $request) {
        // VALIDATE PRODUCT
        $request->validate([
-           'name' => 'required|string|max:255',
-           'is_active' => 'required'
+        'name' => 'required|string|max:255',
+        'is_active' => 'required|integer'
 
        ]);
 
        // CREATE PRODUCT
        $insert = DB::table('category')
        ->insertGetId([
-           'name' => $request->name,
-           'is_active' => $request->is_active
+        'name' => $request->name,
+        'is_active' => $request->is_active
        ]);
 
        // REDIRECT TO PRODUCT INDEX
@@ -32,14 +32,16 @@ public function insertsubcategory(Request $request) {
    public function updatesubcategory(Request $request, $id){
           // VALIDATE PRODUCT
           $request->validate([
+            'id' => 'required',
             'name' => 'required|string|max:255',
-            'is_active' => 'required'
+            'is_active' => 'required|integer'
           ]);
 
           // UPDATE PRODUCT
           $update = DB::table('category')
           ->where('id', $request->id)
         ->update([
+            'id' =>$request->id,
             'name' => $request->name,
             'is_active' => $request->is_active
            ]);
@@ -64,13 +66,21 @@ public function insertsubcategory(Request $request) {
 
 }
 
-   //**************************SHOW VIEW**************************//
+   //**************************SHOW VIEW SUB CATEGORY**************************//
    public function showsubcategory(){
            $fetchedit = DB::table('sub_category')
-           ->select('name','is_active')
+           ->select('id','name','is_active')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }
+
+    //**************************SHOW VIEW CATEGORY**************************//
+   public function showcategory(){
+    $fetchedit = DB::table('category')
+    ->select('id','name','is_active')
+    ->get();
+    return response()->json(['Show' => $fetchedit], 200);
+}
 
   //**************************EDIT VIEW**************************//
   public function editsubcategory($id){
