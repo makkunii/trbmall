@@ -92,30 +92,24 @@
                     </div>
                   @endif
 
-                  {{-- @foreach ($promodata as $promodatas) --}}
+                  @foreach ($promodata as $promodatas)
 
                   <tr onclick="showDiscount(this)">
-{{--
+
                    <td>{{ $promodatas['id'] }}</td>
                     <td>{{ $promodatas['name'] }}</td>
                     <td>{{ $promodatas['rate'] }}</td>
                     <td>{{ $promodatas['created_at'] }}</td>
-                    <td>{{ $promodatas['expired_at'] }}</td> --}}
-
-                    <td>id</td>
-                    <td>name</td>
-                    <td>rate</td>
-                    <td>created</td>
-                    <td>expired</td>
+                    <td>{{ $promodatas['expired_at'] }}</td>
 
                     <td>
-                    {{-- @if($categorydatas['is_active'] == '1') --}}
+                    @if($promodatas['is_active'] == '1') 
 
                     <div class="badge bg-green text-white">Active</div>
 
-                    {{-- @elseif($categorydatas['is_active'] == '0')
+                    @elseif($promodatas['is_active'] == '0')
                     <div class="badge bg-red text-white">Disabled</div>
-                    @endif --}}
+                    @endif
                     </td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit" ></i></button>
@@ -123,7 +117,7 @@
                     </td>
                   </tr>
 
-                   {{-- @endforeach --}}
+                   @endforeach
 
                   </tbody>
 
@@ -157,7 +151,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('insertpromo') }}" method="POST" enctype="multipart/form-data">
               @csrf
                   <div class="form-group">
                     <label for="name">Promo Name</label>
@@ -249,7 +243,7 @@
               </button>
             </div>
             <div class="modal-body">
-            <form action="#" method="POST">
+            <form action="{{ route('updatepromo') }}" method="POST">
               @csrf
               <div class="form-group">
                     <label for="name">Promo Name</label>

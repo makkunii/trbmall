@@ -13,7 +13,7 @@ public function insertpromo(Request $request) {
        $request->validate([
            'name' => 'required|string|max:255',
            'rate' => 'required',
-           'is_active' => 'required',
+           'is_active' => 'required|integer',
            'created_at' => 'required',
            'expired_at' => 'required'
 
@@ -35,12 +35,13 @@ public function insertpromo(Request $request) {
    }
 
   //**************************UPDATE**************************//
-   public function updatepromo(Request $request, $id){
+   public function updatepromo(Request $request){
           // VALIDATE PRODUCT
           $request->validate([
+            'id' => 'required',
             'name' => 'required|string|max:255',
             'rate' => 'required',
-            'is_active' => 'required',
+            'is_active' => 'required|integer',
             'created_at' => 'required',
             'expired_at' => 'required'
           ]);
@@ -49,6 +50,7 @@ public function insertpromo(Request $request) {
           $update = DB::table('promos')
           ->where('id', $request->id)
                 ->update([
+                    'id' =>$request->id,
                     'name' => $request->name,
                     'rate' => $request->rate,
                     'is_active' => $request->is_active,
@@ -80,7 +82,7 @@ public function insertpromo(Request $request) {
    //**************************SHOW VIEW**************************//
    public function showpromo(){
            $fetchedit = DB::table('promos')
-           ->select('name','rate','is_active','created_at','expired_at')
+           ->select('id','name','rate','is_active','created_at','expired_at')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }

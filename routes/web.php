@@ -59,6 +59,9 @@ Route::post('/dashboard/subcategory/update', [SubCategoryController::class, 'upd
 
 //PROMO
 Route::get('/dashboard/promo', [PromoController::class, 'promo'])->name('promo');
+Route::get('/dashboard/promo/edit', [PromoController::class, 'editpromo'])->name('editcpromo');
+Route::post('/dashboard/promo/insert', [PromoController::class, 'insertpromo'])->name('insertpromo');
+Route::post('/dashboard/promo/update', [PromoController::class, 'updatepromo'])->name('updatepromo');
 
 /*-------------------------------------
 TRB MALL

@@ -49,7 +49,7 @@ Route::get('/editorder/{id}',[ApiOrdersController::class, 'showorder']);
 Route::post('/insertorder',[ApiOrdersController::class, 'insertorder']);
 Route::post('/updateorder/{id}',[ApiOrdersController::class, 'updateorder']);
 //********************Promo********************\\
-Route::get('/showpromo',[ApiPromoController::class, 'showpromo']);
-Route::get('/editpromo/{id}',[ApiPromoController::class, 'editpromo']);
-Route::post('/insertpromo',[ApiPromoController::class, 'insertpromo']);
-Route::post('/updatepromo/{id}',[ApiPromoController::class, 'updatepromo']);
+Route::get('/dashboard/promo',[ApiPromoController::class, 'showpromo']);
+Route::get('/dashboard/promo/edit/{id}',[ApiPromoController::class, 'editpromo']);
+Route::post('/dashboard/promo/insert',[ApiPromoController::class, 'insertpromo']);
+Route::post('/dashboard/promo/update',[ApiPromoController::class, 'updatepromo']);
