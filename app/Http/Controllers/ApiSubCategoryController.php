@@ -18,7 +18,7 @@ public function insertsubcategory(Request $request) {
        ]);
 
        // CREATE PRODUCT
-       $insert = DB::table('category')
+       $insert = DB::table('sub_category')
        ->insertGetId([
         'name' => $request->name,
         'is_active' => $request->is_active
@@ -38,7 +38,7 @@ public function insertsubcategory(Request $request) {
           ]);
 
           // UPDATE PRODUCT
-          $update = DB::table('category')
+          $update = DB::table('sub_category')
           ->where('id', $request->id)
         ->update([
             'id' =>$request->id,

@@ -52,6 +52,10 @@ Route::post('/dashboard/category/update', [CategoryController::class, 'updatecat
 
 //SUB CATEGORY
 Route::get('/dashboard/subcategory', [SubCategoryController::class, 'subcategory'])->name('subcategory');
+Route::get('/dashboard/subcategory/view/category', [SubCategoryController::class, 'category'])->name('category');
+Route::get('/dashboard/subcategory/edit', [SubCategoryController::class, 'editsubcategory'])->name('editsubcategory');
+Route::post('/dashboard/subcategory/insert', [SubCategoryController::class, 'insertsubcategory'])->name('insertsubcategory');
+Route::post('/dashboard/subcategory/update', [SubCategoryController::class, 'updatesubcategory'])->name('updatesubcategory');
 
 //PROMO
 Route::get('/dashboard/promo', [PromoController::class, 'promo'])->name('promo');
