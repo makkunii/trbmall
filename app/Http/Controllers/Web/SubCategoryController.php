@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
@@ -6,11 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 
-class DashboardController extends Controller
+class SubCategoryController extends Controller
 {
-    public function dashboard()
+    public function subcategory()
     {
-        return view('dashboard/dashboard');
+        return view('dashboard/subcategory');
     }
-
 }
