@@ -279,7 +279,7 @@
 
                   <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control" name="status" id="edit-status">
+                        <select class="form-control" name="is_active" id="edit-is_active">
                           <option selected disabled>Select status</option>
                           <option value="1">Active</option>
                           <option value="0">Disabled</option>
@@ -321,6 +321,6 @@
           document.getElementById("edit-id").value = j[0].innerHTML;
           document.getElementById("edit-name").value = j[1].innerHTML;
           document.getElementById("edit-category_id").value = j[2].innerHTML;
-          document.getElementById("edit-status").value = j[3].innerHTML;
+          document.getElementById("edit-is_active").value = j[3].innerHTML;
           }
       </script>
