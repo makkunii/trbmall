@@ -8,6 +8,8 @@ use App\Http\Controllers\ApiCategoryController;
 use App\Http\Controllers\ApiSubCategoryController;
 use App\Http\Controllers\ApiOrdersController;
 use App\Http\Controllers\ApiPromoController;
+use App\Http\Controllers\ApiCategoriesController;
+use App\Http\Controllers\ApiLocationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -53,3 +55,10 @@ Route::get('/dashboard/promo',[ApiPromoController::class, 'showpromo']);
 Route::get('/dashboard/promo/edit/{id}',[ApiPromoController::class, 'editpromo']);
 Route::post('/dashboard/promo/insert',[ApiPromoController::class, 'insertpromo']);
 Route::post('/dashboard/promo/update',[ApiPromoController::class, 'updatepromo']);
+//********************CATEGOIESZXC********************\\
+Route::get('/getcategory',[ApiCategoriesController::class, 'getcategory']);
+Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcategory']);
+//********************Location********************\\
+Route::get('/getprovince',[ApiLocationController::class, 'getprovince']);
+Route::get('/getcity/{province}',[ApiLocationController::class, 'getcity']);
+Route::get('/getbrgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
