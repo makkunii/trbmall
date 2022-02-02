@@ -36,4 +36,4 @@ class ApiLocationController extends Controller
        
             return response()->json(['barangay' => $brgy]);
       }
-}
+} 
