@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 
 {
+    // public function saveJson($request)
+    //     {
+    //         $data = json_decode($request->getContent());
+
+    //     }
 
     public function cartList()
 
@@ -23,6 +28,20 @@ class CartController extends Controller
         // dd($cartItems);
 
         return view('layouts/cart', compact('cartItems'));
+
+    }
+    public function checkoutCart(Request $request)
+
+    {
+
+
+        $request->session()->put('name','');
+
+        session()->flash('success', 'Product is Added to Cart Successfully !');
+
+
+
+        return redirect()->route('home');
 
     }
 
