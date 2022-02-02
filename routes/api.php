@@ -58,6 +58,6 @@ Route::post('/updatepromo/{id}',[ApiPromoController::class, 'updatepromo']);
 Route::get('/getcategory',[ApiCategoriesController::class, 'getcategory']);
 Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcategory']);
 //********************Location********************\\
-Route::get('/getprovince/{id}',[ApiLocationController::class, 'getprovince']);
-Route::get('/getcity/{id}',[ApiLocationController::class, 'getcity']);
-Route::get('/getbrgy/{id}',[ApiLocationController::class, 'getbrgy']);
+Route::get('/getprovince',[ApiLocationController::class, 'getprovince']);
+Route::get('/getcity/{province}',[ApiLocationController::class, 'getcity']);
+Route::get('/getbrgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
