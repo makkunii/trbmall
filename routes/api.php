@@ -28,28 +28,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/dashboard/products',[ApiProductController::class, 'showproduct']);
 Route::get('/dashboard/products/edit/{id}',[ApiProductController::class, 'editproduct']);
 Route::post('/dashboard/products/insert',[ApiProductController::class, 'insertproduct']);
-Route::post('/dashboard/products/update/{id}',[ApiProductController::class, 'updateproduct']);
+Route::post('/dashboard/products/update',[ApiProductController::class, 'updateproduct']);
 //********************Account********************\\
 Route::get('/dashboard/accounts',[ApiAccountController::class, 'showaccount']);
 Route::get('/dashboard/accounts/edit/{id}',[ApiAccountController::class, 'editaccount']);
 Route::post('/dashboard/accounts/insert',[ApiAccountController::class, 'insertaccount']);
-Route::post('/dashboard/accounts/update/{id}',[ApiAccountController::class, 'updateaccount']);
+Route::post('/dashboard/accounts/update',[ApiAccountController::class, 'updateaccount']);
 //********************Category********************\\
-Route::get('/showcategory',[ApiCategoryController::class, 'showcategory']);
-Route::get('/editcategory/{id}',[ApiCategoryController::class, 'editcategory']);
-Route::post('/insertcategory',[ApiCategoryController::class, 'insertcategory']);
-Route::post('/updatecategory/{id}',[ApiCategoryController::class, 'updatecategory']);
+Route::get('/dashboard/category',[ApiCategoryController::class, 'showcategory']);
+Route::get('/dashboard/category/edit/{id}',[ApiCategoryController::class, 'editcategory']);
+Route::post('/dashboard/category/insert',[ApiCategoryController::class, 'insertcategory']);
+Route::post('/dashboard/category/update',[ApiCategoryController::class, 'updatecategory']);
 //********************SubCategory********************\\
-Route::get('/showsubcategory',[ApiSubCategoryController::class, 'showsubcategory']);
-Route::get('/editsubcategory/{id}',[ApiSubCategoryController::class, 'editsubcategory']);
-Route::post('/insertsubcategory',[ApiSubCategoryController::class, 'insertsubcategory']);
-Route::post('/updatesubcategory/{id}',[ApiSubCategoryController::class, 'updatesubcategory']);
+Route::get('/dashboard/subcategory',[ApiSubCategoryController::class, 'showsubcategory']);
+Route::get('/dashboard/subcategory/view/vcategory',[ApiSubCategoryController::class, 'vshowcategory']);
+Route::get('/dashboard/subcategory/edit/{id}',[ApiSubCategoryController::class, 'editsubcategory']);
+Route::post('/dashboard/subcategory/insert',[ApiSubCategoryController::class, 'insertsubcategory']);
+Route::post('/dashboard/subcategory/update',[ApiSubCategoryController::class, 'updatesubcategory']);
 //********************Orders********************\\
 Route::get('/showorder',[ApiOrdersController::class, 'showorder']);
 Route::get('/editorder/{id}',[ApiOrdersController::class, 'showorder']);
 Route::post('/insertorder',[ApiOrdersController::class, 'insertorder']);
 Route::post('/updateorder/{id}',[ApiOrdersController::class, 'updateorder']);
 //********************Promo********************\\
+<<<<<<< HEAD
 Route::get('/showpromo',[ApiPromoController::class, 'showpromo']);
 Route::get('/editpromo/{id}',[ApiPromoController::class, 'editpromo']);
 Route::post('/insertpromo',[ApiPromoController::class, 'insertpromo']);
@@ -61,3 +63,9 @@ Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcatego
 Route::get('/getprovince',[ApiLocationController::class, 'getprovince']);
 Route::get('/getcity/{province}',[ApiLocationController::class, 'getcity']);
 Route::get('/getbrgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
+=======
+Route::get('/dashboard/promo',[ApiPromoController::class, 'showpromo']);
+Route::get('/dashboard/promo/edit/{id}',[ApiPromoController::class, 'editpromo']);
+Route::post('/dashboard/promo/insert',[ApiPromoController::class, 'insertpromo']);
+Route::post('/dashboard/promo/update',[ApiPromoController::class, 'updatepromo']);
+>>>>>>> 5d71f56bf05fc7e88749f5f9fd33424152bb2f06

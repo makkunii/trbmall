@@ -13,7 +13,7 @@ public function insertcategory(Request $request) {
        // VALIDATE PRODUCT
        $request->validate([
            'name' => 'required|string|max:255',
-           'is_active' => 'required'
+           'is_active' => 'required|integer'
 
        ]);
 
@@ -29,17 +29,19 @@ public function insertcategory(Request $request) {
    }
 
   //**************************UPDATE**************************//
-   public function updatecategory(Request $request, $id){
+   public function updatecategory(Request $request){
           // VALIDATE PRODUCT
           $request->validate([
+            'id' => 'required',
             'name' => 'required|string|max:255',
-            'is_active' => 'required'
+            'is_active' => 'required|integer'
           ]);
 
           // UPDATE PRODUCT
           $update = DB::table('category')
           ->where('id', $request->id)
         ->update([
+            'id' =>$request->id,
             'name' => $request->name,
             'is_active' => $request->is_active
            ]);
@@ -67,7 +69,7 @@ public function insertcategory(Request $request) {
    //**************************SHOW VIEW**************************//
    public function showcategory(){
            $fetchedit = DB::table('category')
-           ->select('name','is_active')
+           ->select('id','name','is_active')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }

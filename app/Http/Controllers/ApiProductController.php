@@ -42,6 +42,7 @@ public function insertproduct(Request $request) {
    public function updateproduct(Request $request){
           // VALIDATE PRODUCT
           $request->validate([
+           'id' => 'required',
            'name' => 'required|string|max:255',
            'description' => 'required',
            'price' => 'required|numeric|between:0,9999999.99',
@@ -49,13 +50,14 @@ public function insertproduct(Request $request) {
            'weight' => 'nullable',
            'length' => 'nullable',
            'height' => 'nullable',
-           'status' => 'required|string|max:255'
+           'status' => 'required|integer'
         ]);
 
           // UPDATE PRODUCT
           $update = DB::table('products')
             ->where('id', $request->id)
           ->update([
+            'id' =>$request->id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,

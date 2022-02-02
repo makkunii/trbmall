@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\AccountsController;
+use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\ProductsController;
+use App\Http\Controllers\Web\PromoController;
+use App\Http\Controllers\Web\SubCategoryController;
 
 
 use App\Http\Controllers\CartController;
@@ -29,20 +34,34 @@ DASHBOARD
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 //PRODUCT
-Route::get('/dashboard/products', [DashboardController::class, 'products'])->name('products');
-Route::get('/dashboard/products/edit', [DashboardController::class, 'editproduct'])->name('editproduct');
-Route::post('/dashboard/products/insert', [DashboardController::class, 'insertproduct'])->name('insertproduct');
-Route::post('/dashboard/products/update', [DashboardController::class, 'updateproduct'])->name('updateproduct');
+Route::get('/dashboard/products', [ProductsController::class, 'products'])->name('products');
+Route::get('/dashboard/products/edit', [ProductsController::class, 'editproduct'])->name('editproduct');
+Route::post('/dashboard/products/insert', [ProductsController::class, 'insertproduct'])->name('insertproduct');
+Route::post('/dashboard/products/update', [ProductsController::class, 'updateproduct'])->name('updateproduct');
 //ACCOUNT
-Route::get('/dashboard/accounts', [DashboardController::class, 'products'])->name('products');
-Route::get('/dashboard/accounts/edit', [DashboardController::class, 'editaccount'])->name('editaccount');
-Route::post('/dashboard/accounts/insert', [DashboardController::class, 'insertaccount'])->name('insertaccount');
-Route::post('/dashboard/accounts/update', [DashboardController::class, 'updateaccount'])->name('updateaccount');
+Route::get('/dashboard/accounts', [AccountsController::class, 'accounts'])->name('accounts');
+Route::get('/dashboard/accounts/edit', [AccountsController::class, 'editaccount'])->name('editaccount');
+Route::post('/dashboard/accounts/insert', [AccountsController::class, 'insertaccount'])->name('insertaccount');
+Route::post('/dashboard/accounts/update', [AccountsController::class, 'updateaccount'])->name('updateaccount');
+//CATEGORY
+Route::get('/dashboard/category', [CategoryController::class, 'category'])->name('category');
+Route::get('/dashboard/category/edit', [CategoryController::class, 'editcategory'])->name('editcategory');
+Route::post('/dashboard/category/insert', [CategoryController::class, 'insertcategory'])->name('insertcategory');
+Route::post('/dashboard/category/update', [CategoryController::class, 'updatecategory'])->name('updatecategory');
 
 
+//SUB CATEGORY
+Route::get('/dashboard/subcategory', [SubCategoryController::class, 'subcategory'])->name('subcategory');
+Route::get('/dashboard/subcategory/view/vcategory', [SubCategoryController::class, 'vcategory'])->name('vcategory');
+Route::get('/dashboard/subcategory/edit', [SubCategoryController::class, 'editsubcategory'])->name('editsubcategory');
+Route::post('/dashboard/subcategory/insert', [SubCategoryController::class, 'insertsubcategory'])->name('insertsubcategory');
+Route::post('/dashboard/subcategory/update', [SubCategoryController::class, 'updatesubcategory'])->name('updatesubcategory');
 
-//ACCOUNTS
-Route::get('/dashboard/accounts', [DashboardController::class, 'accounts'])->name('accounts');
+//PROMO
+Route::get('/dashboard/promo', [PromoController::class, 'promo'])->name('promo');
+Route::get('/dashboard/promo/edit', [PromoController::class, 'editpromo'])->name('editcpromo');
+Route::post('/dashboard/promo/insert', [PromoController::class, 'insertpromo'])->name('insertpromo');
+Route::post('/dashboard/promo/update', [PromoController::class, 'updatepromo'])->name('updatepromo');
 
 /*-------------------------------------
 TRB MALL

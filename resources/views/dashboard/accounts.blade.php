@@ -28,7 +28,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            
+
 
             <div class="card">
               <div class="card-header text-right bg-light">
@@ -39,23 +39,33 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
 
                   <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Contact</th>
                     <th>Action</th>
                   </tr>
                   </thead>
 
                   <tbody>
+                  @foreach ($accountdata as $accountdatas)
                   <tr>
-                    <td></td>
+                    <td>{{ $accountdatas['id'] }}</td>
+                    <td>{{ $accountdatas['name'] }}</td>
+                    <td>{{ $accountdatas['email'] }}</td>
+                    <td>{{ $accountdatas['address'] }}</td>
+                    <td>{{ $accountdatas['contact'] }}</td>
                     <td>
                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
                     </td>
                   </tr>
+                  @endforeach
                   </tbody>
 
                 </table>
@@ -109,7 +119,7 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Enter password" required>
                   </div>
-                 
+
                   <div class="form-group">
                         <label>Role</label>
                         <select class="form-control">
@@ -175,7 +185,7 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Enter password" required>
                   </div>
-                 
+
                   <div class="form-group">
                         <label>Role</label>
                         <select class="form-control">

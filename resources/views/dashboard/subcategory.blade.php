@@ -25,12 +25,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Products</h1>
+            <h1>SubCategory</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Products</li>
+              <li class="breadcrumb-item active">SubCategory</li>
             </ol>
           </div>
         </div>
@@ -46,9 +46,9 @@
 
             <div class="card">
               <div class="card-header text-right bg-light">
-                <h3 class="card-title text-red font-weight-bold">Product table</h3>
+                <h3 class="card-title text-red font-weight-bold">Sub-Category table</h3>
                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
-                  Add product
+                  Add Sub-Category
                 </button>
               </div>
               <!-- /.card-header -->
@@ -59,13 +59,7 @@
                   <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Image</th>
-                    <th>Description</th>
-                    <th>Price</th>
                     <th>Category</th>
-                    <th>Weight</th>
-                    <th>Length</th>
-                    <th>Height</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -96,24 +90,20 @@
                     </div>
                   @endif
 
-                  @foreach ($productdata as $productdatas)
+                 @foreach ($subcategorydata as $subcategorydatas)
 
                   <tr onclick="showDiscount(this)">
-                    <td>{{ $productdatas['id'] }}</td>
-                    <td>{{ $productdatas['name'] }}</td>
-                    <td></td>
-                    <td>{{ $productdatas['description'] }}</td>
-                    <td>{{ $productdatas['price'] }}</td>
-                    <td>{{ $productdatas['subcategory_id'] }}</td>
-                    <td>{{ $productdatas['weight'] }}</td>
-                    <td>{{ $productdatas['length'] }}</td>
-                    <td>{{ $productdatas['height'] }}</td>
+
+                    <td>{{ $subcategorydatas['id'] }}</td>
+                    <td>{{ $subcategorydatas['name'] }}</td>
+                    <td>{{ $subcategorydatas['category_id'] }}</td>
                     <td>
-                    @if($productdatas['status'] == '1')
+
+                    @if($subcategorydatas['is_active'] == '1')
 
                     <div class="badge bg-green text-white">Active</div>
 
-                    @elseif($productdatas['status'] == '0')
+                    @elseif($subcategorydatas['is_active'] == '0')
                     <div class="badge bg-red text-white">Disabled</div>
                     @endif
                     </td>
@@ -151,30 +141,39 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Add product</h4>
+              <h4 class="modal-title">Add Sub-Category</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-            <form action="{{ route('insertproduct') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('insertsubcategory') }}" method="POST" enctype="multipart/form-data">
               @csrf
                   <div class="form-group">
-                    <label for="productname">Product name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter product name">
-                  </div>
-                  <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Enter description"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="text" class="form-control" name="price" id="price" placeholder="Enter price">
-                  </div>
-                  <div class="form-group">
-                    <label for="price">Category</label>
-                    <input type="text" class="form-control" name="subcategory_id" id="subcategory_id" placeholder="Enter category">
-                  </div>
+                    <label for="productname">Sub-Category Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Sub-Category Name">
+                </div>
+                
+                <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                      <option value="null" selected disabled>Select category</option>
+                      <?php foreach ($vcategorydata as $vcategorydatas) { ?> 
+                      <option value="<?php echo $vcategorydatas['id'];?>"> <?php echo $vcategorydatas['name'];?> </option>
+                      <?php } ?> 
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" name="is_active" id="is_active">
+                      <option selected disabled>Select status</option>
+                      <option value="1">Active</option>
+                      <option value="0">Disabled</option>
+                    </select>
+                </div>
+            </div>
+
                   <!--
                    <div class="form-group">
                         <label>Category</label>
@@ -197,26 +196,8 @@
                             </div>
                     </div>
                     -->
-                  <div class="form-group">
-                    <label for="weight">Weight</label>
-                    <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight">
-                  </div>
-                  <div class="form-group">
-                    <label for="length">Length</label>
-                    <input type="text" class="form-control" name="length" id="length" placeholder="Enter length">
-                  </div>
-                  <div class="form-group">
-                    <label for="height">Height</label>
-                    <input type="text" class="form-control" name="height" id="height" placeholder="Enter height">
-                  </div>
-                  <div class="form-group">
-                        <label>Status</label>
-                        <select class="form-control" name="status" id="status">
-                          <option selected disabled>Select status</option>
-                          <option value="1">Active</option>
-                          <option value="0">Disabled</option>
-                        </select>
-                      </div>
+
+
                       <!--
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -231,13 +212,13 @@
                     </div>
                   </div>
                   -->
+                  <div class="modal-footer justify-content-between">
+                    <!--<input type="hidden" name="status" id="status" value="0">-->
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-danger">Add Sub-Category</button>
+                    </div>
+            </div>
 
-            </div>
-            <div class="modal-footer justify-content-between">
-            <!--<input type="hidden" name="status" id="status" value="0">-->
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger">Add product</button>
-            </div>
         </form>
           </div>
           <!-- /.modal-content -->
@@ -252,30 +233,27 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Edit product</h4>
+              <h4 class="modal-title">Edit Sub-Category</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-            <form action="{{ route('updateproduct') }}" method="POST">
+            <form action="{{ route('updatesubcategory') }}" method="POST">
               @csrf
               <div class="form-group">
-                    <label for="productname">Product name</label>
-                    <input type="text" class="form-control" name="name" id="edit-name" placeholder="Enter product name">
+                    <label for="productname">Sub-Category Name</label>
+                    <input type="text" class="form-control" name="name" id="edit-name" placeholder="Enter Category Name">
                   </div>
                   <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" name="description" id="edit-description" rows="3" placeholder="Enter description"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="text" class="form-control" name="price" id="edit-price" placeholder="Enter price">
-                  </div>
-                  <div class="form-group">
-                    <label for="price">Category</label>
-                    <input type="text" class="form-control" name="subcategory_id" id="edit-subcategory_id" placeholder="Enter category">
-                  </div>
+                    <label>Category</label>
+                    <select class="form-control" name="category_id" id="edit-category_id">
+                      <option value="null" selected disabled>Select category</option>
+                      <?php foreach ($vcategorydata as $vcategorydatas) { ?> 
+                      <option value="<?php echo $vcategorydatas['id'];?>"> <?php echo $vcategorydatas['name'];?> </option>
+                      <?php } ?> 
+                    </select>
+                </div>
                   <!--
                   <div class="form-group">
                         <label>Category</label>
@@ -298,21 +276,10 @@
                         </select>
                       </div>
                     -->
-                    <div class="form-group">
-                    <label for="weight">Weight</label>
-                    <input type="text" class="form-control" name="weight" id="edit-weight" placeholder="Enter weight">
-                  </div>
-                  <div class="form-group">
-                    <label for="length">Length</label>
-                    <input type="text" class="form-control" name="length" id="edit-length" placeholder="Enter length">
-                  </div>
-                  <div class="form-group">
-                    <label for="height">Height</label>
-                    <input type="text" class="form-control" name="height" id="edit-height" placeholder="Enter height">
-                  </div>
+
                   <div class="form-group">
                         <label>Status</label>
-                        <select class="form-control" name="status" id="edit-status">
+                        <select class="form-control" name="is_active" id="edit-is_active">
                           <option selected disabled>Select status</option>
                           <option value="1">Active</option>
                           <option value="0">Disabled</option>
@@ -335,7 +302,6 @@
             </div>
             <div class="modal-footer justify-content-between">
             <input type="hidden" name="id" id="edit-id">
-            <!--<input type="hidden" name="status" id="edit-status" value="0">-->
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-danger">Save changes</button>
             </div>
@@ -354,12 +320,7 @@
           var j = row.cells;
           document.getElementById("edit-id").value = j[0].innerHTML;
           document.getElementById("edit-name").value = j[1].innerHTML;
-          document.getElementById("edit-description").value = j[3].innerHTML;
-          document.getElementById("edit-price").value = j[4].innerHTML;
-          document.getElementById("edit-subcategory_id").value = j[5].innerHTML;
-          document.getElementById("edit-weight").value = j[6].innerHTML;
-          document.getElementById("edit-length").value = j[7].innerHTML;
-          document.getElementById("edit-height").value = j[8].innerHTML;
-          document.getElementById("edit-status").value = j[9].innerHTML;
+          document.getElementById("edit-category_id").value = j[2].innerHTML;
+          document.getElementById("edit-is_active").value = j[3].innerHTML;
           }
       </script>
