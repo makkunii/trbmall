@@ -51,11 +51,10 @@ Route::get('/editorder/{id}',[ApiOrdersController::class, 'showorder']);
 Route::post('/insertorder',[ApiOrdersController::class, 'insertorder']);
 Route::post('/updateorder/{id}',[ApiOrdersController::class, 'updateorder']);
 //********************Promo********************\\
-<<<<<<< HEAD
-Route::get('/showpromo',[ApiPromoController::class, 'showpromo']);
-Route::get('/editpromo/{id}',[ApiPromoController::class, 'editpromo']);
-Route::post('/insertpromo',[ApiPromoController::class, 'insertpromo']);
-Route::post('/updatepromo/{id}',[ApiPromoController::class, 'updatepromo']);
+Route::get('/dashboard/promo',[ApiPromoController::class, 'showpromo']);
+Route::get('/dashboard/promo/edit/{id}',[ApiPromoController::class, 'editpromo']);
+Route::post('/dashboard/promo/insert',[ApiPromoController::class, 'insertpromo']);
+Route::post('/dashboard/promo/update',[ApiPromoController::class, 'updatepromo']);
 //********************CATEGOIESZXC********************\\
 Route::get('/getcategory',[ApiCategoriesController::class, 'getcategory']);
 Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcategory']);
@@ -63,9 +62,3 @@ Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcatego
 Route::get('/getprovince',[ApiLocationController::class, 'getprovince']);
 Route::get('/getcity/{province}',[ApiLocationController::class, 'getcity']);
 Route::get('/getbrgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
-=======
-Route::get('/dashboard/promo',[ApiPromoController::class, 'showpromo']);
-Route::get('/dashboard/promo/edit/{id}',[ApiPromoController::class, 'editpromo']);
-Route::post('/dashboard/promo/insert',[ApiPromoController::class, 'insertpromo']);
-Route::post('/dashboard/promo/update',[ApiPromoController::class, 'updatepromo']);
->>>>>>> 5d71f56bf05fc7e88749f5f9fd33424152bb2f06
