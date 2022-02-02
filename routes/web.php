@@ -10,7 +10,7 @@ use App\Http\Controllers\Web\ProductsController;
 use App\Http\Controllers\Web\PromoController;
 use App\Http\Controllers\Web\SubCategoryController;
 
-
+use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
@@ -69,6 +69,8 @@ TRB MALL
 //LANDING PAGE - HOME
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
+//CHECKOUT
+Route::get('/mall/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 // CART
 Route::get('/mall/cart', [CartController::class, 'cart'])->name('cart');
 
