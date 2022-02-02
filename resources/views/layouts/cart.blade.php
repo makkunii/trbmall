@@ -53,7 +53,7 @@
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                    <th></th>
+                                    <th ></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,12 +62,15 @@
                                  <td>
                                   <input type="checkbox" class="checkit">
                                 </td>
-                                <td class="shoping__cart__item">
+                                <td style="display:none">
+                                    <p class="productid">{{ $item->id }}</p>
+                                   </td>
+                                   <td class="shoping__cart__item">
                                     <img src="{{ asset('public/assets/img/cart/cart-1.jpg') }}" alt="">
-                                    <h5>{{ $item->name }}</h5>
+                                     <h5><span class="name">{{ $item->name }}</span></h5>
                                 </td>
                                 <td class="shoping__cart__price">
-                                    P{{ $item->price }}
+                                    <span class="price">{{ $item->price }}</span>
                                 </td>
                                 <td class="shoping__cart__quantity">
                                     <div class="quantity">
@@ -83,7 +86,14 @@
                                     </div>
                                 </td>
                                 <td class="shoping__cart__total Total">
-                                    P<div class="ItemTotal" style="float:right">{{ ($item->quantity* $item->price)  }}</div>
+                                    <div class="ItemTotal">{{ ($item->quantity* $item->price)  }}</div>
+                                </td>
+                                <td  style="width:10%; " class="shoping__cart__item__close">
+                                    <form action="{{ route('cart.remove') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $item->id }}" name="id">
+                                        <button class="btn btn-block btn-danger">x</button>
+                                    </form>
                                 </td>
 
 
@@ -123,7 +133,8 @@
                             <li>Total <span>P<div style="float:right" id="TotalAmt"></div></span></li>
 
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <button type="submit" class="btn btn-block btn-danger btn-lg cartCheckout">PROCEED TO CHECKOUT</button>
+                        <div id="data"></div>
                     </div>
                 </div>
             </div>
@@ -131,6 +142,77 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+$('.cartCheckout').click(function () {
+
+
+var rows = [];
+
+// Enumerate over each checked checkbox
+$('input:checked').each(function () {
+      var currentRow=$(this).closest("tr");
+
+      var productid = currentRow.find(".productid").html();
+      var name=currentRow.find(".name").html();
+      var price=currentRow.find(".price").html();
+      var quantity=currentRow.find(".quantity").html();
+      var data=productid+","+name+","+price+","+quantity;
+      var row = [data];
+
+      rows.push(row);
+
+  // Enumerate over all td elements in the parent tr,
+  // skipping the first one (which contains just the
+  // checkbox).
+ /*  $(this).closest('tr').find('td:not(:first-child)').each(function () {
+    // Gather the text into row
+    rows.push($(this).text());
+  }); */
+
+  // Add this row to our list of rows
+
+});
+
+// JSONify for easy display
+var CartData =  rows
+
+  console.log(CartData)
+  $('#data').text(rows);
+
+
+});
+
+
+
+
+
+
+
+
+$('.cartCheckout').click(function (e) {
+  e.preventDefault();
+  var rows = [];
+
+  // Enumerate over each checked checkbox
+  $('input:checked').each(function () {
+    var row = [];
+
+    // Enumerate over all td elements in the parent tr,
+    // skipping the first one (which contains just the
+    // checkbox).
+    $(this).closest('tr').find('td:not(:first-child)').each(function () {
+      // Gather the text into row
+      row.push($(this).text());
+    });
+
+    // Add this row to our list of rows
+    rows.push(row);
+  });
+
+  // JSONify for easy display
+   $('#data').text(JSON.stringify(rows));
+});
+
     $('.checkit').change(function () {
     calculateTotals();
 }).change();
