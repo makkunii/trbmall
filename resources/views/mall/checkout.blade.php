@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2 class="text-dark">Checkout</h2>
+                        <h2>Checkout</h2>
                     </div>
                 </div>
             </div>
@@ -107,10 +107,30 @@
                                     @csrf
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Total</span></div>
+
                                 <ul>
-                                    <li>Product 1 <span>₱99.00</span></li>
-                                    <li>Product 2 <span>₱199.00</span></li>
+
+                                    @foreach(Session::get('data')['product_id'] as $index => $product)
+                                    <li>
+                                        {{ Session::get('data')['product_name'][$index] }} - {{ Session::get('data')['product_qty'][$index] }}
+                                    <span>P{{ Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index] }} </span>
+
+                                    <input type="hidden" name="product_id[]" class="product-id" id="product-id" value=" {{ Session::get('data')['product_id'][$index] }}">
+                                    <input type="hidden" name="product_name[]" class="product-name" id="product-name" value=" {{ Session::get('data')['product_name'][$index] }}">
+                                    <input type="hidden" name="product_price[]" class="product-price" id="product-price" value=" {{ Session::get('data')['product_price'][$index] }}">
+                                    <input type="hidden" name="product_qty[]" class="product-qty" id="product-qty" value=" {{ Session::get('data')['product_qty'][$index] }}">
+                                    </li>
+                                     @endforeach
+
+
+
+
+
+
                                 </ul>
+
+
+
                                         <div class="shoping__discount">
                                         <div class="checkout__input">
                                             <form action="#">
@@ -121,10 +141,11 @@
                                             </form>
                                         </div>
                                         </div>
-                                <div class="checkout__order__subtotal">Subtotal <span>₱289.00</span></div>
+                                <div class="checkout__order__subtotal">Subtotal <span>P<div style="float:right" id="TotalAmt"></div></span></div>
+
                                 <div class="checkout__order__total">Promo/Discount <span style="color: black;">₱100.00</span></div>
                                 <div class="checkout__order__total">Total <span>₱189.00</span></div>
-    
+
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </form>
                             </div>
@@ -134,5 +155,28 @@
             </div>
         </div>
     </section>
+
+    <script>
+    $(document).ready(function() {
+        const prodprice = [];
+        const prodqty = [];
+        const product = 0;
+
+        $('input[name^="prod_price"]').each(function()
+        {
+            prodprice.push($(this).val());
+        });
+
+        $('input[name^="prod_qty"]').each(function()
+        {
+            prodqty.push($(this).val());
+        });
+        for(var i=0; i< prodprice.length; i++) {
+        sum += prodprice[i]*prodqty[i];
+}
+$('#TotalAmt').text(sum.toFixed(2));
+
+});
+      </script>
     <!-- Checkout Section End -->
 @endsection

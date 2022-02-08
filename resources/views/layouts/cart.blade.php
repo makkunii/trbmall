@@ -1,7 +1,7 @@
 @extends('home')
 @section('content')
 @section('title', 'Cart')
-
+<meta name="csrf-often" content="{{ csrf_token() }}">
 @section('content')
 <!-- Page Preloder -->
 <div id="preloder">
@@ -41,10 +41,13 @@
 
     <!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
+
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
+
                         <table>
                             <thead>
                                 <tr>
@@ -62,48 +65,49 @@
                                 <tr>
 
                                  <td>
-                                  <input type="checkbox" class="checkit">
+                                  <input type="checkbox" class="checkit" name="prodid[]" value="{{ $item->name }}">
+                                  <input type="hidden" name="prod_id[]" class="prod-id" value="{{ $item->id }}">
                                 </td>
-                                <td style="display:none">
-                                   <p class="productid">{{ $item->id }}</p>
-                                  </td>
 
                                 <td class="shoping__cart__item">
                                     <img src="/assets/img/cart/cart-1.jpg" alt="">
-                                     <h5><span class="name">{{ $item->name }}</span></h5>
+                                     <h5>{{ $item->name }}</h5>
+                                     <input type="hidden" name="prod_name[]" class="prod-name" value="{{ $item->name }}">
                                 </td>
                                 <td class="shoping__cart__price">
                                     <span class="price">{{ $item->price }}</span>
+                                    <input type="hidden" name="prod_price[]" class="prod-price" value="{{ $item->price }}">
+
                                 </td>
+
                                 <td class="shoping__cart__quantity">
                                     <div>
                                         <div>
                                             <form action="{{ route('cart.update') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="id" value="{{ $item->id}}" >
-                                              <input type="number" name="quantity" value="{{ $item->quantity }}">
-                                              <span style="display:none" class="quantity">{{ $item->quantity }}</span>
+                                            <input type="hidden" name="id" value="{{ $item->id}}" >
+                                              <input type="number" name="quantity" class="quantity" value="{{ $item->quantity }}">
+                                              <input type="hidden" name="prod_qty[]" class="prod-qty" value="{{ $item->quantity }}" >
+
                                              <br>
                                              <br>
                                               <button type="submit" class="btn btn-block btn-danger">update</button>
-                                              </form>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="shoping__cart__total Total">
                                     <div class="ItemTotal" class="perItemTotal">{{ ($item->quantity* $item->price)  }}</div>
+
                                     <td  style="width:10%; " class="shoping__cart__item__close">
                                         <form action="{{ route('cart.remove') }}" method="POST">
                                             @csrf
                                             <input type="hidden" value="{{ $item->id }}" name="id">
                                             <button class="btn btn-block btn-danger">x</button>
                                         </form>
-                                    </td>                                </td>
-
-
+                                    </td>
+                                </td>
                                 </tr>
-
-
                                 @endforeach
                                 </tbody>
                         </table>
@@ -111,95 +115,116 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__btns">
-                        <a href="{{route('home')}}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        {{-- <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Upadate Cart</a> --}}
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="shoping__continue">
-                        <div class="shoping__discount">
-                            <h5>Discount Codes</h5>
-                            <form action="#">
-                                <input type="text" placeholder="Enter your coupon code">
-                                <button type="submit" class="site-btn">APPLY COUPON</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="shoping__checkout">
-                        <h5>Cart Total</h5>
-                        <ul>
 
-                            <li>Total <span>P<div style="float:right" id="TotalAmt"></div></span></li>
-
-                        </ul>
-                        <button type="submit" class="btn btn-block btn-danger btn-lg cartCheckout">PROCEED TO CHECKOUT</button>
-                        <div id="data"></div>
-                    </div>
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                    {{-- <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                        Upadate Cart</a> --}}
                 </div>
             </div>
+            <div class="col-lg-6">
+                {{-- <div class="shoping__continue">
+                    <div class="shoping__discount">
+                        <h5>Discount Codes</h5>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your coupon code">
+                            <button type="submit" class="site-btn">APPLY COUPON</button>
+                        </form>
+                    </div>
+                </div> --}}
+            </div>
+            <div class="col-lg-6">
+            <div class="shoping__checkout">
+                <h5>Cart Total</h5>
+                <ul>
+                    <li>Total <span>P<div style="float:right" id="TotalAmt"></div></span></li>
+                    <li></li>
+                </ul>
+
+                <input type="submit" class="btn btn-block btn-danger btn-lg cartCheckout" value="CHECKOUT">
+            </div>
         </div>
+    </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
+        </div>
+    </form>
+
+
 <script>
+$(document).ready(function(){
+    $('.cartCheckout').on('click', function(e)
+    {
+        e.preventDefault();
 
-$('.cartCheckout').click(function () {
-
-
-var rows = [];
-
-// Enumerate over each checked checkbox
-$('input:checked').each(function () {
-      var currentRow=$(this).closest("tr");
-
-      var productid = currentRow.find(".productid").html();
-      var name=currentRow.find(".name").html();
-      var price=currentRow.find(".price").html();
-      var quantity=currentRow.find(".quantity").html();
-      var perItemTotal= currentRow.find(".perItemTotal").html();
-      var T = parseInt(quantity)*parseInt(price);
-      var data=productid+","+name+","+price+","+quantity+","+T;
-    //   var data="id:"+productid+","+"name:"+name+","+"Price:"+price+","+"Quantity:"+quantity+","+"Total:"+T;
-      var row = [data];
-
-      rows.push(row);
-  // Enumerate over all td elements in the parent tr,
-  // skipping the first one (which contains just the
-  // checkbox).
- /*  $(this).closest('tr').find('td:not(:first-child)').each(function () {
-    // Gather the text into row
-    rows.push($(this).text());
-  }); */
-
-  // Add this row to our list of rows
-
-});
+        const prodid = [];
+        const prod_id = [];
+        const prod_name = [];
+        const prod_price = [];
+        const prod_qty = [];
 
 
-var CartData =  rows
-var myJsonString = JSON.stringify(CartData);
-  $('#data').text(myJsonString);
+        $('.checkit').each(function()
+        {
+            if($(this).is(":checked"))
+            {
+                prodid.push($(this).val());
+            }
+        });
+        $('input[name^="prod_id"]').each(function()
+        {
+            prod_id.push($(this).val());
+        });
+        $('input[name^="prod_name"]').each(function()
+        {
+            prod_name.push($(this).val());
+        });
 
-fetch('cartCheckout', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'json',
-  },
-  body: myJsonString,
-})
-.then(response => response.json())
-.then(myJsonString => {
-  console.log('Success:', myJsonString);
-})
-.catch((error) => {
-  console.error('Error:', myJsonString);
-});
+        $('input[name^="prod_price"]').each(function()
+        {
+            prod_price.push($(this).val());
+        });
+
+        $('input[name^="prod_qty"]').each(function()
+        {
+            prod_qty.push($(this).val());
+        });
 
 
+
+        $.ajax({
+            url: '/save_data',
+            type: 'POST',
+            dataType : 'json',
+            data: {
+                _token: '{{csrf_token()}}',
+                prodid : prodid,
+                prod_id : prod_id,
+                prod_name : prod_name,
+                prod_price : prod_price,
+                prod_qty : prod_qty
+            },
+            success: function (response) {
+                if(response.success) {
+                    document.location = '/mall/checkout';
+                } else {
+                    console.log(data);
+                }
+
+    },
+    error:function(response) {
+        console.log(data);
+    }
+
+        });
+
+
+
+    });
 });
 
 
