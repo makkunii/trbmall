@@ -14,6 +14,8 @@ use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,6 +83,32 @@ Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.up
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 Route::post('/cartCheckout',[CartController::class, 'checkoutCart'])->name('checkoutCart');
+
+
+/*-------------------------------------
+LOGIN
+--------------------------------------*/
+// Guest Routes
+Route::middleware(['guest'])->group(function () {
+    // Login/Register
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'storelogin'])->name('post-login');
+    Route::post('/register', [LoginController::class, 'storesignup'])->name('post-signup');
+
+    // Password Reset
+    Route::get('/forgot-password', [PasswordController::class, 'show'])->name('password.request');
+    Route::post('/forgot-password', [PasswordController::class, 'store'])->name('password.email');
+    Route::get('/reset-password/{token}', [PasswordController::class, 'edit'])->name('password.reset');
+    Route::post('/reset-password', [PasswordController::class, 'update'])->name('password.update');
+
+    // Google Login
+    Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('google.redirect');
+    Route::get('/auth/google/callback', [LoginController::class, 'handleGoogleCallback'])->name('google.callback');
+
+    // Facebook Login
+    Route::get('/auth/facebook', [LoginController::class, 'redirectToFacebook'])->name('facebook.redirect');
+    Route::get('/auth/facebook/callback', [LoginController::class, 'handleFacebookCallback'])->name('facebook.callback');
+});
 
 /*-------------------------------------
 CLEAR CACHE
