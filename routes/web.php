@@ -74,6 +74,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 //CHECKOUT
 Route::get('/mall/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+Route::post('/getCityz', [CheckoutController::class, 'getCityz'])->name('getCityz');
+Route::post('/getBrgyz', [CheckoutController::class, 'getBrgyz'])->name('getBrgyz');
+
 // CART
 Route::get('/mall/cart', [CartController::class, 'cart'])->name('cart');
 

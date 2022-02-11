@@ -45,6 +45,7 @@
             <div class="checkout__form">
                 <h4>Billing Details</h4>
                 <form action="#">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
@@ -69,21 +70,21 @@
                                 <p>Province<span>*</span></p>
                                 <select class="combobox" name="province" id="province">
                                 <option selected disabled>Select province</option>
-                                <option value="#"></option>
+                                <?php foreach ($province as $prov) { ?>
+                                <option value="<?php echo $prov['provDesc'];?>"><?php echo $prov['provDesc'];?></option>
+                                <?php } ?>
                                 </select>
                             </div><br>
                             <div class="checkout__input"><br><br>
                                 <p>City<span>*</span></p>
                                 <select class="combobox" name="city" id="city">
-                                <option selected disabled>Select city</option>
-                                <option value="#"></option>
+                                <option value="null" selected disabled> Select Province first </option>
                                 </select>
                             </div><br>
                             <div class="checkout__input"><br><br>
                                 <p>Barangay<span>*</span></p>
-                                <select class="combobox" name="barangay" id="barangay">
-                                <option selected disabled>Select barangay</option>
-                                <option value="#"></option>
+                                <select class="combobox" name="brgy" id="brgy">
+                                <option value="null" selected disabled> Select City/Municipality first </option>
                                 </select>
                             </div><br><br><br>
                             <div class="row">
@@ -157,6 +158,7 @@
             </div>
         </div>
     </section>
+     <!-- Checkout Section End -->
     <script>
      var arr = document.getElementsByName('product_subtotal[]');
      var subtot=0;
@@ -172,5 +174,61 @@
     $('#TotalAmt').text(total.toFixed(2));
 
       </script>
-    <!-- Checkout Section End -->
+   
+
+    <!-- Script for provinces -->
+    <script>
+        $('.province').change(function(){
+
+        var province = $(this).val();
+
+        $('.city').html('<option> Loading.. </option>');
+
+        $.ajax({
+
+            url:'{{ route("getCityz") }}',
+
+            type:'POST',
+
+            data:'province='+province+'&_token={{csrf_token()}}',
+
+            success:function(result){
+
+                $('.city').html(result);
+
+            }
+
+        });
+
+        });
+
+
+
+        $('.city').change(function(){
+
+        var city = $(this).val();
+
+        var province = $('.province').val();
+
+        $('.brgy').html('<option> Loading.. </option>');
+
+        $.ajax({
+
+            url:'{{ route("getBrgyz") }}',
+
+            type:'POST',
+
+            data:'city='+city+'&province='+province+'&_token={{csrf_token()}}',
+
+            success:function(result){
+
+                $('.brgy').html(result);
+
+            }
+
+        });
+
+        });
+    </script>
+    
 @endsection

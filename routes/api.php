@@ -59,6 +59,6 @@ Route::post('/dashboard/promo/update',[ApiPromoController::class, 'updatepromo']
 Route::get('/getcategory',[ApiCategoriesController::class, 'getcategory']);
 Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcategory']);
 //********************Location********************\\
-Route::get('/getprovince',[ApiLocationController::class, 'getprovince']);
-Route::get('/getcity/{province}',[ApiLocationController::class, 'getcity']);
-Route::get('/getbrgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
+Route::get('/location/province/all',[ApiLocationController::class, 'getprovince']);
+Route::get('/location/city/{province}',[ApiLocationController::class, 'getcity']);
+Route::get('/location/brgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
