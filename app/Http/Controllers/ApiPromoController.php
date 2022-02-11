@@ -95,4 +95,13 @@ public function insertpromo(Request $request) {
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);
       }
+
+        //**************************CHECK VIEW**************************//
+   public function checkpromo($id){
+    $fetchedit = DB::table('promos')
+    ->select('id','name','rate','is_active','created_at','expired_at')
+    ->where('name',$id)
+    ->first();
+    return response()->json(['Show' => $fetchedit], 200);
+}
 }
