@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\DashboardController;
@@ -65,7 +65,8 @@ Route::get('/dashboard/promo/edit', [PromoController::class, 'editpromo'])->name
 Route::post('/dashboard/promo/insert', [PromoController::class, 'insertpromo'])->name('insertpromo');
 Route::post('/dashboard/promo/update', [PromoController::class, 'updatepromo'])->name('updatepromo');
 
-/*-------------------------------------
+Route::get('/mall/checkout/checkpromo', [PromoController::class, 'checkpromo'])->name('checkpromo');
+/*----------------------------x---------
 TRB MALL
 --------------------------------------*/
 //LANDING PAGE - HOME
@@ -116,6 +117,6 @@ CLEAR CACHE
 Route::get('/clear-cache', function(){
     $run = Artisan::call('config:clear');
     $run = Artisan::call('cache:clear');
-    $run = Artisan::call('config:cache');
+    // $run = Artisan::call('config:cache');
     return 'Clear cache finished!';
 });

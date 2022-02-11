@@ -46,11 +46,14 @@ class HomeController extends Controller
                 $product_price[] = $request->prod_price[$key];
                 $product_quantity[] = $request->prod_qty[$key];
 
+
                 session(['data' => [
                     "product_id" => $product_id,
                     "product_name" => $product_name,
                     "product_price" => $product_price,
                     "product_qty" =>$product_quantity
+
+        
                    ]]);
 
                 // $product_id= $request->prod_id[$key];
