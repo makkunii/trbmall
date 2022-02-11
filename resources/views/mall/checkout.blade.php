@@ -68,7 +68,7 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Province<span>*</span></p>
-                                <select class="combobox" name="province" id="province">
+                                <select class="combobox province" name="province" id="province">
                                 <option selected disabled>Select province</option>
                                 <?php foreach ($province as $prov) { ?>
                                 <option value="<?php echo $prov['provDesc'];?>"><?php echo $prov['provDesc'];?></option>
@@ -77,13 +77,13 @@
                             </div><br>
                             <div class="checkout__input"><br><br>
                                 <p>City<span>*</span></p>
-                                <select class="combobox" name="city" id="city">
+                                <select class="combobox city" name="city" id="city">
                                 <option value="null" selected disabled> Select Province first </option>
                                 </select>
                             </div><br>
                             <div class="checkout__input"><br><br>
                                 <p>Barangay<span>*</span></p>
-                                <select class="combobox" name="brgy" id="brgy">
+                                <select class="combobox brgy" name="brgy" id="brgy">
                                 <option value="null" selected disabled> Select City/Municipality first </option>
                                 </select>
                             </div><br><br><br>
@@ -91,13 +91,13 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" placeholder="Enter Phone Number"> 
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text">
+                                        <input type="text" placeholder="Enter Email">
                                     </div>
                                 </div>
                             </div>
@@ -136,19 +136,30 @@
 
                                         <div class="shoping__discount">
                                         <div class="checkout__input">
-                                            <form action="{{ route('checkpromo') }}" method="get">
+                                            <form action="{{ route('checkpromo') }}" method="GET">
                                             <div class="row">
-                                                <input type="text" name="promo_name" placeholder="Enter promo code">
+                                            <select class="combobox" name="promo" id="promo">
+                                            <option value="null" selected disabled>Select promo</option>
+                                            <?php foreach ($data as $datas) { ?> 
+                                            <option value="<?php echo $datas['id'];?>"> <?php echo $datas['name'];?> </option>
+                                            <?php } ?> 
+                                            </select>
+                    <!--
+                                               <input type="text" name="promo_name" placeholder="Enter promo code">
                                                 <button type="submit" class="site-btn" style="font-size: 10px;">APPLY PROMO</button>
-                                            </div>
+                      -->      </div>
                                             </form>
                                         </div>
                                         </div>
                                 <div class="checkout__order__subtotal">Subtotal <span>₱<div style="float:right" id="SubTotalAmt"></div></span></div>
+                                
+            
+                                
+                                <div class="checkout__order__total">Promo/Discount <span style="color: black;">₱0.00</span></div>
+                                
 
-                                <div class="checkout__order__total">Promo/Discount <span style="color: black;">₱00.00</span></div>
                                 <div class="checkout__order__total">Total <div style="float:right" id="TotalAmt"></div></span></div>
-
+                                
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </form>
                             </div>

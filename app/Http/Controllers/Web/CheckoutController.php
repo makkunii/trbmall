@@ -15,11 +15,36 @@ class CheckoutController extends Controller
 
         if($provinces->successful()){
 
-            $province = $provinces['Provinces'];
-
-            return view('mall/checkout')->with(compact('province'));
+            $checkpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/check');
+            if( $checkpromo->successful()) {
+               
+                $data = $checkpromo['Show'];
+                $province = $provinces['Provinces'];
+    
+                return view('mall/checkout')->with(compact('data','province'));
+            }
+            
+            else {
+                return view('/mall/checkout');
+            }
+           
         }
 
+        else{
+            return view('mall/checkout');
+        }
+
+    }
+
+    public function checkpromo(Request $request) {
+
+        $checkpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/check/'.$id['id']);
+            if( $checkpromo->successful()) {
+                $data = $checkpromo['Show'];
+                return view('/mall/checkout')->with(compact('data'));
+            } else {
+                return view('/mall/checkout');
+            }
     }
 
     public function getCityz(Request $request){
@@ -67,5 +92,7 @@ class CheckoutController extends Controller
         echo $html;
 
 	}
+
+
 
 } //end

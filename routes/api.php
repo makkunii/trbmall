@@ -55,7 +55,7 @@ Route::get('/dashboard/promo',[ApiPromoController::class, 'showpromo']);
 Route::get('/dashboard/promo/edit/{id}',[ApiPromoController::class, 'editpromo']);
 Route::post('/dashboard/promo/insert',[ApiPromoController::class, 'insertpromo']);
 Route::post('/dashboard/promo/update',[ApiPromoController::class, 'updatepromo']);
-Route::get('/dashboard/promo/check/{id}',[ApiPromoController::class, 'checkpromo']);
+Route::get('/dashboard/promo/check',[ApiPromoController::class, 'checkpromo']);
 //********************CATEGOIESZXC********************\\
 Route::get('/getcategory',[ApiCategoriesController::class, 'getcategory']);
 Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcategory']);

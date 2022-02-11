@@ -65,7 +65,7 @@ Route::get('/dashboard/promo/edit', [PromoController::class, 'editpromo'])->name
 Route::post('/dashboard/promo/insert', [PromoController::class, 'insertpromo'])->name('insertpromo');
 Route::post('/dashboard/promo/update', [PromoController::class, 'updatepromo'])->name('updatepromo');
 
-Route::get('/mall/checkout/checkpromo', [PromoController::class, 'checkpromo'])->name('checkpromo');
+
 /*----------------------------x---------
 TRB MALL
 --------------------------------------*/
@@ -76,6 +76,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/mall/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::post('/getCityz', [CheckoutController::class, 'getCityz'])->name('getCityz');
 Route::post('/getBrgyz', [CheckoutController::class, 'getBrgyz'])->name('getBrgyz');
+Route::get('/mall/checkout/checkpromo', [CheckoutController::class, 'checkpromo'])->name('checkpromo');
 
 // CART
 Route::get('/mall/cart', [CartController::class, 'cart'])->name('cart');
@@ -120,5 +121,5 @@ CLEAR CACHE
 Route::get('/clear-cache', function(){
     $run = Artisan::call('config:clear');
     $run = Artisan::call('cache:clear');
-    // $run = Artisan::call('config:cache');
-
+    $run = Artisan::call('config:cache');
+});
