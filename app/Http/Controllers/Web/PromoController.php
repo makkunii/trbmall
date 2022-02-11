@@ -13,16 +13,16 @@ class PromoController extends Controller
      public function promo(Request $request)
      {
         $vpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo');
- 
+
          if ($vpromo->successful())
          {
- 
+
               $promodata = $vpromo['Show'];
- 
+
               return view('dashboard/promo')->with(compact('promodata'));
- 
+
           }
- 
+
          else
           {
              return view('dashboard/dashboard');
@@ -56,6 +56,13 @@ class PromoController extends Controller
         }
     }
 
+    public function checkpromo(Request $request) {
+
+        $promo = DB::table('promo')->where('name', $request->promo_name);
+
+
+        dd($promo_data);
+    }
 
     public function updatepromo(Request $request)
     {
