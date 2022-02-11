@@ -56,9 +56,7 @@ class PromoController extends Controller
         }
     }
 
-    public function checkpromo(Request $request) {
-
-    }
+ 
 
     public function updatepromo(Request $request)
     {

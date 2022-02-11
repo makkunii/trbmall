@@ -55,11 +55,17 @@ Route::get('/dashboard/promo',[ApiPromoController::class, 'showpromo']);
 Route::get('/dashboard/promo/edit/{id}',[ApiPromoController::class, 'editpromo']);
 Route::post('/dashboard/promo/insert',[ApiPromoController::class, 'insertpromo']);
 Route::post('/dashboard/promo/update',[ApiPromoController::class, 'updatepromo']);
-Route::get('/dashboard/promo/check/{id}',[ApiPromoController::class, 'checkpromo']);
+Route::get('/dashboard/promo/check',[ApiPromoController::class, 'checkpromo']);
 //********************CATEGOIESZXC********************\\
 Route::get('/getcategory',[ApiCategoriesController::class, 'getcategory']);
 Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcategory']);
 //********************Location********************\\
+<<<<<<< HEAD
 Route::get('/getloc',[ApiLocationController::class, 'getprovince']);
 Route::get('/getloc/{province}',[ApiLocationController::class, 'getcity']);
 Route::get('/getloc/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
+=======
+Route::get('/location/province/all',[ApiLocationController::class, 'getprovince']);
+Route::get('/location/city/{province}',[ApiLocationController::class, 'getcity']);
+Route::get('/location/brgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
+>>>>>>> 7cd564f38cd3d6c9869de6360e8ef1201178f2ab
