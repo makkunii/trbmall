@@ -30,20 +30,7 @@ class CartController extends Controller
         return view('layouts/cart', compact('cartItems'));
 
     }
-    public function checkoutCart(Request $request)
 
-    {
-
-
-        $request->session()->put('name','');
-
-        session()->flash('success', 'Product is Added to Cart Successfully !');
-
-
-
-        return redirect()->route('home');
-
-    }
 
     public function addToCart(Request $request)
 
