@@ -58,6 +58,14 @@ class PromoController extends Controller
 
     public function checkpromo(Request $request) {
 
+        $checkpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/checkpromo');
+            if( $checkpromo->successful()) {
+                $data = $checkpromo['Show'];
+                return view('/mall/checkout')->with(compact('data'));
+            } else {
+                return view('/mall/checkout');
+            }
+
     }
 
     public function updatepromo(Request $request)
