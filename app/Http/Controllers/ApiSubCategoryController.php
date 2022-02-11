@@ -12,30 +12,18 @@ class ApiSubCategoryController extends Controller
 public function insertsubcategory(Request $request) {
        // VALIDATE PRODUCT
        $request->validate([
-<<<<<<< HEAD
            'name' => 'required|string|max:255',
            'category_id' => 'required',
            'is_active' => 'required'
-=======
-        'name' => 'required|string|max:255',
-        'category_id' => 'required',
-        'is_active' => 'required|integer'
->>>>>>> 5d71f56bf05fc7e88749f5f9fd33424152bb2f06
 
        ]);
 
        // CREATE PRODUCT
-       $insert = DB::table('sub_category')
+       $insert = DD::table('sub_category')
        ->insertGetId([
-<<<<<<< HEAD
            'name' => $request->name,
            'category_id' => $request->category_id,
            'is_active' => $request->is_active
-=======
-        'name' => $request->name,
-        'category_id' => $request->category_id,
-        'is_active' => $request->is_active
->>>>>>> 5d71f56bf05fc7e88749f5f9fd33424152bb2f06
        ]);
 
        // REDIRECT TO PRODUCT INDEX
@@ -49,11 +37,7 @@ public function insertsubcategory(Request $request) {
             'id' => 'required',
             'name' => 'required|string|max:255',
             'category_id' => 'required',
-<<<<<<< HEAD
-            'is_active' => 'required'
-=======
             'is_active' => 'required|integer'
->>>>>>> 5d71f56bf05fc7e88749f5f9fd33424152bb2f06
           ]);
 
           // UPDATE PRODUCT
@@ -91,11 +75,7 @@ public function insertsubcategory(Request $request) {
    //**************************SHOW VIEW SUB CATEGORY**************************//
    public function showsubcategory(){
            $fetchedit = DB::table('sub_category')
-<<<<<<< HEAD
-           ->select('name','category_id','is_active')
-=======
            ->select('id','name','category_id','is_active')
->>>>>>> 5d71f56bf05fc7e88749f5f9fd33424152bb2f06
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }

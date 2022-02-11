@@ -103,7 +103,7 @@
                     <td>{{ $promodatas['expired_at'] }}</td>
 
                     <td>
-                    @if($promodatas['is_active'] == '1') 
+                    @if($promodatas['is_active'] == '1')
 
                     <div class="badge bg-green text-white">Active</div>
 
@@ -318,7 +318,7 @@
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-      </div>
+</div>
       <!-- /.modal -->
 
 

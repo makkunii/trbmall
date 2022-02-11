@@ -14,7 +14,7 @@
             @foreach ($products as $product)
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="images/testing.png">
+                    <div class="featured__item__pic set-bg" data-setbg="images/testing.png" data-toggle="modal" data-target="#modal-xl">
                         <ul class="featured__item__pic__hover">
 
                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
@@ -35,6 +35,60 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="modal-xl">
+                <div class="modal-dialog  modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <img src="images/testing.png" style="height: 300px">
+
+                            </div>
+                            <div class="col-lg-6">
+                                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                    <input type="hidden" value="{{ $product->name }}" name="name">
+                                    <input type="hidden" value="{{ $product->price }}" name="price">
+                                    <h3>{{ $product->name }}</h3>
+                                    <hr>
+
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <div class="bg-gray py-2 px-3 mt-4">
+                                        <h4 class="text-right  ">
+                                          P{{ $product->price }}
+                                        </h4>
+                                      </div>
+                                    <br>
+                                    <input class="btn-default" type="text" value="1" name="quantity"><br><br>
+                                    <button class="btn btn-default btn-warning"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                     </form>
+                            </div>
+
+                        </div>
+
+
+                          </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                    <input type="hidden" name="id" id="edit-id">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
+                  </div>
+
+                </div>
+
+        </div>
             @endforeach
 
 

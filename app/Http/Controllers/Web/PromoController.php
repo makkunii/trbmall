@@ -58,10 +58,6 @@ class PromoController extends Controller
 
     public function checkpromo(Request $request) {
 
-        $promo = DB::table('promo')->where('name', $request->promo_name);
-
-
-        dd($promo_data);
     }
 
     public function updatepromo(Request $request)
