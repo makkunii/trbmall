@@ -17,7 +17,7 @@
             @include('include.categories')
                 <div class="col-lg-9">
                     @include('include.search')
-                    <div class="hero__item set-bg" data-setbg="assets/img/hero/banner.jpg">
+                    <div class="hero__item set-bg" data-setbg="public/assets/img/hero/banner.jpg">
                         <div class="hero__text">
                             <span>TRB MALL</span>
                             <h2>A fresh approach<br>to shopping.</h2>

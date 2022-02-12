@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title', 'Login')
-<link rel="stylesheet" href="/dist/css/loginform.css">
+<link rel="stylesheet" href="/public/dist/css/loginform.css">
 
 <style>
 .sbtn {
