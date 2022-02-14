@@ -12,16 +12,15 @@
         </div>
         <div class="row featured__filter">
             @foreach ($products as $product)
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="col-lg-3 col-md-4 col-sm-6" onclick="DisplayProduct(this)">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" data-setbg="images/testing.png" data-toggle="modal" data-target="#modal-xl">
                         <ul class="featured__item__pic__hover">
-
                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" value="{{ $product->id }}" name="id">
-                            <input type="hidden" value="{{ $product->name }}" name="name">
-                            <input type="hidden" value="{{ $product->price }}" name="price">
+                            <input type="hidden" value="{{ $product->id }}" name="id" id="id">
+                            <input type="hidden" value="{{ $product->name }}" name="name" id="name">
+                            <input type="hidden" value="{{ $product->price }}" name="price" id="price">
                             <input type="hidden" value="1" name="quantity">
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><button class="btn btn-block btn-warning"><i class="fa fa-shopping-cart"></i> Add to Cart</button></li>
@@ -35,8 +34,9 @@
                     </div>
                 </div>
             </div>
+            @endforeach
 
-            <div class="modal fade" id="modal-xl">
+        <div class="modal fade" id="modal-xl">
                 <div class="modal-dialog  modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -55,16 +55,16 @@
                             <div class="col-lg-6">
                                 <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    <input type="hidden" value="{{ $product->id }}" name="id">
-                                    <input type="hidden" value="{{ $product->name }}" name="name">
-                                    <input type="hidden" value="{{ $product->price }}" name="price">
-                                    <h3>{{ $product->name }}</h3>
+                                    <input type="text" value="{{ $product->id }}" name="id" id="display-id">
+                                    <input type="text" value="{{ $product->name }}" name="name" id="display-name">
+                                    <input type="text" value="{{ $product->price }}" name="price" id="display-price">
+                                    <h3 id="display-n"></h3>
                                     <hr>
 
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     <div class="bg-gray py-2 px-3 mt-4">
-                                        <h4 class="text-right  ">
-                                          P{{ $product->price }}
+                                        <h4 class="text-right" id="display-p">
+
                                         </h4>
                                       </div>
                                     <br>
@@ -89,9 +89,21 @@
                 </div>
 
         </div>
-            @endforeach
 
 
+<script>
+     function DisplayProduct(el)
+          {
+
+          document.getElementById("display-id").value =   el.querySelector("#id").value;
+          document.getElementById("display-name").value =  el.querySelector("#name").value
+          document.getElementById("display-price").value = el.querySelector("#price").value;
+
+          document.getElementById("display-n").innerText = document.getElementById("display-name").value;
+          document.getElementById("display-p").innerText = document.getElementById("display-price").value;
+          console.log(el);
+          }
+</script>
 
 
 

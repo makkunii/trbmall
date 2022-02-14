@@ -132,10 +132,9 @@
                                                 @csrf
                                             <div class="row">
                                                 @if($datapromo == null)
-
                                                     <input type="text" name="promo_name" placeholder="Enter promo code" style="width: 100%; padding-right:10px">
-
-                                                @else
+                                                    <input type="hidden"  class="site-btn" name="promo_rate" id="promo_rate" value="0">
+                                                    @else
                                                 {{-- {{ $datapromo->name }} {{$datapromo->rate}} --}}
                                                  <input type="text" name="promo_name" value="{{ $datapromo->name }}" placeholder="Enter promo code" style="width: 100%; padding-right:10px">
                                                  <input type="hidden"  class="site-btn" name="promo_rate" id="promo_rate" value="{{ $datapromo->rate }}">
@@ -154,7 +153,7 @@
                                 <div class="checkout__order__total">Promo/Discount <span>₱<div style="float:right" id="discount"></div></span></div>
 
 
-                                <div class="checkout__order__total">Total <div style="float:right" id="TotalAmt"></div></span></div>
+                                <div class="checkout__order__total">Total <span>₱<div style="float:right" id="TotalAmt"></div></span></div>
 
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
 
@@ -180,10 +179,11 @@
         subtot += parseInt(arr[i].value);
     }
     less = subtot*data;
+    beng = subtot-less;
 
         $('#SubTotalAmt').text(subtot.toFixed(2));
         $('#discount').text(less);
-        $('#TotalAmt').text(less.toFixed(2));
+        $('#TotalAmt').text(beng.toFixed(2));
 
 
 

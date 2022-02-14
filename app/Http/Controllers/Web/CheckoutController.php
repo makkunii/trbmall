@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Models\Promo;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
@@ -11,16 +12,12 @@ class CheckoutController extends Controller
 {
     public function checkout()
     {
-
-
         $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
-
         if($provinces->successful()){
                 $province = $provinces['Provinces'];
                 $datapromo = null;
                 return view('mall/checkout')->with(compact('province','datapromo'));
         }
-
         else{
             return view('mall/checkout');
         }
@@ -34,7 +31,25 @@ class CheckoutController extends Controller
         if (!empty($request->promo_name)) {
            $datapromo = Promo::where('name', $request->promo_name)->first();
 
-           return view('mall/checkout')->with(compact('province','datapromo'));
+            $expired = $datapromo->expired_at; 
+            $date = Carbon::now()->toDateTimeString();
+            if($date <= $expired) {
+                return view('mall/checkout')->with(compact('province','datapromo'));
+            }
+            else {
+                $datapromo = null;
+                return view('mall/checkout')->with(compact('province','datapromo'));
+            }
+
+            //     return view('mall/checkout')->with(compact('province','datapromo'));
+            // }
+            // else {
+            //     $datapromo = null;
+            //     return view('mall/checkout')->with(compact('province','datapromo'));
+            // }
+
+
+
         }
 
 
