@@ -169,7 +169,8 @@
     <script>
 
      var arr = document.getElementsByName('product_subtotal[]');
-     var data = document.getElementById('promo_rate').value;
+     var data = document.getElementById('promo_rate').value
+
      var discount = 0
      var subtot=0;
      var total = 0;
@@ -177,15 +178,12 @@
      for(var i=0;i<arr.length;i++){
         if(parseInt(arr[i].value))
         subtot += parseInt(arr[i].value);
-        total += subtot;
-
-        var final = total*(discount+data);
-        var less = total-((discount+data)*total);
+    }
+    less = subtot*data;
 
         $('#SubTotalAmt').text(subtot.toFixed(2));
         $('#discount').text(less);
-        $('#TotalAmt').text(final.toFixed(2));
-    }
+        $('#TotalAmt').text(less.toFixed(2));
 
 
 
