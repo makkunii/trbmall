@@ -28,6 +28,7 @@ class HomeController extends Controller
         return view('layouts/products', compact('products'));
 
     }
+ 
     public function save_data(Request $request)
 
     {
@@ -53,7 +54,7 @@ class HomeController extends Controller
                     "product_price" => $product_price,
                     "product_qty" =>$product_quantity
 
-        
+
                    ]]);
 
                 // $product_id= $request->prod_id[$key];

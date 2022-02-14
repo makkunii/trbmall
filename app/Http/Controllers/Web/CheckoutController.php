@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use App\Models\Promo;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
@@ -10,24 +11,14 @@ class CheckoutController extends Controller
 {
     public function checkout()
     {
-        
+
+
         $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
 
         if($provinces->successful()){
-
-            $checkpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/check');
-            if( $checkpromo->successful()) {
-               
-                $data = $checkpromo['Show'];
                 $province = $provinces['Provinces'];
-    
-                return view('mall/checkout')->with(compact('data','province'));
-            }
-            
-            else {
-                return view('/mall/checkout');
-            }
-           
+                $datapromo = null;
+                return view('mall/checkout')->with(compact('province','datapromo'));
         }
 
         else{
@@ -37,14 +28,23 @@ class CheckoutController extends Controller
     }
 
     public function checkpromo(Request $request) {
+        $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
+        $province = $provinces['Provinces'];
 
-        $checkpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/check/'.$id['id']);
-            if( $checkpromo->successful()) {
-                $data = $checkpromo['Show'];
-                return view('/mall/checkout')->with(compact('data'));
-            } else {
-                return view('/mall/checkout');
-            }
+        if (!empty($request->promo_name)) {
+           $datapromo = Promo::where('name', $request->promo_name)->first();
+
+           return view('mall/checkout')->with(compact('province','datapromo'));
+        }
+
+
+        // $checkpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/check/'.$id['id']);
+        //     if( $checkpromo->successful()) {
+        //         $data = $checkpromo['Show'];
+        //         return view('/mall/checkout')->with(compact('data'));
+        //     } else {
+        //         return view('/mall/checkout');
+        //     }
     }
 
     public function getCityz(Request $request){
@@ -68,7 +68,7 @@ class CheckoutController extends Controller
 
 	}
 
-	
+
 
 	public function getBrgyz(Request $request){
 

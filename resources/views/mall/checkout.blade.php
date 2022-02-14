@@ -44,8 +44,7 @@
         <div class="container">
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="#">
-                    @csrf
+
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
@@ -91,7 +90,7 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" placeholder="Enter Phone Number"> 
+                                        <input type="text" placeholder="Enter Phone Number">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -104,8 +103,7 @@
                         </div> <!-- end -->
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
-                                <form action="" method="POST">
-                                    @csrf
+
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Total</span></div>
 
@@ -124,71 +122,79 @@
                                     value="{{ Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index] }}">
                                     </li>
                                      @endforeach
-
-
-
-
-
-
                                 </ul>
 
 
 
                                         <div class="shoping__discount">
                                         <div class="checkout__input">
-                                            <form action="{{ route('checkpromo') }}" method="GET">
+                                            <form action="{{ route('checkpromo') }}" method="post">
+                                                @csrf
                                             <div class="row">
-                                            <select class="combobox" name="promo" id="promo">
-                                            <option value="null" selected disabled>Select promo</option>
-                                            <?php foreach ($data as $datas) { ?> 
-                                            <option value="<?php echo $datas['id'];?>"> <?php echo $datas['name'];?> </option>
-                                            <?php } ?> 
-                                            </select>
-                    <!--
-                                               <input type="text" name="promo_name" placeholder="Enter promo code">
-                                                <button type="submit" class="site-btn" style="font-size: 10px;">APPLY PROMO</button>
-                      -->      </div>
-                                            </form>
+                                                @if($datapromo == null)
+
+                                                    <input type="text" name="promo_name" placeholder="Enter promo code" style="width: 100%; padding-right:10px">
+
+                                                @else
+                                                {{-- {{ $datapromo->name }} {{$datapromo->rate}} --}}
+                                                 <input type="text" name="promo_name" value="{{ $datapromo->name }}" placeholder="Enter promo code" style="width: 100%; padding-right:10px">
+                                                 <input type="hidden"  class="site-btn" name="promo_rate" id="promo_rate" value="{{ $datapromo->rate }}">
+                                                @endif
+                                                <button type="submit" class="site-btn bg-danger" style="font-size: 10px;">APPLY PROMO</button>
+
+                                            </div>
+
+                                        </form>
                                         </div>
                                         </div>
                                 <div class="checkout__order__subtotal">Subtotal <span>₱<div style="float:right" id="SubTotalAmt"></div></span></div>
-                                
-            
-                                
-                                <div class="checkout__order__total">Promo/Discount <span style="color: black;">₱0.00</span></div>
-                                
+
+
+
+                                <div class="checkout__order__total">Promo/Discount <span>₱<div style="float:right" id="discount"></div></span></div>
+
 
                                 <div class="checkout__order__total">Total <div style="float:right" id="TotalAmt"></div></span></div>
-                                
+
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
-                            </form>
+
                             </div>
                         </div>
                     </div>
-                </form>
+
             </div>
         </div>
     </section>
      <!-- Checkout Section End -->
     <script>
+
      var arr = document.getElementsByName('product_subtotal[]');
+     var data = document.getElementById('promo_rate').value;
+     var discount = 0
      var subtot=0;
      var total = 0;
-     var discount = 0;
 
      for(var i=0;i<arr.length;i++){
         if(parseInt(arr[i].value))
         subtot += parseInt(arr[i].value);
         total += subtot;
+
+        var final = total*(discount+data);
+        var less = total-((discount+data)*total);
+
+        $('#SubTotalAmt').text(subtot.toFixed(2));
+        $('#discount').text(less);
+        $('#TotalAmt').text(final.toFixed(2));
     }
-    $('#SubTotalAmt').text(subtot.toFixed(2));
-    $('#TotalAmt').text(total.toFixed(2));
+
+
+
 
       </script>
-   
+
 
     <!-- Script for provinces -->
-    <script>
+<script>
         $('.province').change(function(){
 
         var province = $(this).val();
@@ -215,7 +221,7 @@
 
 
 
-        $('.city').change(function(){
+     $('.city').change(function(){
 
         var city = $(this).val();
 
@@ -223,23 +229,23 @@
 
         $('.brgy').html('<option> Loading.. </option>');
 
-        $.ajax({
+         $.ajax({
 
-            url:'{{ route("getBrgyz") }}',
+             url:'{{ route("getBrgyz") }}',
 
-            type:'POST',
+             type:'POST',
 
-            data:'city='+city+'&province='+province+'&_token={{csrf_token()}}',
+             data:'city='+city+'&province='+province+'&_token={{csrf_token()}}',
 
-            success:function(result){
+             success:function(result){
 
-                $('.brgy').html(result);
+                 $('.brgy').html(result);
 
-            }
+             }
 
-        });
+         });
 
         });
     </script>
-    
+
 @endsection
