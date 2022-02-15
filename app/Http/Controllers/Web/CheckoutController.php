@@ -26,8 +26,7 @@ class CheckoutController extends Controller
 
     public function getCityz(Request $request){
             $province = $request->post('province');
-            $token = $request->cookie('token');
-            $response = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/location/city/'.$province);
+            $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/city/'.$province);
 
             $city = $response['City/Municipality'];
 
@@ -41,8 +40,7 @@ class CheckoutController extends Controller
 	public function getBrgyz(Request $request){
             $city = $request->post('city');
             $province = $request->post('province');
-            $token = $request->cookie('token');
-            $response = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/location/brgy/'.$city.'/'.$province);
+            $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/brgy/'.$city.'/'.$province);
 
             $brgy = $response['barangay'];
 
