@@ -9,7 +9,8 @@ class ApiLocationController extends Controller
 {
       public function getprovince(){
             $province =  DB::table('refprovince')
-            ->select('provDesc')
+            
+            ->select('id','provDesc')
             ->get();
       
             return response()->json(['Provinces' => $province]);
@@ -18,8 +19,8 @@ class ApiLocationController extends Controller
       public function getcity($province){
             $city =  DB::table('refcitymun')
             ->leftJoin('refprovince','refprovince.provCode','=','refcitymun.provCode')
-            ->where('refprovince.provDesc',$province)
-            ->select('refcitymun.citymunDesc')         
+            ->where('refprovince.provCode',$province)
+            ->select('id','citymunDesc')         
             ->get();
        
             return response()->json(['City/Municipality' => $city]);
@@ -31,7 +32,7 @@ class ApiLocationController extends Controller
             ->leftJoin('refprovince','refprovince.provCode','=','refcitymun.provCode')
             ->where('refcitymun.citymunDesc',$city)
             ->where('refprovince.provDesc',$province)
-            ->select('brgyDesc')
+            ->select('id','brgyDesc')
             ->get();
        
             return response()->json(['barangay' => $brgy]);
