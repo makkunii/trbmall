@@ -24,6 +24,35 @@ class CheckoutController extends Controller
 
     }
 
+    public function getCityz(Request $request){
+            $province = $request->post('province');
+            $token = $request->cookie('token');
+            $response = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/location/city/'.$province);
+
+            $city = $response['City/Municipality'];
+
+            $html='<option selected disabled> Select City/Municipality </option>';
+            foreach($city as $cities){
+                $html.='<option value="'.$cities['citymunDesc'].'">'.$cities['citymunDesc'].'</option>';
+            }
+            echo $html;
+	}
+	
+	public function getBrgyz(Request $request){
+            $city = $request->post('city');
+            $province = $request->post('province');
+            $token = $request->cookie('token');
+            $response = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/location/brgy/'.$city.'/'.$province);
+
+            $brgy = $response['barangay'];
+
+            $html='<option selected disabled> Select Brgy </option>';
+            foreach($brgy as $brgys){
+                $html.='<option value="'.$brgys['brgyDesc'].'">'.$brgys['brgyDesc'].'</option>';
+            }
+            echo $html;
+	}
+
     public function checkpromo(Request $request) {
         $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
         $province = $provinces['Provinces'];
@@ -61,53 +90,6 @@ class CheckoutController extends Controller
         //         return view('/mall/checkout');
         //     }
     }
-
-    public function getCityz(Request $request){
-
-
-        $province = $request->post('province');
-
-        $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/city/'.$province);
-
-        $city = $response['City/Municipality'];
-
-        $html='<option selected disabled> Select City/Municipality </option>';
-
-        foreach($city as $cities){
-
-            $html.='<option value="'.$cities['citymunDesc'].'">'.$cities['citymunDesc'].'</option>';
-
-        }
-
-        echo $html;
-
-	}
-
-
-
-	public function getBrgyz(Request $request){
-
-
-        $city = $request->post('city');
-
-        $province = $request->post('province');
-
-        $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/brgy/'.$city.'/'.$province);
-
-        $brgy = $response['barangay'];
-
-        $html='<option selected disabled> Select Brgy </option>';
-
-        foreach($brgy as $brgys){
-
-            $html.='<option value="'.$brgys['brgyDesc'].'">'.$brgys['brgyDesc'].'</option>';
-
-        }
-
-        echo $html;
-
-	}
-
 
 
 } //end
