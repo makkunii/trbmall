@@ -60,6 +60,6 @@ Route::get('/dashboard/promo/check',[ApiPromoController::class, 'checkpromo']);
 Route::get('/getcategory',[ApiCategoriesController::class, 'getcategory']);
 Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcategory']);
 //********************Location********************\\
-Route::get('/location/province/',[ApiLocationController::class, 'getprovince']);
+Route::get('/location/province/all',[ApiLocationController::class, 'getprovince']);
 Route::get('/location/city/{province}',[ApiLocationController::class, 'getcity']);
 Route::get('/location/brgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
