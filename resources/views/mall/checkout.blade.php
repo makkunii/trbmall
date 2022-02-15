@@ -46,7 +46,10 @@
                 <h4>Billing Details</h4>
 
                     <div class="row">
+                        
                         <div class="col-lg-8 col-md-6">
+                            <form method="POST">
+                                @csrf
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
@@ -100,7 +103,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> <!-- end -->
+                        </form>
+                    </div> <!-- end -->
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
 
