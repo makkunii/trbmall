@@ -12,7 +12,7 @@ class CheckoutController extends Controller
 {
     public function checkout()
     {
-        $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
+        $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province');
         if($provinces->successful()){
                 $province = $provinces['Provinces'];
                 $datapromo = null;
@@ -29,8 +29,7 @@ class CheckoutController extends Controller
             $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/city/'.$province);
 
             $city = $response['City/Municipality'];
-
-            $html='<option selected disabled> Select City/Municipality </option>';
+            $html='<option value="null" selected disabled> Select City/Municipality </option>';
             foreach($city as $cities){
                 $html.='<option value="'.$cities['citymunDesc'].'">'.$cities['citymunDesc'].'</option>';
             }
@@ -52,7 +51,7 @@ class CheckoutController extends Controller
 	}
 
     public function checkpromo(Request $request) {
-        $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
+        $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province');
         $province = $provinces['Provinces'];
 
         if (!empty($request->promo_name)) {

@@ -67,7 +67,7 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Province<span>*</span></p>
-                                <select class="combobox province" name="province" id="province">
+                                <select class="combobox province" name="province" id="province" aria-label="Default select example">
                                 <option selected disabled>Select province</option>
                                 <?php foreach ($province as $prov) { ?>
                                 <option value="<?php echo $prov['provDesc'];?>"><?php echo $prov['provDesc'];?></option>
@@ -76,13 +76,13 @@
                             </div><br>
                             <div class="checkout__input"><br><br>
                                 <p>City<span>*</span></p>
-                                <select class="combobox city" name="city" id="city">
-                                <option value="null" selected disabled> Select Province first </option>
+                                <select class="combobox city" name="city" id="city" aria-label="Default select example">
+                                    <option value="null" selected disabled> Select Province first </option>
                                 </select>
                             </div><br>
                             <div class="checkout__input"><br><br>
                                 <p>Barangay<span>*</span></p>
-                                <select class="combobox brgy" name="brgy" id="brgy">
+                                <select class="combobox brgy" name="brgy" id="brgy" aria-label="Default select example">
                                 <option value="null" selected disabled> Select City/Municipality first </option>
                                 </select>
                             </div><br><br><br>
@@ -191,42 +191,6 @@
       </script>
 
 
-    <!-- Script for provinces -->
-<script>
-    $('.province').change(function(){
-
-        var province = $(this).val();
-        $('.city').html('<option> Loading.. </option>');
-        $.ajax({
-            url:'{{ route("getCityz") }}',
-            type:'POST',
-            data:'province='+province+'&_token={{csrf_token()}}',
-            
-            success:function(result){
-                $('.city').html(result);
-            }
-
-        });
-
-        });
-
-     $('.city').change(function(){
-
-        var city = $(this).val();
-        var province = $('.province').val();
-        $('.brgy').html('<option> Loading.. </option>');
-         $.ajax({
-             url:'{{ route("getBrgyz") }}',
-             type:'POST',
-             data:'city='+city+'&province='+province+'&_token={{csrf_token()}}',
-             
-             success:function(result){
-                 $('.brgy').html(result);
-             }
-
-         });
-
-        });
-    </script>
+   
 
 @endsection

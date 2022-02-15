@@ -15,14 +15,15 @@ class ApiLocationController extends Controller
       
             return response()->json(['Provinces' => $province]);
       }
+     
        
       public function getcity($province){
             $city =  DB::table('refcitymun')
             ->leftJoin('refprovince','refprovince.provCode','=','refcitymun.provCode')
-            ->where('refprovince.provCode',$province)
-            ->select('id','citymunDesc')         
+            ->where('refprovince.provDesc',$province)
+            ->select('refcitymun.id','refcitymun.citymunDesc')         
             ->get();
-       
+      
             return response()->json(['City/Municipality' => $city]);
       }
        
