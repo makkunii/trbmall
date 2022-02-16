@@ -76,5 +76,47 @@
 <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('/dist/js/adminlte.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+
+ 
 </body>
 </html>
+
+<!-- Script for provinces -->
+<script>
+   $(document).ready(function() {
+    $('.province').change(function(){
+        var province = $(this).val();
+        $('.city').html('<option> Loading.. </option>');
+          $.ajax({
+              url:'{{ route("getCityz") }}',
+              type:'POST',
+              data:'province='+province+'&_token={{csrf_token()}}',
+              
+              success:function(result){
+                  $('.city').html(result);
+              }
+
+          });
+
+        });
+
+     $('.city').change(function(){
+
+        var city = $(this).val();
+        var province = $('.province').val();
+        $('.brgy').html('<option> Loading.. </option>');
+         $.ajax({
+             url:'{{ route("getBrgyz") }}',
+             type:'POST',
+             data:'city='+city+'&province='+province+'&_token={{csrf_token()}}',
+             
+             success:function(result){
+                 $('.brgy').html(result);
+             }
+
+         });
+
+        });
+      });
+    </script>
