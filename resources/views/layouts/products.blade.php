@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="col-lg-6">
 
-                                <img src="images/testing.png" style="height: 300px">
+                                <img src="public/images/testing.png" style="height: 300px">
 
                             </div>
                             <div class="col-lg-6">

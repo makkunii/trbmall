@@ -26,7 +26,7 @@
     <!-- Categories Section End -->
 
     <!-- Title Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="/assets/img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="public/assets/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -70,7 +70,7 @@
                                 </td>
 
                                 <td class="shoping__cart__item">
-                                    <img src="/assets/img/cart/cart-1.jpg" alt="">
+                                    <img src="public/images/testing.png" alt="">
                                      <h5>{{ $item->name }}</h5>
                                      <input type="hidden" name="prod_name[]" class="prod-name" value="{{ $item->name }}">
                                 </td>
