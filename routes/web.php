@@ -35,6 +35,7 @@ DASHBOARD
 --------------------------------------*/
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard/orders', [DashboardController::class, 'orders'])->name('orders');
 //PRODUCT
 Route::get('/dashboard/products', [ProductsController::class, 'products'])->name('products');
 Route::get('/dashboard/products/edit', [ProductsController::class, 'editproduct'])->name('editproduct');

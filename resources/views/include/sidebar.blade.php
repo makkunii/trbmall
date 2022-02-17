@@ -44,6 +44,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('orders')}}" class="nav-link">
+              <i class="fas fa-cart-arrow-down fa-fw"></i>
+              <p>orders</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('promo')}}" class="nav-link">
               <i class="fas fa-money-check-alt nav-icon"></i>
               <p>Promo</p>
