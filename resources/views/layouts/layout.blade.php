@@ -13,7 +13,7 @@
 
     <div class="container">
       <a href="{{ route('home')}}" class="navbar-brand">
-        <img src="{{ asset('public/images/trbmalllogo.png') }}" alt="TRB MALL Logo" style="height:60px">
+        <img src="{{ asset('/images/trbmalllogo.png') }}" alt="TRB MALL Logo" style="height:60px">
       </a>
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

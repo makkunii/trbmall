@@ -70,7 +70,7 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Province<span>*</span></p>
-                                <select class="combobox province" name="province" id="province" aria-label="Default select example">
+                                <select class="form-select province" name="province" id="province" aria-label="Default select example">
                                 <option selected disabled>Select province</option>
                                 <?php foreach ($province as $prov) { ?>
                                 <option value="<?php echo $prov['provDesc'];?>"><?php echo $prov['provDesc'];?></option>
@@ -79,13 +79,13 @@
                             </div><br>
                             <div class="checkout__input"><br><br>
                                 <p>City<span>*</span></p>
-                                <select class="combobox city" name="city" id="city" aria-label="Default select example">
+                                <select class="city" name="city" id="city" aria-label="Default select example">
                                     <option value="null" selected disabled> Select Province first </option>
                                 </select>
                             </div><br>
                             <div class="checkout__input"><br><br>
                                 <p>Barangay<span>*</span></p>
-                                <select class="combobox brgy" name="brgy" id="brgy" aria-label="Default select example">
+                                <select class="brgy" name="brgy" id="brgy" aria-label="Default select example">
                                 <option value="null" selected disabled> Select City/Municipality first </option>
                                 </select>
                             </div><br><br><br>
