@@ -98,7 +98,8 @@ public function insertorder(Request $request) {
    //**************************SHOW VIEW**************************//
    public function showorder(){
            $fetchedit = DB::table('orders')
-           ->select('first_name',
+           ->select('id',
+           'first_name',
            'last_name',
            'province',
            'city',

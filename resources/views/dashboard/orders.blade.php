@@ -47,9 +47,6 @@
             <div class="card">
               <div class="card-header text-right bg-light">
                 <h3 class="card-title text-red font-weight-bold">Orders table</h3>
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
-                  Add Category
-                </button>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -57,18 +54,15 @@
 
                   <thead>
                   <tr>
-        <th>first_name</th>
-        <th>last_name</th>
-        <th>province</th>
-        <th>city</th>
-        <th>brgy</th>
-        <th>phone</th>
-        <th>email</th>
-        <th>promo</th>
-        <th>total</th>
-        <th>created_at</th>
-        <th>updated_at</th>
-        <th>Action</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Promo</th>
+                    <th>Products</th>
+                    <th>Total</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
 
@@ -98,27 +92,24 @@
                   @endif
 
 
+                  @foreach ($vorder as $vorderz)
 
                   <tr onclick="showDiscount(this)">
 
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                   <td>{{$vorderz['id'] }}</td>
+                   <td>{{$vorderz['first_name'] }} {{$vorderz['last_name'] }}</td>
+                   <td>{{$vorderz['brgy'] }}, {{$vorderz['city'] }}, {{$vorderz['province'] }}</td>
+                   <td>{{$vorderz['phone'] }}</td>
+                   <td>{{$vorderz['email'] }}</td>
+                    <td>{{$vorderz['promo'] }}</td>
+                    <td>{{$vorderz['products'] }}</td>
+                    <td>{{$vorderz['total'] }}</td>
                     <td>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit" ></i></button>
-                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-eye" ></i></button>
                     </td>
                   </tr>
 
-                   {{-- @endforeach --}}
+                   @endforeach
 
                   </tbody>
 
@@ -141,84 +132,6 @@
   </div>
 <!-- ./wrapper -->
 
-<!-- Add product modal -->
-<div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Add Category</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <form action="{{ route('insertcategory') }}" method="POST" enctype="multipart/form-data">
-              @csrf
-                  <div class="form-group">
-                    <label for="productname">Category Name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Category Name">
-                </div>
-                <div class="form-group">
-                    <label>Status</label>
-                    <select class="form-control" name="is_active" id="is_active">
-                      <option selected disabled>Select status</option>
-                      <option value="1">Active</option>
-                      <option value="0">Disabled</option>
-                    </select>
-                </div>
-            </div>
-
-                  <!--
-                   <div class="form-group">
-                        <label>Category</label>
-                        <div class="select2-danger">
-                            <select class="select2" name="Category[]" id="category_id" multiple="multiple" data-placeholder="Category" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                <option>Gadget</option>
-                                <option>Beauty Products</option>
-                                <option>Testing</option>
-                            </select>
-                            </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Sub-Category</label>
-                        <div class="select2-danger">
-                            <select class="select2" name="SubCategory[]" multiple="multiple" data-placeholder="SubCategory" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                <option>Gadget</option>
-                                <option>Beauty Products</option>
-                                <option>Testing</option>
-                            </select>
-                            </div>
-                    </div>
-                    -->
-
-
-                      <!--
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                  </div>
-                  -->
-                  <div class="modal-footer justify-content-between">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-danger">Add Category</button>
-                    </div>
-            </div>
-
-        </form>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
 
 
  <!-- edit product modal -->
@@ -226,69 +139,44 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Edit Category</h4>
+              <h4 class="modal-title">View Order</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-            <form action="{{ route('updatecategory') }}" method="POST">
+            <form>
               @csrf
+              
               <div class="form-group">
-                    <label for="productname">Category Name</label>
-                    <input type="text" class="form-control" name="name" id="edit-name" placeholder="Enter Category Name">
+                    <label for="productname">Name</label>
+                    <input type="text" class="form-control" name="name" id="customer">
                   </div>
-
-                  <!--
                   <div class="form-group">
-                        <label>Category</label>
-                        <select class="form-control">
-                          <option selected disabled>Category</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label>Sub-category</label>
-                        <select class="form-control">
-                          <option selected disabled>Select sub-category</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
-                    -->
-
-                  <div class="form-group">
-                        <label>Status</label>
-                        <select class="form-control" name="is_active" id="edit-is_active">
-                          <option selected disabled>Select status</option>
-                          <option value="1">Active</option>
-                          <option value="0">Disabled</option>
-                        </select>
-                      </div>
-                      <!--
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
+                    <label for="productname">Address</label>
+                    <input type="text" class="form-control" name="name" id="edit-address">
                   </div>
-                -->
-            </div>
-            <div class="modal-footer justify-content-between">
-            <input type="hidden" name="id" id="edit-id">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-danger">Save changes</button>
+                  <div class="form-group">
+                    <label for="productname">Phone</label>
+                    <input type="text" class="form-control" name="name" id="edit-phone">
+                  </div>
+                  <div class="form-group">
+                    <label for="productname">Email</label>
+                    <input type="text" class="form-control" name="name" id="edit-email">
+                  </div>
+                  <div class="form-group">
+                    <label for="productname">Promo</label>
+                    <input type="text" class="form-control" name="name" id="edit-promo">
+                  </div>
+                  <div class="form-group">
+                    <label for="productname">Products</label>
+                    <input type="text" class="form-control" name="name" id="edit-products">
+                  </div>
+                  <div class="form-group">
+                    <label for="productname">Total</label>
+                    <input type="text" class="form-control" name="name" id="edit-total">
+                  </div>
+                  <input type="hidden" class="form-control" name="id" id="edit-id">
             </div>
             </form>
           </div>
@@ -304,7 +192,13 @@
           {
           var j = row.cells;
           document.getElementById("edit-id").value = j[0].innerHTML;
-          document.getElementById("edit-name").value = j[1].innerHTML;
-          document.getElementById("edit-is_active").value = j[2].innerHTML;
+          document.getElementById("customer").value = j[1].innerHTML;
+          document.getElementById("edit-address").value = j[2].innerHTML;
+          document.getElementById("edit-phone").value = j[3].innerHTML;
+          document.getElementById("edit-email").value = j[4].innerHTML;
+          document.getElementById("edit-promo").value = j[5].innerHTML;
+          document.getElementById("edit-products").value = j[6].innerHTML;
+          document.getElementById("edit-total").value = j[7].innerHTML;
+          document.getElementById("edit-name").value = j[8].innerHTML;
           }
       </script>

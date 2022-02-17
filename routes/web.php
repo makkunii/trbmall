@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\CategoryController;
 use App\Http\Controllers\Web\ProductsController;
 use App\Http\Controllers\Web\PromoController;
 use App\Http\Controllers\Web\SubCategoryController;
+use App\Http\Controllers\Web\OrdersController;
 
 use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\CartController;
@@ -35,7 +36,7 @@ DASHBOARD
 --------------------------------------*/
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-Route::get('/dashboard/orders', [DashboardController::class, 'orders'])->name('orders');
+
 //PRODUCT
 Route::get('/dashboard/products', [ProductsController::class, 'products'])->name('products');
 Route::get('/dashboard/products/edit', [ProductsController::class, 'editproduct'])->name('editproduct');
@@ -65,6 +66,10 @@ Route::get('/dashboard/promo', [PromoController::class, 'promo'])->name('promo')
 Route::get('/dashboard/promo/edit', [PromoController::class, 'editpromo'])->name('editcpromo');
 Route::post('/dashboard/promo/insert', [PromoController::class, 'insertpromo'])->name('insertpromo');
 Route::post('/dashboard/promo/update', [PromoController::class, 'updatepromo'])->name('updatepromo');
+
+//ORDERS
+Route::get('/dashboard/orders', [OrdersController::class, 'orders'])->name('orders');
+
 
 
 /*----------------------------x---------

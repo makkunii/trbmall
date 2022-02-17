@@ -12,9 +12,5 @@ class DashboardController extends Controller
     {
         return view('dashboard/dashboard');
     }
-    public function orders()
-    {
-        return view('dashboard/orders');
-    }
 
 }
