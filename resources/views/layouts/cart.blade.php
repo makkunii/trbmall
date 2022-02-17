@@ -70,7 +70,7 @@
                                 </td>
 
                                 <td class="shoping__cart__item">
-                                    <img src="public/images/testing.png" alt="">
+                                    <img src="public/assets/img/cart/cart-1.jpg" alt="">
                                      <h5>{{ $item->name }}</h5>
                                      <input type="hidden" name="prod_name[]" class="prod-name" value="{{ $item->name }}">
                                 </td>
