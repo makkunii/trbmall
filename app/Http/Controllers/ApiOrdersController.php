@@ -17,10 +17,10 @@ public function insertorder(Request $request) {
         'province'=> 'required',
         'city'=> 'required',
         'brgy'=> 'required',
-        'phone'=> 'required',
+        'phone'=> 'required|numeric|between:0,9999999.99',
         'email'=> 'required',
         'promo'=> 'nullable',
-        'total'=>'required',
+        'total'=>'required|numeric|between:0,9999999.99',
         'products'=>'required',
         'created_at'=> 'nullable',
         'updated_at'=> 'nullable'

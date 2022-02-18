@@ -83,6 +83,7 @@ Route::get('/mall/checkout', [CheckoutController::class, 'checkout'])->name('che
 Route::post('/getCityz', [CheckoutController::class, 'getCityz'])->name('getCityz');
 Route::post('/getBrgyz', [CheckoutController::class, 'getBrgyz'])->name('getBrgyz');
 Route::post('/mall/checkout/', [CheckoutController::class, 'checkpromo'])->name('checkpromo');
+Route::post('/mall/checkout/insert', [CheckoutController::class, 'insertorder'])->name('insertorder');
 
 // CART
 Route::get('/mall/cart', [CartController::class, 'cart'])->name('cart');

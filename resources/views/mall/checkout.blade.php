@@ -53,6 +53,18 @@ select{
             <div class="checkout__form">
                 <h4>Billing Details</h4>
 
+                @if(session()->has('insertsuccess'))
+                    <div class="alert alert-success alert-dismissible">
+                        {{ session()->get('insertsuccess') }}
+                    </div>
+                  @endif
+
+                  @if(session()->has('insertfailed'))
+                    <div class="alert alert-danger alert-dismissible">
+                        {{ session()->get('insertfailed') }}
+                    </div>
+                  @endif
+
                     <div class="row">
 
                         <div class="col-lg-8 col-md-6">
@@ -61,21 +73,21 @@ select{
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Fist Name<span>*</span></p>
-                                        <input type="text" placeholder="Enter first name">
+                                        <p>First Name<span>*</span></p>
+                                        <input type="text" placeholder="Enter first name" name="first_name" id="first_name">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Last Name<span>*</span></p>
-                                        <input type="text" placeholder="Enter last name">
+                                        <input type="text" placeholder="Enter last name" name="last_name" id="last_name">
                                     </div>
                                 </div>
-                            </div>
+                            </div> <!--
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
                                 <input type="text" placeholder="Street Address" class="checkout__input__add">
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <p>Province<span>*</span></p>
                                 <select class="form-control province text-muted" name="province" id="province">
@@ -101,17 +113,16 @@ select{
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" placeholder="Enter Phone Number">
+                                        <input type="text" placeholder="Enter Phone Number" name="phone" id="phone">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" placeholder="Enter Email">
+                                        <input type="text" placeholder="Enter Email" name="email" id="email">
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div> <!-- end -->
                         <div class="col-lg-4 col-md-6">
                             <div class="checkout__order">
@@ -168,6 +179,9 @@ select{
                                 <div class="checkout__order__total">Total <span>₱<div style="float:right" id="TotalAmt"></div></span></div>
 
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
+
+                                
+                        </form>
 
                             </div>
                         </div>

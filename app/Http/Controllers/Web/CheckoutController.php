@@ -88,5 +88,46 @@ class CheckoutController extends Controller
         //     }
     }
 
+    public function insertproduct(Request $request) {
+ 
+        $this->validate($request,[
+            'first_name'=> 'required',
+            'last_name'=> 'required',
+            'province'=> 'required',
+            'city'=> 'required',
+            'brgy'=> 'required',
+            'phone'=> 'required',
+            'email'=> 'required',
+            'promo'=> 'nullable',
+            'total'=>'required',
+            'products'=>'required',
+            'created_at'=> 'nullable',
+            'updated_at'=> 'nullable'
+        ]);
+
+        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/mall/checkout/insert',[
+            'first_name'=> $request->first_name,
+           'last_name'=> $request->last_name,
+           'province'=> $request->province,
+           'city'=> $request->city,
+           'brgy'=> $request->brgy,
+           'phone'=> $request->phone,
+           'email'=> $request->email,
+           'promo'=> $request->promo,
+           'total'=> $request->total,
+           'products'=> $request->products,
+           'created_at'=> now(),
+           'updated_at'=> now(),
+        ]);
+
+        if($insert->successful()) {
+
+            return redirect()->back()->with('insertsuccess', 'Products ordered successly');
+
+        } else {
+            return redirect()->back()->with('insertfailed', 'Products failed to order');
+        }
+}
+
 
 } //end
