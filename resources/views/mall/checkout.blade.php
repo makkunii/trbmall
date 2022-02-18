@@ -1,7 +1,15 @@
 @extends('home')
 @section('content')
 @section('title', 'Checkout')
-
+<style>
+select{
+    height: 45px !important;
+    border: 1px solid #ABADB3;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
+</style>
 @section('content')
 <!-- Page Preloder -->
 <div id="preloder">
@@ -46,7 +54,7 @@
                 <h4>Billing Details</h4>
 
                     <div class="row">
-                        
+
                         <div class="col-lg-8 col-md-6">
                             <form method="POST">
                                 @csrf
@@ -68,27 +76,27 @@
                                 <p>Address<span>*</span></p>
                                 <input type="text" placeholder="Street Address" class="checkout__input__add">
                             </div>
-                            <div class="checkout__input">
+                            <div class="form-group">
                                 <p>Province<span>*</span></p>
-                                <select class="form-select province" name="province" id="province" aria-label="Default select example">
+                                <select class="form-control province text-muted" name="province" id="province">
                                 <option selected disabled>Select province</option>
                                 <?php foreach ($province as $prov) { ?>
                                 <option value="<?php echo $prov['provDesc'];?>"><?php echo $prov['provDesc'];?></option>
                                 <?php } ?>
                                 </select>
-                            </div><br>
-                            <div class="checkout__input"><br><br>
+                            </div>
+                            <div class="form-group">
                                 <p>City<span>*</span></p>
-                                <select class="city" name="city" id="city" aria-label="Default select example">
+                                <select class="form-control city text-muted" name="city" id="city">
                                     <option value="null" selected disabled> Select Province first </option>
                                 </select>
-                            </div><br>
-                            <div class="checkout__input"><br><br>
+                            </div>
+                            <div class="form-group">
                                 <p>Barangay<span>*</span></p>
-                                <select class="brgy" name="brgy" id="brgy" aria-label="Default select example">
+                                <select class="form-control brgy text-muted" name="brgy" id="brgy">
                                 <option value="null" selected disabled> Select City/Municipality first </option>
                                 </select>
-                            </div><br><br><br>
+                            </div><br>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
@@ -195,6 +203,6 @@
       </script>
 
 
-   
+
 
 @endsection
