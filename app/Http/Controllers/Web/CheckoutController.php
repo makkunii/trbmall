@@ -101,9 +101,7 @@ class CheckoutController extends Controller
             'promo'=> 'nullable',
             'subtotal'=>'required',
             'total'=>'required',
-            'products'=>'required',
-            'created_at'=> 'nullable',
-            'updated_at'=> 'nullable'
+            'products'=>'required'
         ]);
 
         $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/insertorder',[
@@ -114,19 +112,17 @@ class CheckoutController extends Controller
            'brgy'=> $request->brgy,
            'phone'=> $request->phone,
            'email'=> $request->email,
-           'promo'=> $request->promo_name,
-           'subtotal'=> $request->product_subtotal,
+           'promo'=> $request->promo,
+           'subtotal'=> $request->subtotal,
            'total'=> $request->total,
-           'products'=> $request->product_name,
-           'created_at'=> now(),
-           'updated_at'=> now(),
+           'products'=> $request->products
         ]);
 
         
 
         if($insert->successful()) {
 
-            return redirect()->back()->with('insertsuccess', 'Products ordered successly');
+            return redirect('/home')->with('insertsuccess', 'Products ordered successly');
 
         } else {
             return redirect()->back()->with('insertfailed', 'Products failed to order');

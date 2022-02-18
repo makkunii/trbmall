@@ -17,18 +17,13 @@ public function insertorder(Request $request) {
         'province'=> 'required',
         'city'=> 'required',
         'brgy'=> 'required',
-        'phone'=> 'required',
-        'email'=> 'required',
+        'phone'=> 'required|string|max:20',
+        'email'=> 'required|email',
         'promo'=> 'nullable',
         'subtotal'=>'required|numeric|between:0,9999999.99',
         'total'=>'required|numeric|between:0,9999999.99',
-        'products'=>'required',
-        'created_at'=> 'nullable',
-        'updated_at'=> 'nullable'
-
-        
+        'products'=>'required|string|max:255'
        ]);
-
        // CREATE PRODUCT
        $insert = DB::table('orders')
        ->insertGetId([
@@ -39,12 +34,10 @@ public function insertorder(Request $request) {
            'brgy'=> $request->brgy,
            'phone'=> $request->phone,
            'email'=> $request->email,
-           'promo'=> $request->promo_name,
-           'subtotal'=> $request->product_subtotal,
+           'promo'=> $request->promo,
+           'subtotal'=> $request->subtotal,
            'total'=> $request->total,
-           'products'=> $request->product_name,
-           'created_at'=> now(),
-           'updated_at'=> now(),
+           'products'=> $request->products
 
        ]);
 

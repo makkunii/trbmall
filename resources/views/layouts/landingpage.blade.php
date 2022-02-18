@@ -73,7 +73,11 @@
     });
   });
 </script>
-
+<script>
+  $(".alert-dismissible").fadeTo(2000, 500).slideUp(1000, function(){
+    $(".alert-dismissible").alert('close');
+});
+</script>
 </body>
 
 </html>

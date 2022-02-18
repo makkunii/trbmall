@@ -13,6 +13,11 @@
     <!-- Categories Section Begin -->
     <section class="hero">
         <div class="container">
+        @if(session()->has('insertsuccess'))
+         <div class="alert alert-success alert-dismissible">
+            {{ session()->get('insertsuccess') }}
+         </div>
+         @endif
             <div class="row">
             @include('include.categories')
                 <div class="col-lg-9">
