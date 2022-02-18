@@ -55,9 +55,9 @@
                             <div class="col-lg-6">
                                 <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    <input type="text" value="{{ $product->id }}" name="id" id="display-id">
-                                    <input type="text" value="{{ $product->name }}" name="name" id="display-name">
-                                    <input type="text" value="{{ $product->price }}" name="price" id="display-price">
+                                    <input type="hidden" value="{{ $product->id }}" name="id" id="display-id">
+                                    <input type="hidden" value="{{ $product->name }}" name="name" id="display-name">
+                                    <input type="hidden" value="{{ $product->price }}" name="price" id="display-price">
                                     <h3 id="display-n"></h3>
                                     <hr>
 
