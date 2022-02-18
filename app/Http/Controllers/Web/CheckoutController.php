@@ -122,7 +122,7 @@ class CheckoutController extends Controller
 
         if($insert->successful()) {
 
-            return redirect('/home')->with('insertsuccess', 'Products ordered successly');
+            return redirect('/home')->with('insertsuccess', 'Products ordered successfully');
 
         } else {
             return redirect()->back()->with('insertfailed', 'Products failed to order');

@@ -148,9 +148,15 @@
             @csrf
             <div class="row">
             @if($datapromo == null)
+            <!--<div class="alert alert-danger alert-dismissible">
+               Promo not applied
+            </div> -->
             <input type="text" id="promo_name" name="promo_name" placeholder="Enter promo code" style="width: 100%; padding-right:10px">
             <input type="hidden"  class="site-btn" name="promo_rate" id="promo_rate" value="0">
             @else
+            <div class="alert alert-success alert-dismissible">
+               Promo applied successfully
+            </div>
             {{-- {{ $datapromo->name }} {{$datapromo->rate}} --}}
             <input type="text" id="promo_name" name="promo_name" value="{{ $datapromo->name }}" placeholder="Enter promo code" style="width: 100%; padding-right:10px">
             <input type="hidden"  class="site-btn" name="promo_rate" id="promo_rate" value="{{ $datapromo->rate }}">
