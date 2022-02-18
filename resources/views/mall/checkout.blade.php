@@ -136,10 +136,10 @@
             <div class="checkout__order__subtotal">Subtotal <span>₱<div style="float:right" id="SubTotalAmt"></div></span></div>
             <div class="checkout__order__total">Promo/Discount <span>₱<div style="float:right" id="discount"></div></span></div>
             <div class="checkout__order__total">Total <span>₱<div style="float:right" id="TotalAmt"></div></span></div>
-            <input type="text" name="subtotal" value="" id="subtotal">
-            <input type="text" name="total" value="" id="total">
-            <input type="text" name="promo" value="" id="promo">
-            <input type="text" name="products" value="" id="products">
+            <input type="hidden" name="subtotal" value="" id="subtotal">
+            <input type="hidden" name="total" value="" id="total">
+            <input type="hidden" name="promo" value="" id="promo">
+            <input type="hidden" name="products" value="" id="products">
             <button type="submit" class="site-btn">PLACE ORDER</button>
             </form>
             <div class="shoping__discount">
