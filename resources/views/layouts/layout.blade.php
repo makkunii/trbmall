@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trb Mall - @yield('title')</title>
 
-  <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/dist/css/adminlte.min.css') }}">
 
 
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
 
     <div class="container">
       <a href="{{ route('home')}}" class="navbar-brand">
-        <img src="{{ asset('/images/trbmalllogo.png') }}" alt="TRB MALL Logo" style="height:60px">
+        <img src="{{ asset('public/images/trbmalllogo.png') }}" alt="TRB MALL Logo" style="height:60px">
       </a>
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,11 +71,11 @@
 
 
 
-<script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('public/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('public/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('public/dist/js/adminlte.min.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 
  
