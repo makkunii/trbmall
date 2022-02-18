@@ -68,7 +68,7 @@ select{
                     <div class="row">
 
                         <div class="col-lg-8 col-md-6">
-                            <form method="POST">
+                            <form action="{{ route('insertorder') }}" method="POST">
                                 @csrf
                             <div class="row">
                                 <div class="col-lg-6">
@@ -147,6 +147,20 @@ select{
                                      @endforeach
                                 </ul>
 
+                                <div class="checkout__order__subtotal">Subtotal <span>₱<div style="float:right" id="SubTotalAmt"></div></span></div>
+
+
+
+                                <div class="checkout__order__total">Promo/Discount <span>₱<div style="float:right" id="discount"></div></span></div>
+
+
+                                <div class="checkout__order__total">Total <span>₱<div style="float:right" id="TotalAmt" name="total"></div></span></div>
+
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+
+                                
+                        </form>
+
 
 
                                         <div class="shoping__discount">
@@ -169,19 +183,7 @@ select{
                                         </form>
                                         </div>
                                         </div>
-                                <div class="checkout__order__subtotal">Subtotal <span>₱<div style="float:right" id="SubTotalAmt"></div></span></div>
-
-
-
-                                <div class="checkout__order__total">Promo/Discount <span>₱<div style="float:right" id="discount"></div></span></div>
-
-
-                                <div class="checkout__order__total">Total <span>₱<div style="float:right" id="TotalAmt"></div></span></div>
-
-                                <button type="submit" class="site-btn">PLACE ORDER</button>
-
                                 
-                        </form>
 
                             </div>
                         </div>

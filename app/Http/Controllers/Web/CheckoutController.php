@@ -88,7 +88,7 @@ class CheckoutController extends Controller
         //     }
     }
 
-    public function insertproduct(Request $request) {
+    public function insertorder(Request $request) {
  
         $this->validate($request,[
             'first_name'=> 'required',
@@ -99,26 +99,30 @@ class CheckoutController extends Controller
             'phone'=> 'required',
             'email'=> 'required',
             'promo'=> 'nullable',
+            'subtotal'=>'required',
             'total'=>'required',
             'products'=>'required',
             'created_at'=> 'nullable',
             'updated_at'=> 'nullable'
         ]);
 
-        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/mall/checkout/insert',[
-            'first_name'=> $request->first_name,
+        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/insertorder',[
+           'first_name'=> $request->first_name,
            'last_name'=> $request->last_name,
            'province'=> $request->province,
            'city'=> $request->city,
            'brgy'=> $request->brgy,
            'phone'=> $request->phone,
            'email'=> $request->email,
-           'promo'=> $request->promo,
+           'promo'=> $request->promo_name,
+           'subtotal'=> $request->product_subtotal,
            'total'=> $request->total,
-           'products'=> $request->products,
+           'products'=> $request->product_name,
            'created_at'=> now(),
            'updated_at'=> now(),
         ]);
+
+        
 
         if($insert->successful()) {
 
