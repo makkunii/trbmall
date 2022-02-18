@@ -66,16 +66,11 @@ class CheckoutController extends Controller
                 $datapromo = null;
                 return view('mall/checkout')->with(compact('province','datapromo'));
             }
+        }
 
-            //     return view('mall/checkout')->with(compact('province','datapromo'));
-            // }
-            // else {
-            //     $datapromo = null;
-            //     return view('mall/checkout')->with(compact('province','datapromo'));
-            // }
-
-
-
+        else {
+            $datapromo = null;
+            return view('mall/checkout')->with(compact('province','datapromo'));
         }
 
 
