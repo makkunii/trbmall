@@ -10,6 +10,9 @@ use App\Http\Controllers\ApiOrdersController;
 use App\Http\Controllers\ApiPromoController;
 use App\Http\Controllers\ApiCategoriesController;
 use App\Http\Controllers\ApiLocationController;
+use App\Http\Controllers\ApiRoleController;
+use App\Http\Controllers\ApiMerchantController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -63,3 +66,15 @@ Route::get('/getsubcategory/{id}',[ApiCategoriesController::class, 'getsubcatego
 Route::get('/location/province/all',[ApiLocationController::class, 'getprovince']);
 Route::get('/location/city/{province}',[ApiLocationController::class, 'getcity']);
 Route::get('/location/brgy/{city}/{province}',[ApiLocationController::class, 'getbrgy']);
+//********************Role********************\\
+Route::get('/dashboard/role',[ApiRoleController::class, 'showrole']);
+Route::get('/dashboard/role/edit/{id}',[ApiRoleController::class, 'editrole']);
+Route::post('/dashboard/role/insert',[ApiRoleController::class, 'insertrole']);
+Route::post('/dashboard/role/update',[ApiRoleController::class, 'updaterole']);
+Route::get('/dashboard/role/check',[ApiRoleController::class, 'checkrole']);
+//********************Merchant********************\\
+Route::get('/dashboard/merchant',[ApiMerchantController::class, 'showmerchant']);
+Route::get('/dashboard/merchant/edit/{id}',[ApiMerchantController::class, 'editmerchant']);
+Route::post('/dashboard/merchant/insert',[ApiMerchantController::class, 'insertmerchant']);
+Route::post('/dashboard/merchant/update',[ApiMerchantController::class, 'updatemerchant']);
+Route::get('/dashboard/merchant/check',[ApiMerchantController::class, 'checkmerchant']);
