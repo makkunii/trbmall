@@ -11,7 +11,7 @@ class OrdersController extends Controller
     public function orders()
     {
         $vorders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showorder');
-        
+
         if ($vorders->successful())
         {
 
@@ -24,6 +24,9 @@ class OrdersController extends Controller
         {
         return view('dashboard/orders');
         }
+    }
+    public function orders_transaction() {
+        return view('dashboard/orders_transaction');
     }
 
 }

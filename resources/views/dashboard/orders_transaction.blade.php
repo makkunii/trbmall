@@ -25,12 +25,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Orders</h1>
+            <h1>Orders Transaction</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Orders</li>
+              <li class="breadcrumb-item active">Transactions</li>
             </ol>
           </div>
         </div>
@@ -46,7 +46,7 @@
 
             <div class="card">
               <div class="card-header text-right bg-light">
-                <h3 class="card-title text-red font-weight-bold">Orders table</h3>
+                <h3 class="card-title text-red font-weight-bold">Transaction table</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -55,12 +55,8 @@
                   <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Promo</th>
-                    <th>Total</th>
+                    <th>Order ID</th>
+                    <th>Products ID</th>
                     <th>Status</th>
                   </tr>
                   </thead>
@@ -91,21 +87,17 @@
                   @endif
 
 
-                  @foreach ($vorder as $vorderz)
+                  {{-- @foreach ($vorder as $vorderz) --}}
 
                   <tr onclick="showDiscount(this)">
 
-                   <td>{{$vorderz['id'] }}</td>
-                   <td data-toggle="modal" data-target="#modal-default2">{{$vorderz['first_name'] }} {{$vorderz['last_name'] }}</td>
-                   <td>{{$vorderz['brgy'] }}, {{$vorderz['city'] }}, {{$vorderz['province'] }}</td>
-                   <td>{{$vorderz['phone'] }}</td>
-                   <td>{{$vorderz['email'] }}</td>
-                    <td>{{$vorderz['promo'] }}</td>
-                    <td>{{$vorderz['total'] }}</td>
-                    <td></td>
+                   <td></td>
+                   <td data-toggle="modal" data-target="#modal-default2"></td>
+                   <td></td>
+                   <td></td>
                   </tr>
 
-                   @endforeach
+                   {{-- @endforeach --}}
 
                   </tbody>
 

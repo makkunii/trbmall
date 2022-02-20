@@ -35,7 +35,7 @@ class CheckoutController extends Controller
             }
             echo $html;
 	}
-	
+
 	public function getBrgyz(Request $request){
             $city = $request->post('city');
             $province = $request->post('province');
@@ -53,24 +53,26 @@ class CheckoutController extends Controller
     public function checkpromo(Request $request) {
         $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
         $province = $provinces['Provinces'];
+        $PromoStatus = null;
 
         if (!empty($request->promo_name)) {
            $datapromo = Promo::where('name', $request->promo_name)->first();
 
-            $expired = $datapromo->expired_at; 
+            $expired = $datapromo->expired_at;
             $date = Carbon::now()->toDateTimeString();
             if($date <= $expired) {
-                return view('mall/checkout')->with(compact('province','datapromo'));
+                $PromoStatus = "Active";
+                return view('mall/checkout')->with(compact('province','datapromo','PromoStatus'));
             }
             else {
                 $datapromo = null;
-                return view('mall/checkout')->with(compact('province','datapromo'));
+                return view('mall/checkout')->with(compact('province','datapromo','PromoStatus'));
             }
         }
 
         else {
             $datapromo = null;
-            return view('mall/checkout')->with(compact('province','datapromo'));
+            return view('mall/checkout')->with(compact('province','datapromo','PromoStatus'));
         }
 
 
@@ -84,7 +86,7 @@ class CheckoutController extends Controller
     }
 
     public function insertorder(Request $request) {
- 
+
         $this->validate($request,[
             'first_name'=> 'required',
             'last_name'=> 'required',
@@ -113,7 +115,7 @@ class CheckoutController extends Controller
            'products'=> $request->products
         ]);
 
-        
+
 
         if($insert->successful()) {
 
