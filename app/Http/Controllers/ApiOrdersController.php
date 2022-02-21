@@ -22,7 +22,8 @@ public function insertorder(Request $request) {
         'promo'=> 'nullable',
         'subtotal'=>'required|numeric|between:0,9999999.99',
         'total'=>'required|numeric|between:0,9999999.99',
-        'products'=>'required|string|max:255'
+        'products'=>'required|string|max:255',
+        'status'=>'required'
        ]);
        // CREATE PRODUCT
        $insert = DB::table('orders')
@@ -37,7 +38,8 @@ public function insertorder(Request $request) {
            'promo'=> $request->promo,
            'subtotal'=> $request->subtotal,
            'total'=> $request->total,
-           'products'=> $request->products
+           'products'=> $request->products,
+           'status'=>$request->status
 
        ]);
 
@@ -60,7 +62,8 @@ public function insertorder(Request $request) {
             'total'=>'required',
             'products'=>'required',
             'created_at'=> 'nullable',
-            'updated_at'=> 'nullable'
+            'updated_at'=> 'nullable',
+            'status'=>'required'
     
           ]);
 
@@ -80,6 +83,7 @@ public function insertorder(Request $request) {
           'products'=> $request->products,
           'created_at'=> $request->created_at,
           'updated_at'=> now(),
+          'status'=>$request->status
 
            ]);
 
@@ -105,7 +109,8 @@ public function insertorder(Request $request) {
            'total',
            'products',
            'created_at',
-           'updated_at')
+           'updated_at',
+           'status')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }
@@ -124,7 +129,8 @@ public function insertorder(Request $request) {
           'total',
           'products',
           'created_at',
-          'updated_at')
+          'updated_at',
+          'status')
           ->where('id',$id)
           ->first();
           return response()->json(['Edit' => $fetchedit], 200);
