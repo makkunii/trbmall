@@ -102,7 +102,13 @@
                    <td>{{$vorderz['email'] }}</td>
                     <td>{{$vorderz['promo'] }}</td>
                     <td>{{$vorderz['total'] }}</td>
-                    <td></td>
+                    <td>
+                    @if($vorderz['status'] == '1')
+                    <div class="badge bg-green text-white">Active</div>
+                    @elseif($vorderz['status'] == '0')
+                    <div class="badge bg-red text-white">Cancelled</div>
+                    @endif
+                    </td>
                   </tr>
 
                    @endforeach

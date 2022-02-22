@@ -98,7 +98,8 @@ class CheckoutController extends Controller
             'promo'=> 'nullable',
             'subtotal'=>'required',
             'total'=>'required',
-            'products'=>'required'
+            'products'=>'required',
+            'status' => 'required'
         ]);
 
         $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/insertorder',[
@@ -112,7 +113,8 @@ class CheckoutController extends Controller
            'promo'=> $request->promo,
            'subtotal'=> $request->subtotal,
            'total'=> $request->total,
-           'products'=> $request->products
+           'products'=> $request->products,
+           'status' => $request->status
         ]);
 
 

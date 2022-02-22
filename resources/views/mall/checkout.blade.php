@@ -140,6 +140,7 @@
             <input type="hidden" name="total" value="" id="total">
             <input type="hidden" name="promo" value="" id="promo">
             <input type="hidden" name="products" value="" id="products">
+            <input type="hidden"  class="status" name="status" id="status" value="1">
             <button type="submit" class="site-btn">PLACE ORDER</button>
             </form>
             <div class="shoping__discount">

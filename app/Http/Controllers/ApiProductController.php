@@ -19,6 +19,7 @@ public function insertproduct(Request $request) {
            'weight' => 'nullable',
            'length' => 'nullable',
            'height' => 'nullable',
+           'status' => 'required|integer'
        ]);
 
        // CREATE PRODUCT
