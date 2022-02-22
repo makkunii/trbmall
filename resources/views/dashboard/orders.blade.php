@@ -59,6 +59,7 @@
                     <th>Address</th>
                     <th>Phone</th>
                     <th>Email</th>
+                    <th>Subtotal</th>
                     <th>Promo</th>
                     <th>Total</th>
                     <th>Status</th>
@@ -100,6 +101,7 @@
                    <td>{{$vorderz['brgy'] }}, {{$vorderz['city'] }}, {{$vorderz['province'] }}</td>
                    <td>{{$vorderz['phone'] }}</td>
                    <td>{{$vorderz['email'] }}</td>
+                   <td>{{$vorderz['subtotal'] }}</td>
                     <td>{{$vorderz['promo'] }}</td>
                     <td>{{$vorderz['total'] }}</td>
                     <td>
@@ -110,6 +112,7 @@
                     @endif
                     </td>
                     <td style="display:none;">{{$vorderz['products'] }}</td>
+                    <td style="display:none;">{{$vorderz['quantity'] }}</td>
                   </tr>
 
                    @endforeach
@@ -159,7 +162,8 @@
                     </div>
                     <div class="col-lg-6">
                         <label for="productname">Quantity</label>
-                        <p>Products Quantity</p>
+                        <input type="text" class="form-control" name="name" id="edit-qty" style="background: transparent; border: none;">
+                    
                     </div>
                   </div>
 
@@ -180,6 +184,7 @@
           {
           var j = row.cells;
           document.getElementById("edit-id").value = j[0].innerHTML;
-          document.getElementById("edit-product").value = j[8].innerHTML;
+          document.getElementById("edit-product").value = j[9].innerHTML;
+          document.getElementById("edit-qty").value = j[10].innerHTML;
           }
       </script>

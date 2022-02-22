@@ -23,7 +23,7 @@ public function insertorder(Request $request) {
         'subtotal'=>'required|numeric|between:0,9999999.99',
         'total'=>'required|numeric|between:0,9999999.99',
         'products'=>'required|string|max:255',
-        'quantity'=>'required',
+        'quantity'=>'required|numeric|between:0,9999999.99',
         'status'=>'required'
        ]);
        // CREATE PRODUCT
@@ -109,6 +109,7 @@ public function insertorder(Request $request) {
            'brgy',
            'phone',
            'email',
+           'subtotal',
            'promo',
            'total',
            'products',
