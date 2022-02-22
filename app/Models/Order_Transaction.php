@@ -12,6 +12,8 @@ class Order_Transaction extends Model
         'id',
         'product_id',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'created_by',
+        'status'
     ];
 }

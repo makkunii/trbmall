@@ -7,6 +7,7 @@ use App\Http\Controllers\ApiAccountController;
 use App\Http\Controllers\ApiCategoryController;
 use App\Http\Controllers\ApiSubCategoryController;
 use App\Http\Controllers\ApiOrdersController;
+use App\Http\Controllers\ApiOrdersTransactionController;
 use App\Http\Controllers\ApiPromoController;
 use App\Http\Controllers\ApiCategoriesController;
 use App\Http\Controllers\ApiLocationController;
@@ -53,6 +54,11 @@ Route::get('/dashboard/orders/showorder',[ApiOrdersController::class, 'showorder
 Route::get('/dashboard/orders/editorder/{id}',[ApiOrdersController::class, 'editorder']);
 Route::post('/dashboard/orders/insertorder',[ApiOrdersController::class, 'insertorder']);
 Route::post('/dashboard/orders/updateorder/{id}',[ApiOrdersController::class, 'updateorder']);
+//********************Orders Transaction********************\\
+Route::get('/dashboard/orders/showordertrans',[ApiOrdersTransactionController::class, 'showordertransaction']);
+Route::get('/dashboard/orders/editordertrans/{id}',[ApiOrdersTransactionController::class, 'editordertransaction']);
+Route::post('/dashboard/orders/insertordertrans',[ApiOrdersTransactionController::class, 'insertordertransaction']);
+Route::post('/dashboard/orders/updateordertrans/{id}',[ApiOrdersTransactionController::class, 'updateordertransaction']);
 //********************Promo********************\\
 Route::get('/dashboard/promo',[ApiPromoController::class, 'showpromo']);
 Route::get('/dashboard/promo/edit/{id}',[ApiPromoController::class, 'editpromo']);
