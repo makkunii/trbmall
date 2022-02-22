@@ -25,8 +25,23 @@ class OrdersController extends Controller
         return view('dashboard/orders');
         }
     }
+
+    
     public function orders_transaction() {
+        $torders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showordertrans');
+
+        if ($torders->successful())
+        {
+
+            $torder = $torders['Show'];
+            return view('dashboard/orders_transaction')->with(compact('torder'));
+
+        }
+
+        else
+        {
         return view('dashboard/orders_transaction');
+        }
     }
 
 }

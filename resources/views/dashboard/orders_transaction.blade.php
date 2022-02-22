@@ -53,9 +53,9 @@
                 <table id="example1" class="table table-bordered table-striped">
 
                   <thead>
+
                   <tr>
                     <th>ID</th>
-                    <th>Order ID</th>
                     <th>Products ID</th>
                     <th>Status</th>
                   </tr>
@@ -87,17 +87,22 @@
                   @endif
 
 
-                  {{-- @foreach ($vorder as $vorderz) --}}
+                  @foreach ($torder as $torderz)
 
                   <tr onclick="showDiscount(this)">
 
-                   <td></td>
-                   <td data-toggle="modal" data-target="#modal-default2"></td>
-                   <td></td>
-                   <td></td>
+                   <td>{{$torderz['id'] }}</td>
+                   <td>{{$torderz['product_id'] }}</td>
+                   <td>
+                    @if($torderz['status'] == '1')
+                    <div class="badge bg-green text-white">Active</div>
+                    @elseif($torderz['status'] == '0')
+                    <div class="badge bg-red text-white">Cancelled</div>
+                    @endif
+                    </td>
                   </tr>
 
-                   {{-- @endforeach --}}
+                  @endforeach
 
                   </tbody>
 
