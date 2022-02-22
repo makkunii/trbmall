@@ -109,6 +109,7 @@
                     <div class="badge bg-red text-white">Cancelled</div>
                     @endif
                     </td>
+                    <td style="display:none;">{{$vorderz['products'] }}</td>
                   </tr>
 
                    @endforeach
@@ -154,7 +155,7 @@
                   <div class="row">
                     <div class="col-lg-6">
                         <label for="productname">Products</label>
-                        <p>Products na inorder ni user</p>
+                        <input type="text" class="form-control" name="name" id="edit-product" style="background: transparent; border: none;">
                     </div>
                     <div class="col-lg-6">
                         <label for="productname">Quantity</label>
@@ -179,13 +180,6 @@
           {
           var j = row.cells;
           document.getElementById("edit-id").value = j[0].innerHTML;
-          document.getElementById("customer").value = j[1].innerHTML;
-          document.getElementById("edit-address").value = j[2].innerHTML;
-          document.getElementById("edit-phone").value = j[3].innerHTML;
-          document.getElementById("edit-email").value = j[4].innerHTML;
-          document.getElementById("edit-promo").value = j[5].innerHTML;
-          document.getElementById("edit-products").value = j[6].innerHTML;
-          document.getElementById("edit-total").value = j[7].innerHTML;
-          document.getElementById("edit-name").value = j[8].innerHTML;
+          document.getElementById("edit-product").value = j[8].innerHTML;
           }
       </script>
