@@ -99,6 +99,7 @@ class CheckoutController extends Controller
             'subtotal'=>'required',
             'total'=>'required',
             'products'=>'required',
+            'quantity'=>'required',
             'status' => 'required'
         ]);
 
@@ -114,6 +115,7 @@ class CheckoutController extends Controller
            'subtotal'=> $request->subtotal,
            'total'=> $request->total,
            'products'=> $request->products,
+           'quantity'=> $request->quantity,
            'status' => $request->status
         ]);
 
