@@ -23,6 +23,7 @@ public function insertorder(Request $request) {
         'subtotal'=>'required|numeric|between:0,9999999.99',
         'total'=>'required|numeric|between:0,9999999.99',
         'products'=>'required|string|max:255',
+        'quantity'=>'required',
         'status'=>'required'
        ]);
        // CREATE PRODUCT
@@ -39,6 +40,7 @@ public function insertorder(Request $request) {
            'subtotal'=> $request->subtotal,
            'total'=> $request->total,
            'products'=> $request->products,
+           'quantity'=> $request->quantity,
            'status'=>$request->status
 
        ]);
@@ -61,6 +63,7 @@ public function insertorder(Request $request) {
             'promo'=> 'nullable',
             'total'=>'required',
             'products'=>'required',
+            'quantity'=>'required',
             'created_at'=> 'nullable',
             'updated_at'=> 'nullable',
             'status'=>'required'
@@ -81,6 +84,7 @@ public function insertorder(Request $request) {
           'promo'=> $request->promo,
           'total'=> $request->total,
           'products'=> $request->products,
+          'quantity'=> $request->quantity,
           'created_at'=> $request->created_at,
           'updated_at'=> now(),
           'status'=>$request->status
@@ -108,6 +112,7 @@ public function insertorder(Request $request) {
            'promo',
            'total',
            'products',
+           'quantity',
            'created_at',
            'updated_at',
            'status')
@@ -128,6 +133,7 @@ public function insertorder(Request $request) {
           'promo',
           'total',
           'products',
+          'quantity',
           'created_at',
           'updated_at',
           'status')
