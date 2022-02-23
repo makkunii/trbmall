@@ -94,9 +94,13 @@
 
                   @foreach ($vorder as $vorderz)
 
-                  <tr onclick="showDiscount(this)">
+                  <tr onclick="DisplayProduct(this)">
 
-                   <td>{{$vorderz['id'] }}</td>
+                   <td >{{$vorderz['id'] }}
+                    <input type="hidden" id="prodid" value="{{$vorderz['id'] }}">
+                    <input type="hidden" id="prodname" value="{{$vorderz['products'] }}">
+                    <input type="hidden" id="prodqty" value="{{$vorderz['quantity'] }}">
+                    </td>
                    <td data-toggle="modal" data-target="#modal-default2">{{$vorderz['first_name'] }} {{$vorderz['last_name'] }}</td>
                    <td>{{$vorderz['brgy'] }}, {{$vorderz['city'] }}, {{$vorderz['province'] }}</td>
                    <td>{{$vorderz['phone'] }}</td>
@@ -111,8 +115,7 @@
                     <div class="badge bg-red text-white">Cancelled</div>
                     @endif
                     </td>
-                    <td style="display:none;">{{$vorderz['products'] }}</td>
-                    <td style="display:none;">{{$vorderz['quantity'] }}</td>
+
                   </tr>
 
                    @endforeach
@@ -133,6 +136,7 @@
     </section>
     <!-- /.content -->
   </div>
+
   <!-- /.content-wrapper -->
   @include('include.footer')
   </div>
@@ -151,26 +155,27 @@
               </button>
             </div>
             <div class="modal-body">
-            <form>
-              @csrf
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Products</th>
+                        <th style="width: 100px">Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <input type="hidden" class="form-control" name="id" id="edit-id">
+                        <td></td>
+                        <td><input type="text" class="form-control" name="name" id="edit-product" style="background: transparent; border: none;"></td>
+                        <td> <input type="text" class="form-control" name="name" id="edit-qty" style="background: transparent; border: none;"></td>
+                      </tr>
+                    </tbody>
+                </table>
+           
 
-              <div class="form-group">
-                  <div class="row">
-                    <div class="col-lg-6">
-                        <label for="productname">Products</label>
-                        <input type="text" class="form-control" name="name" id="edit-product" style="background: transparent; border: none;">
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="productname">Quantity</label>
-                        <input type="text" class="form-control" name="name" id="edit-qty" style="background: transparent; border: none;">
-                    
-                    </div>
-                  </div>
-
-                  </div>
-                  <input type="hidden" class="form-control" name="id" id="edit-id">
             </div>
-            </form>
+
           </div>
           <!-- /.modal-content -->
         </div>
@@ -180,11 +185,11 @@
 
 
       <script>
-          function showDiscount(row)
+          function DisplayProduct(el)
           {
-          var j = row.cells;
-          document.getElementById("edit-id").value = j[0].innerHTML;
-          document.getElementById("edit-product").value = j[9].innerHTML;
-          document.getElementById("edit-qty").value = j[10].innerHTML;
+
+          document.getElementById("edit-id").value =      el.querySelector('#prodid').value;
+          document.getElementById("edit-product").value = el.querySelector('#prodname').value;
+          document.getElementById("edit-qty").value =     el.querySelector('#prodqty').value;
           }
       </script>
