@@ -110,9 +110,9 @@
                     <td>{{$vorderz['total'] }}</td>
                     <td>
                     @if($vorderz['status'] == '1')
-                    <div class="badge bg-green text-white">Active</div>
-                    @elseif($vorderz['status'] == '0')
-                    <div class="badge bg-red text-white">Cancelled</div>
+                    <div class="badge bg-warning text-white">Pending</div>
+                    @elseif($vorderz['status'] == '2')
+                    <div class="badge bg-success text-white">Paid</div>
                     @endif
                     </td>
 
