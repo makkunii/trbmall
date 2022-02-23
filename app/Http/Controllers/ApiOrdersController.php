@@ -22,29 +22,55 @@ public function insertorder(Request $request) {
         'promo'=> 'nullable',
         'subtotal'=>'required|numeric|between:0,9999999.99',
         'total'=>'required|numeric|between:0,9999999.99',
-        'products'=>'required|string|max:255',
-        'quantity'=>'required|numeric|between:0,9999999.99',
+        'products'=>'required|max:255',
+        'quantity'=>'required',
         'status'=>'required'
        ]);
+       
+       $product_id = $request->products;
+       $product_ids = json_decode($product_id);
+       
+       $product_qty = $request->quantity;
+       $product_qtys = json_decode($product_qty);
+       
        // CREATE PRODUCT
        $insert = DB::table('orders')
-       ->insertGetId([
-           'first_name'=> $request->first_name,
-           'last_name'=> $request->last_name,
-           'province'=> $request->province,
-           'city'=> $request->city,
-           'brgy'=> $request->brgy,
-           'phone'=> $request->phone,
-           'email'=> $request->email,
-           'promo'=> $request->promo,
-           'subtotal'=> $request->subtotal,
-           'total'=> $request->total,
-           'products'=> $request->products,
-           'quantity'=> $request->quantity,
-           'status'=>$request->status
+           ->insertGetId([
+               'first_name'=> $request->first_name,
+               'last_name'=> $request->last_name,
+               'province'=> $request->province,
+               'city'=> $request->city,
+               'brgy'=> $request->brgy,
+               'phone'=> $request->phone,
+               'email'=> $request->email,
+               'promo'=> $request->promo,
+               'subtotal'=> $request->subtotal,
+               'total'=> $request->total,
+               'products'=> 'Eugene Babaero',
+               'quantity'=> 1,
+               'status'=>$request->status
+    
+           ]); 
 
-       ]);
-
+        $id = DB::table('orders')
+        ->select('id')
+        ->latest('id')
+        ->first();
+        
+        foreach(array_combine($product_ids, $product_qtys) as $product_idss => $product_qtyss)
+      {
+        
+                $inserts = DB::table('product_orders')
+               ->insertGetId([
+                   'orders_id'=> $id->id,
+                   'product_id' => $product_idss,
+                   'quantity' => $product_qtyss,
+                   'subtotal' => 0,
+               ]);     
+          
+        
+      }
+         
        // REDIRECT TO PRODUCT INDEX
        return response()->json(['Success' => 'Orders Created'],200);
    }
@@ -117,6 +143,16 @@ public function insertorder(Request $request) {
            'created_at',
            'updated_at',
            'status')
+           ->get();
+           return response()->json(['Show' => $fetchedit], 200);
+       }
+       
+   public function show_ordered_products($order_id){
+           $fetchedit = DB::table('orders')
+           ->leftJoin('product_orders', 'product_orders.orders_id', '=', 'orders.id')
+           ->leftJoin('products', 'products.id', '=', 'product_orders.product_id')
+           ->where('orders.id', $order_id)
+           ->select('products.name as product_name', 'product_orders.quantity as quantity')
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }

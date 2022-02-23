@@ -103,19 +103,32 @@ class CheckoutController extends Controller
             'status' => 'required'
         ]);
 
+        $products = $request->session()->get('data');
+
+        foreach($products as $product)
+        {
+            $prod_id = $products['product_id'];
+            $productss_id = implode(',', $prod_id);
+
+            $prod_qty = $products['product_qty'];
+            $productss_qty = implode(',', $prod_qty);
+            
+        }
+        
+
         $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/insertorder',[
            'first_name'=> $request->first_name,
            'last_name'=> $request->last_name,
            'province'=> $request->province,
            'city'=> $request->city,
            'brgy'=> $request->brgy,
-           'phone'=> $request->phone,
+           'phone'=> $request->phone, 
            'email'=> $request->email,
            'promo'=> $request->promo,
            'subtotal'=> $request->subtotal,
            'total'=> $request->total,
-           'products'=> $request->products,
-           'quantity'=> $request->quantity,
+           'products'=> '['.$productss_id.']',
+           'quantity'=> '['.$productss_qty.']',
            'status' => $request->status
         ]);
 
@@ -126,8 +139,10 @@ class CheckoutController extends Controller
             return redirect('/home')->with('insertsuccess', 'Products ordered successfully');
 
         } else {
-            return redirect()->back()->with('insertfailed', 'Products failed to order');
+            return $insert;
         }
+
+        
 }
 
 
