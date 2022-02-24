@@ -26,26 +26,23 @@ class OrdersController extends Controller
         }
     }
 
-    
-    public function editname(Request $request) {
-        $order_id = $this->validate($request, ['order_id' => 'required']);
-                                    // ->get IF DISPLAYING DATA	// .$id['id'] CAME FROM THE VARIABLE ABOVE
-        $view = Http::accept('application/json')->get('https:/.../api/.../edit/'.$id['id']);
-        
-        if($view->successful()) {
-            
-            $info = $view['ShowProduct']; 
-            
-            if($info['order_id'] = $order_id['order_id']) {
-                return view('bladename')->with(compact('info'));
-            } else {
-                return view('bladename'); 
-            }
-        } else {
-            return view('bladename'); 
+    public function prodorders()
+    {
+        $vorders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_ordered_products/');
+
+        if ($vorders->successful())
+        {
+
+            $vorder = $vorders['Show'];
+            return view('dashboard/orders')->with(compact('vorder'));
+
+        }
+
+        else
+        {
+        return view('dashboard/orders');
         }
     }
-
     
     public function orders_transaction() {
         $torders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showordertrans');
