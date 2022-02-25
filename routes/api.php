@@ -51,6 +51,7 @@ Route::post('/dashboard/subcategory/insert',[ApiSubCategoryController::class, 'i
 Route::post('/dashboard/subcategory/update',[ApiSubCategoryController::class, 'updatesubcategory']);
 //********************Orders********************\\
 Route::get('/dashboard/orders/showorder',[ApiOrdersController::class, 'showorder']);
+Route::get('/dashboard/orders/show_ordered_products/{order_id}',[ApiOrdersController::class, 'show_ordered_products']);
 Route::get('/dashboard/orders/editorder/{id}',[ApiOrdersController::class, 'editorder']);
 Route::post('/dashboard/orders/insertorder',[ApiOrdersController::class, 'insertorder']);
 Route::post('/dashboard/orders/updateorder/{id}',[ApiOrdersController::class, 'updateorder']);

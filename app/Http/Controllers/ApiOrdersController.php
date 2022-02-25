@@ -154,7 +154,7 @@ public function insertorder(Request $request) {
            ->where('orders.id', $order_id)
            ->select('products.name as product_name', 'product_orders.quantity as quantity')
            ->get();
-           return response()->json(['Show' => $fetchedit], 200);
+           return response()->json(['ShowProduct' => $fetchedit], 200);
        }
 
   //**************************EDIT VIEW**************************//
