@@ -9,6 +9,9 @@
    padding: 0;
    vertical-align: top;
    }
+   input[placeholder], [placeholder], *[placeholder] {
+    color: rgb(0, 0, 0) !important;
+}
 </style>
 @section('content')
 <!-- Page Preloder -->
@@ -56,7 +59,7 @@
          @endif
          <div class="row">
             <div class="col-lg-8 col-md-6">
-               <form action="{{ route('insertorder') }}" method="POST">
+               <form id="my-form" action="{{ route('insertorder') }}" method="POST">
                   @csrf
                   <div class="row">
                      <div class="col-lg-6">
@@ -72,11 +75,6 @@
                         </div>
                      </div>
                   </div>
-                  <!--
-                     <div class="checkout__input">
-                         <p>Address<span>*</span></p>
-                         <input type="text" placeholder="Street Address" class="checkout__input__add">
-                     </div> -->
                   <div class="form-group">
                      <p>Province<span>*</span></p>
                      <select class="form-control province text-muted" name="province" id="province">
@@ -142,7 +140,10 @@
             <input type="hidden" name="products" value="" id="products">
             <input type="hidden" name="quantity" value="" id="quantity">
             <input type="hidden"  class="status" name="status" id="status" value="1">
-            <button type="submit" class="site-btn">PLACE ORDER</button>
+            {{-- <button type="submit" class="site-btn">PLACE ORDER</button> --}}
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+                Place Order
+              </button>
             </form>
             <div class="shoping__discount">
             <div class="checkout__input">
@@ -179,6 +180,63 @@
          </div>
       </div>
    </div>
+   <div class="modal fade" id="modal-danger">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Payment Method</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <div class="row">
+               <div class="col-lg-6">
+                <div class="checkout__input">
+                    <p>Card Details<span>*</span></p>
+                    <input type="text" placeholder="Card Number" name="Card Number">
+                 </div>
+                 <div class="checkout__input">
+                    <input style="width: 65%" type="text" placeholder="Expiry Date (MM/YY)" name="Card Number">
+                    <input style="width: 30%;float:right" type="text" placeholder="CCV" name="Card Number">
+                 </div>
+                 <div class="checkout__input">
+                    <input type="text" placeholder="Card Name" name="Card Number">
+                 </div>
+                 <div class="checkout__input">
+                    <p>Billing Address<span>*</span></p>
+                    <input type="text" placeholder="Address" name="Card Number"><br><br>
+                    <input type="text" placeholder="Postal Code" name="Card Number">
+                 </div>
+
+
+
+                </div>
+           <div class="col-lg-6">
+
+            <div class="checkout__input">
+                <p>Payment Center/E-Wallet<span></span></p>
+
+                <div class="checkout__input">
+                    <button type="button" class="btn btn-block btn-success btn-lg"><i class="fas fa-credit-card"></i> Paymaya</button>
+                 </div>
+                 <div class="checkout__input">
+                    <button type="button" class="btn btn-block btn-info btn-lg"><i class="fab fa-paypal"></i> Paypal</button>
+               </div>
+
+           </div>
+        </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+          <button type="submit" form="my-form" class="btn btn-outline-danger">Pay Orders</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
 </section>
 <!-- Checkout Section End -->
 <script>
