@@ -46,21 +46,23 @@ class OrdersController extends Controller
                       $html .= '<tbody>';
                       
                       
-                      
+                    $total = 0;
                     foreach($showproduct as $showproductz)
                     {  
+                        $totalprice = $showproductz['price'] * $showproductz['quantity'];
+                        
                         $html .= '<tr>';
                         $html .= '<td>'.$showproductz['product_name'].'</td>';
                         $html .= '<td>'.$showproductz['quantity'].'</td>';
-                        $html .= '<td>'.$showproductz['price'].'</td>';
+                        $html .= '<td>'.$totalprice.'</td>';
                         $html .= '</tr>';
                         
                         // $html .= $showproductz['product_name'];
                         // $html .= $showproductz['quantity'];
                         
-                        
+                        $total+= $totalprice;
                     }
-                    
+                    $html .= '<tr><td colspan="2">Total:</td><td>'.$total.'</td></tr>';
                     $html .= '</tbody>';
                     $html .= '</table>';
 
