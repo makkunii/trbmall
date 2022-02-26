@@ -140,6 +140,9 @@
             <input type="hidden" name="product_subtotal[]" class="product-subtotal" id="product-subtotal"
                value="{{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index])*
                Session::get('data')['promo'] }}">
+
+             <input type="hidden" name="subtotal_nopromo[]" class="product-subtotal" id="product-subtotal"
+             value="{{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index]) }}">
             </li>
             @endforeach
             </ul>
@@ -252,7 +255,7 @@
 </section>
 <!-- Checkout Section End -->
 <script>
-   var arr = document.getElementsByName('product_subtotal[]');
+   var arr = document.getElementsByName('subtotal_nopromo[]');
    var data = document.getElementById('promo_rate').value
 
    var discount = 0

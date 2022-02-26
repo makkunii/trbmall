@@ -55,6 +55,7 @@ class HomeController extends Controller
                     "product_qty" =>$product_quantity,
                     'promo'=>  $promo
                    ]]);
+               
 
                 // $product_id= $request->prod_id[$key];
                 // $product_name = $request->prod_name[$key];
