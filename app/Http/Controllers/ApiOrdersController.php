@@ -20,7 +20,7 @@ public function insertorder(Request $request) {
         'phone'=> 'required|string|max:20',
         'email'=> 'required|email',
         'promo'=> 'nullable',
-        'subtotal'=>'required|numeric|between:0,9999999.99',
+        'subtotal'=>'required',
         'total'=>'required|numeric|between:0,9999999.99',
         'products'=>'required|max:255',
         'quantity'=>'required',
@@ -33,6 +33,9 @@ public function insertorder(Request $request) {
        $product_qty = $request->quantity;
        $product_qtys = json_decode($product_qty);
        
+       $subtotal = $request->subtotal;
+       $subtotals = json_decode($subtotal);
+       
        // CREATE PRODUCT
        $insert = DB::table('orders')
            ->insertGetId([
@@ -44,7 +47,7 @@ public function insertorder(Request $request) {
                'phone'=> $request->phone,
                'email'=> $request->email,
                'promo'=> $request->promo,
-               'subtotal'=> $request->subtotal,
+               'subtotal'=> 0,
                'total'=> $request->total,
                'products'=> 'Eugene Babaero',
                'quantity'=> 1,
@@ -57,18 +60,16 @@ public function insertorder(Request $request) {
         ->latest('id')
         ->first();
         
-        foreach(array_combine($product_ids, $product_qtys) as $product_idss => $product_qtyss)
+        
+        foreach($product_ids as $results => $key)
       {
-        
-                $inserts = DB::table('product_orders')
-               ->insertGetId([
-                   'orders_id'=> $id->id,
-                   'product_id' => $product_idss,
-                   'quantity' => $product_qtyss,
-                   'subtotal' => 0,
-               ]);     
-          
-        
+        $inserts = DB::table('product_orders')
+       ->insertGetId([
+           'orders_id'=> $id->id,
+           'product_id' => $key,
+           'quantity' => $product_qtys[$results],
+           'subtotal' => $subtotals[$results],
+       ]);     
       }
          
        // REDIRECT TO PRODUCT INDEX
@@ -142,7 +143,7 @@ public function insertorder(Request $request) {
            'quantity',
            'created_at',
            'updated_at',
-           'status')
+           DB::raw('(CASE WHEN status = 1 THEN "Pending" WHEN status = 2 THEN "COP" WHEN status = 3 THEN "COD" ELSE "Cancelled" END) as status'))
            ->get();
            return response()->json(['Show' => $fetchedit], 200);
        }
@@ -152,9 +153,32 @@ public function insertorder(Request $request) {
            ->leftJoin('product_orders', 'product_orders.orders_id', '=', 'orders.id')
            ->leftJoin('products', 'products.id', '=', 'product_orders.product_id')
            ->where('orders.id', $order_id)
-           ->select('orders.id as order_id', 'products.name as product_name', 'product_orders.quantity as quantity')
+           ->select('orders.id as order_id', 'orders.promo as promo', 'products.name as product_name', 'product_orders.quantity as quantity', 'products.price as orig_price', 'product_orders.subtotal as price')
            ->get();
            return response()->json(['ShowProduct' => $fetchedit], 200);
+       }
+       
+    public function show_promos(){
+           $fetchedit = DB::table('promos')
+           ->where('is_active', 1)
+           ->select('id', 'name', 'rate')
+           ->get();
+           return response()->json(['ShowPromo' => $fetchedit], 200);
+       }
+       
+    public function update_status(Request $request){
+        $request->validate([
+            'order_id'=> 'required',
+            'status'=> 'required',
+          ]);
+          
+           $update = DB::table('orders')
+          ->where('id', $request->order_id)
+          ->update([
+          'status'=> $request->status,
+           ]);
+           
+           return response()->json(['Success' => 'Orders Updated'],200);
        }
 
   //**************************EDIT VIEW**************************//
