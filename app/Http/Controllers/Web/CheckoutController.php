@@ -113,6 +113,8 @@ class CheckoutController extends Controller
             $prod_qty = $products['product_qty'];
             $productss_qty = implode(',', $prod_qty);
             
+            $subtotal = $products['product_price'];
+            $subtotals = implode(',', $subtotal);
         }
         
 
@@ -125,7 +127,7 @@ class CheckoutController extends Controller
            'phone'=> $request->phone, 
            'email'=> $request->email,
            'promo'=> $request->promo,
-           'subtotal'=> $request->subtotal,
+           'subtotal'=> '['.$subtotals.']',
            'total'=> $request->total,
            'products'=> '['.$productss_id.']',
            'quantity'=> '['.$productss_qty.']',

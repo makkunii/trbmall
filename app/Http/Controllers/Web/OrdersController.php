@@ -28,22 +28,51 @@ class OrdersController extends Controller
 
     public function show_ordered_products(Request $request){
 
-        $id = $this->validate($request,['id' => 'required']);
+        $id = $request->post('order_id');
 
-        if($id){
-        
-           $showproducts = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_ordered_products/'.$id['order_id']);
+        $html = "";
+           $showproducts = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_ordered_products/'.$id);
 
                 if($showproducts->successful()){
-
                     $showproduct = $showproducts['ShowProduct'];
+                    $html .= '<table class="table table-bordered">';
+                        $html .= '<thead>
+                        <tr>
+                          <th>Products</th>
+                          <th style="width: 100px">Quantity</th>
+                          <th style="width: 100px">Price</th>
+                        </tr>
+                      </thead>';
+                      $html .= '<tbody>';
+                      
+                      
+                      
+                    foreach($showproduct as $showproductz)
+                    {  
+                        $html .= '<tr>';
+                        $html .= '<td>'.$showproductz['product_name'].'</td>';
+                        $html .= '<td>'.$showproductz['quantity'].'</td>';
+                        $html .= '<td>'.$showproductz['price'].'</td>';
+                        $html .= '</tr>';
+                        
+                        // $html .= $showproductz['product_name'];
+                        // $html .= $showproductz['quantity'];
+                        
+                        
+                    }
+                    
+                    $html .= '</tbody>';
+                    $html .= '</table>';
 
-                    return view('dashboard/orders')->with(compact('showproduct'));
+                    echo $html;
                 }
                 else{
-                    return view('dashboard/orders');
+                    $html .= $showproducts;
+                    
+                    echo $html;
                 }
-            }
+                
+            
     }
     
     public function orders_transaction() {

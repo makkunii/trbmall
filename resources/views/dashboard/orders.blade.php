@@ -50,6 +50,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+              <input type="hidden" class="form-control order_idz" name="order_id" id="order_id">
                 <table id="example1" class="table table-bordered table-striped">
 
                   <thead>
@@ -63,7 +64,6 @@
                     <th>Promo</th>
                     <th>Total</th>
                     <th>Status</th>
-                    <th>Action</th>
                   </tr>
                   </thead>
 
@@ -96,10 +96,10 @@
                   
                   @foreach ($vorder as $vorderz)
 
-                  <tr>
-                   <td >{{$vorderz['id'] }} </td>
+                  <tr onmouseover="showDiscount(this)">
+                   <td>{{$vorderz['id'] }} </td>
                  
-                   <td>{{$vorderz['first_name'] }} {{$vorderz['last_name'] }}</td>
+                   <td><button type="button" class="btn btn-transparent btn-sm viewproduct" data-toggle="modal" data-target="#productmodal">{{$vorderz['first_name'] }} {{$vorderz['last_name'] }}</button></td>
                    <td>{{$vorderz['brgy'] }}, {{$vorderz['city'] }}, {{$vorderz['province'] }}</td>
                    <td>{{$vorderz['phone'] }}</td>
                    <td>{{$vorderz['email'] }}</td>
@@ -108,7 +108,8 @@
                     <td>{{$vorderz['total'] }}</td>
                     <td>
                     @if($vorderz['status'] == '1')
-                    <div class="badge bg-warning text-white">Pending</div>
+                    <button type="button" class="btn btn-warning btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">Pending</button>
+                   
                     @elseif($vorderz['status'] == '2')
                     <div class="badge bg-success text-white">Paid</div>
                     @endif
@@ -116,7 +117,7 @@
                     
                     <!-- data-toggle="modal" data-target="#modal-default2" -->
 
-                    <td><button value="{{$vorderz['id'] }}" type="button" class="btn btn-danger btn-sm viewproduct" >View</button></td>
+                    <!-- <td><button type="button" class="btn btn-danger btn-sm viewproduct" data-toggle="modal" data-target="#productmodal">View</button></td> -->
 
                   </tr>
                   @endforeach
@@ -146,7 +147,7 @@
 
 
 
- <!-- edit product modal -->
+ <!-- product modal -->
 <div class="modal fade" id="productmodal">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -157,6 +158,9 @@
               </button>
             </div>
             <div class="modal-body">
+                
+                <div id="loader" style="display:none;">Loading...</div>
+                <div id="orders_table">
                 <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -167,14 +171,15 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <input type="hidden" class="form-control" name="order_id" id="order_id">
-                        <td></td>
+                        
+                        <!-- <td></td>
                         <td><input type="text" class="form-control" name="name" id="edit-product" style="background: transparent; border: none;"></td>
                         <td> <input type="text" class="form-control" name="name" id="edit-qty" style="background: transparent; border: none;"></td>
+                       -->
                       </tr>
                     </tbody>
                 </table>
-           
+                </div>
 
             </div>
 
@@ -185,37 +190,80 @@
       </div>
       <!-- /.modal -->
 
+      <!-- order status modal -->
+<div class="modal fade" id="orderstatus">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Order Status</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+               <form action="" method="">
+                  @csrf
+                <input type="text" value="" id="order_id">
+                  <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" name="status" id="status">
+                          <option selected disabled>Select status</option>
+                          <option value="1">Pending</option>
+                          <option value="2">Paid - COP</option>
+                          <option value="3">Paid - COD</option>
+                          <option value="4">Cancelled</option>
+                        </select>
+                  </div>
+
+                      <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-danger">Save</button>
+        
+                    </div>
+
+               </form>
+
+            </div>
+
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 
-      <script>
-          //function DisplayProduct(el)
-          //{
-
-          //document.getElementById("edit-id").value =      el.querySelector('#prodid').value;
-          //document.getElementById("edit-product").value = el.querySelector('#prodname').value;
-          //document.getElementById("edit-qty").value =     el.querySelector('#prodqty').value;
-          //}
-      </script>
 
       <script>
         $(document).ready(function(){
           
-          $(document).on('click','.viewproduct', function (){
+          $('.viewproduct').on('click', function(){
             
-            var order_id = $(this).val();
-            alert(order_id);
-          //   $('#productmodal').modal('show');
-          //   $.ajax({
-          //     type:'GET',
-          //     url:
-          //     data:
+            $("#loader").show();
+            var order_id = $('.order_idz').val();
+            // alert(order_id);
+            //$('#productmodal').modal('show');
+            $.ajax({
+              type:'POST',
+              url: '{{ route("show_ordered_products") }}',
+              data:'order_id='+order_id+'&_token={{csrf_token()}}',
+              success:function(result){
+                $("#loader").hide();
+                $("#orders_table").html(result);
+              }
 
-          //     success:function(){
-                
-          //     }
-
-          // });
+          });
           });
 
         });
+      </script>
+
+<script>
+          function showDiscount(row)
+          {
+          var j = row.cells;
+          document.getElementById("order_id").value = j[0].innerHTML;
+          }
       </script>
