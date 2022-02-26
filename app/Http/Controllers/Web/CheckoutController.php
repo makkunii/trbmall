@@ -12,10 +12,12 @@ class CheckoutController extends Controller
 {
     public function checkout()
     {
+
         $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
         if($provinces->successful()){
                 $province = $provinces['Provinces'];
                 $datapromo = null;
+               
                 return view('mall/checkout')->with(compact('province','datapromo'));
         }
         else{
@@ -58,6 +60,10 @@ class CheckoutController extends Controller
         if (!empty($request->promo_name)) {
            $datapromo = Promo::where('name', $request->promo_name)->first();
 
+            $testinglang = $datapromo->rate;
+
+            // dd($testinglang);
+            session()->put('data.promo',$testinglang);
             $expired = $datapromo->expired_at;
             $date = Carbon::now()->toDateTimeString();
             if($date <= $expired) {
@@ -112,11 +118,11 @@ class CheckoutController extends Controller
 
             $prod_qty = $products['product_qty'];
             $productss_qty = implode(',', $prod_qty);
-            
+
             $subtotal = $products['product_price'];
             $subtotals = implode(',', $subtotal);
         }
-        
+
 
         $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/insertorder',[
            'first_name'=> $request->first_name,
@@ -124,7 +130,7 @@ class CheckoutController extends Controller
            'province'=> $request->province,
            'city'=> $request->city,
            'brgy'=> $request->brgy,
-           'phone'=> $request->phone, 
+           'phone'=> $request->phone,
            'email'=> $request->email,
            'promo'=> $request->promo,
            'subtotal'=> '['.$subtotals.']',
@@ -144,7 +150,7 @@ class CheckoutController extends Controller
             return $insert;
         }
 
-        
+
 }
 
 
