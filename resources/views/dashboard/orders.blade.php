@@ -63,6 +63,7 @@
                     <th>Promo</th>
                     <th>Total</th>
                     <th>Status</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
 
@@ -92,16 +93,13 @@
                   @endif
 
 
+                  
                   @foreach ($vorder as $vorderz)
 
-                  <tr onclick="DisplayProduct(this)">
-
-                   <td >{{$vorderz['id'] }}
-                    <input type="hidden" id="prodid" value="{{$vorderz['id'] }}">
-                    <input type="hidden" id="prodname" value="{{$vorderz['products'] }}">
-                    <input type="hidden" id="prodqty" value="{{$vorderz['quantity'] }}">
-                    </td>
-                   <td data-toggle="modal" data-target="#modal-default2">{{$vorderz['first_name'] }} {{$vorderz['last_name'] }}</td>
+                  <tr>
+                   <td >{{$vorderz['id'] }} </td>
+                 
+                   <td>{{$vorderz['first_name'] }} {{$vorderz['last_name'] }}</td>
                    <td>{{$vorderz['brgy'] }}, {{$vorderz['city'] }}, {{$vorderz['province'] }}</td>
                    <td>{{$vorderz['phone'] }}</td>
                    <td>{{$vorderz['email'] }}</td>
@@ -115,10 +113,14 @@
                     <div class="badge bg-success text-white">Paid</div>
                     @endif
                     </td>
+                    
+                    <!-- data-toggle="modal" data-target="#modal-default2" -->
+
+                    <td><button value="{{$vorderz['id'] }}" type="button" class="btn btn-danger btn-sm viewproduct" >View</button></td>
 
                   </tr>
-
-                   @endforeach
+                  @endforeach
+                  
 
                   </tbody>
 
@@ -145,7 +147,7 @@
 
 
  <!-- edit product modal -->
-<div class="modal fade" id="modal-default2">
+<div class="modal fade" id="productmodal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -165,7 +167,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <input type="hidden" class="form-control" name="id" id="edit-id">
+                        <input type="hidden" class="form-control" name="order_id" id="order_id">
                         <td></td>
                         <td><input type="text" class="form-control" name="name" id="edit-product" style="background: transparent; border: none;"></td>
                         <td> <input type="text" class="form-control" name="name" id="edit-qty" style="background: transparent; border: none;"></td>
@@ -183,13 +185,37 @@
       </div>
       <!-- /.modal -->
 
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 
       <script>
-          function DisplayProduct(el)
-          {
+          //function DisplayProduct(el)
+          //{
 
-          document.getElementById("edit-id").value =      el.querySelector('#prodid').value;
-          document.getElementById("edit-product").value = el.querySelector('#prodname').value;
-          document.getElementById("edit-qty").value =     el.querySelector('#prodqty').value;
-          }
+          //document.getElementById("edit-id").value =      el.querySelector('#prodid').value;
+          //document.getElementById("edit-product").value = el.querySelector('#prodname').value;
+          //document.getElementById("edit-qty").value =     el.querySelector('#prodqty').value;
+          //}
+      </script>
+
+      <script>
+        $(document).ready(function(){
+          
+          $(document).on('click','.viewproduct', function (){
+            
+            var order_id = $(this).val();
+            alert(order_id);
+          //   $('#productmodal').modal('show');
+          //   $.ajax({
+          //     type:'GET',
+          //     url:
+          //     data:
+
+          //     success:function(){
+                
+          //     }
+
+          // });
+          });
+
+        });
       </script>

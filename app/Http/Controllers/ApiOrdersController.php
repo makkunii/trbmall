@@ -152,7 +152,7 @@ public function insertorder(Request $request) {
            ->leftJoin('product_orders', 'product_orders.orders_id', '=', 'orders.id')
            ->leftJoin('products', 'products.id', '=', 'product_orders.product_id')
            ->where('orders.id', $order_id)
-           ->select('products.name as product_name', 'product_orders.quantity as quantity')
+           ->select('orders.id as order_id', 'products.name as product_name', 'product_orders.quantity as quantity')
            ->get();
            return response()->json(['ShowProduct' => $fetchedit], 200);
        }

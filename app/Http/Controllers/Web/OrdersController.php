@@ -26,22 +26,24 @@ class OrdersController extends Controller
         }
     }
 
-    public function prodorders()
-    {
-        $vorders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_ordered_products/');
+    public function show_ordered_products(Request $request){
 
-        if ($vorders->successful())
-        {
+        $id = $this->validate($request,['id' => 'required']);
 
-            $vorder = $vorders['Show'];
-            return view('dashboard/orders')->with(compact('vorder'));
+        if($id){
+        
+           $showproducts = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_ordered_products/'.$id['order_id']);
 
-        }
+                if($showproducts->successful()){
 
-        else
-        {
-        return view('dashboard/orders');
-        }
+                    $showproduct = $showproducts['ShowProduct'];
+
+                    return view('dashboard/orders')->with(compact('showproduct'));
+                }
+                else{
+                    return view('dashboard/orders');
+                }
+            }
     }
     
     public function orders_transaction() {
