@@ -107,13 +107,16 @@
                     <td>{{$vorderz['promo'] }}</td>
                     <td>{{$vorderz['total'] }}</td>
                     <td>
-                    @if($vorderz['status'] == '1')
-                    <button type="button" class="btn btn-warning btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">Pending</button>
-                   
-                    @elseif($vorderz['status'] == '2')
-                    <div class="badge bg-success text-white">Paid</div>
-                    @endif
-                    </td>
+                      @if ($vorderz['status'] == "Pending")
+                    <button type="button" class="btn btn-warning btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                      @elseif ($vorderz['status'] == "COP")
+                      <button type="button" class="btn btn-primary btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                      @elseif ($vorderz['status'] == "COD")
+                      <button type="button" class="btn btn-primary btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                      @elseif ($vorderz['status'] == "Cancelled")
+                      <button type="button" class="btn btn-danger btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                     @endif
+                  </td>
                     
                     <!-- data-toggle="modal" data-target="#modal-default2" -->
 
@@ -201,20 +204,20 @@
               </button>
             </div>
             <div class="modal-body">
-               <form action="" method="">
+               <form action="{{ URL::route('updatestatus') }}" method="POST">
                   @csrf
-                <input type="text" value="" id="order_id">
+                <input type="hidden" value="" name="order_idzz" id="order_idzz">
                   <div class="form-group">
                         <label>Status</label>
                         <select class="form-control" name="status" id="status">
                           <option selected disabled>Select status</option>
                           <option value="1">Pending</option>
-                          <option value="2">Paid - COP</option>
-                          <option value="3">Paid - COD</option>
+                          <option value="2">COP</option>
+                          <option value="3">COD</option>
                           <option value="4">Cancelled</option>
                         </select>
                   </div>
-
+                  
                       <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-danger">Save</button>
@@ -265,5 +268,6 @@
           {
           var j = row.cells;
           document.getElementById("order_id").value = j[0].innerHTML;
+          document.getElementById("order_idzz").value = j[0].innerHTML;
           }
       </script>

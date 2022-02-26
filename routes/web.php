@@ -70,6 +70,7 @@ Route::post('/dashboard/promo/update', [PromoController::class, 'updatepromo'])-
 //ORDERS
 Route::get('/dashboard/orders', [OrdersController::class, 'orders'])->name('orders');
 Route::post('/dashboard/orders/show-ordered-products', [OrdersController::class, 'show_ordered_products'])->name('show_ordered_products');
+Route::post('/dashboard/orders/update', [OrdersController::class, 'updatestatus'])->name('updatestatus');
 Route::get('/dashboard/orders_transaction', [OrdersController::class, 'orders_transaction'])->name('orders_transaction');
 
 
