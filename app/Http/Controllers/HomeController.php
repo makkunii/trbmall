@@ -28,7 +28,7 @@ class HomeController extends Controller
         return view('layouts/products', compact('products'));
 
     }
- 
+
     public function save_data(Request $request)
 
     {
@@ -46,15 +46,14 @@ class HomeController extends Controller
                 $product_name[] =  $request->prod_name[$key];
                 $product_price[] = $request->prod_price[$key];
                 $product_quantity[] = $request->prod_qty[$key];
-
+                $promo = 1;
 
                 session(['data' => [
                     "product_id" => $product_id,
                     "product_name" => $product_name,
                     "product_price" => $product_price,
-                    "product_qty" =>$product_quantity
-
-
+                    "product_qty" =>$product_quantity,
+                    'promo'=>  $promo
                    ]]);
 
                 // $product_id= $request->prod_id[$key];

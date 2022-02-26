@@ -34,7 +34,7 @@
 </section>
 <!-- Categories Section End -->
 <!-- Title Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="{{ asset('/assets/img/breadcrumb.jpg') }}">
+<section class="breadcrumb-section set-bg" data-setbg="{{ asset('public/assets/img/breadcrumb.jpg') }}">
    <div class="container">
       <div class="row">
          <div class="col-lg-12 text-center">
@@ -121,20 +121,30 @@
             @foreach(Session::get('data')['product_id'] as $index => $product)
             <li>
             {{ Session::get('data')['product_name'][$index] }} - {{ Session::get('data')['product_qty'][$index] }}
-            <span>₱{{ Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index] }} </span>
+
+            @if($datapromo == null)
+            <span>₱ {{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index])*
+                Session::get('data')['promo']
+            }} </span>
+            @else
+            <span>₱{{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index])*
+                Session::get('data')['promo']
+            }} (<del>{{ Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index] }}</del>)</span>
+            @endif
             <input type="hidden" name="product_id[]" class="product-id" id="product-id" value="{{ Session::get('data')['product_id'][$index] }}">
             <input type="hidden" name="product_name[]" class="product-name" id="product-name" value="{{ Session::get('data')['product_name'][$index] }}">
             <input type="hidden" name="product_price[]" class="product-price" id="product-price" value="{{ Session::get('data')['product_price'][$index] }}">
             <input type="hidden" name="product_qty[]" class="product-qty" id="product-qty" value="{{ Session::get('data')['product_qty'][$index] }}">
             <input type="hidden" name="product_subtotal[]" class="product-subtotal" id="product-subtotal"
-               value="{{ Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index] }}">
+               value="{{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index])*
+               Session::get('data')['promo'] }}">
             </li>
             @endforeach
             </ul>
             <div class="checkout__order__subtotal">Subtotal <span>₱<div style="float:right" id="SubTotalAmt"></div></span></div>
             <div class="checkout__order__total">Promo/Discount <span>₱<div style="float:right" id="discount"></div></span></div>
             <div class="checkout__order__total">Total <span>₱<div style="float:right" id="TotalAmt"></div></span></div>
-            <input type="hidden" name="subtotal" value="" id="subtotal">
+            <input type="text" name="subtotal" value="" id="subtotal">
             <input type="hidden" name="total" value="" id="total">
             <input type="hidden" name="promo" value="" id="promo">
             <input type="hidden" name="products" value="" id="products">
@@ -257,6 +267,13 @@
       $('#SubTotalAmt').text(subtot.toFixed(2));
       $('#discount').text(less);
       $('#TotalAmt').text(beng.toFixed(2));
+
+
+    //  for(var i=0;i<arr.length;i++){
+    //     var testing = parseInt(arr[i].value)*data;
+    //     console.log(testing);
+    //     document.getElementById("subtotal").value = testing
+    //  }
 
       document.getElementById("total").value = beng;
       document.getElementById("promo").value = document.getElementById("promo_name").value;
