@@ -123,10 +123,12 @@
             {{ Session::get('data')['product_name'][$index] }} - {{ Session::get('data')['product_qty'][$index] }}
 
             @if($datapromo == null)
+            {{ session()->put('data.promo',1);}}
             <span>₱ {{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index])*
                 Session::get('data')['promo']
             }} </span>
             @else
+            {{ session()->put('data.promo',$datapromo->rate);}}
             <span>₱{{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index])*
                 Session::get('data')['promo']
             }} (<del>{{ Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index] }}</del>)</span>

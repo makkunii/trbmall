@@ -17,7 +17,7 @@ class CheckoutController extends Controller
         if($provinces->successful()){
                 $province = $provinces['Provinces'];
                 $datapromo = null;
-               
+
                 return view('mall/checkout')->with(compact('province','datapromo'));
         }
         else{
@@ -60,10 +60,7 @@ class CheckoutController extends Controller
         if (!empty($request->promo_name)) {
            $datapromo = Promo::where('name', $request->promo_name)->first();
 
-            $testinglang = $datapromo->rate;
-
-            // dd($testinglang);
-            session()->put('data.promo',$testinglang);
+        
             $expired = $datapromo->expired_at;
             $date = Carbon::now()->toDateTimeString();
             if($date <= $expired) {
