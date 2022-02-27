@@ -13,6 +13,7 @@ use App\Http\Controllers\ApiCategoriesController;
 use App\Http\Controllers\ApiLocationController;
 use App\Http\Controllers\ApiRoleController;
 use App\Http\Controllers\ApiMerchantController;
+use App\Http\Controllers\ApiLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,7 @@ Route::post('/dashboard/products/update',[ApiProductController::class, 'updatepr
 Route::get('/dashboard/accounts',[ApiAccountController::class, 'showaccount']);
 Route::get('/dashboard/accounts/edit/{id}',[ApiAccountController::class, 'editaccount']);
 Route::post('/dashboard/accounts/insert',[ApiAccountController::class, 'insertaccount']);
-Route::post('/dashboard/accounts/update',[ApiAccountController::class, 'updateaccount']);
+Route::post('/dashboard/accounts/update/{id}',[ApiAccountController::class, 'updateaccount']);
 //********************Category********************\\
 Route::get('/dashboard/category',[ApiCategoryController::class, 'showcategory']);
 Route::get('/dashboard/category/edit/{id}',[ApiCategoryController::class, 'editcategory']);
@@ -87,3 +88,5 @@ Route::get('/dashboard/merchant/edit/{id}',[ApiMerchantController::class, 'editm
 Route::post('/dashboard/merchant/insert',[ApiMerchantController::class, 'insertmerchant']);
 Route::post('/dashboard/merchant/update',[ApiMerchantController::class, 'updatemerchant']);
 Route::get('/dashboard/merchant/check',[ApiMerchantController::class, 'checkmerchant']);
+//********************Login********************\\
+Route::get('/login/{id}/{password}', [ApiLoginController::class, 'login']);
