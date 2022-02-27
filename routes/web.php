@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -98,6 +99,12 @@ Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.up
 Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 Route::post('/save_data',[HomeController::class, 'save_data'])->name('save_data');
+
+
+// USERS
+
+Route::get('/user', [UserController::class, 'user'])->name('users.user');
+Route::get('/user/purchase', [UserController::class, 'purchase'])->name('users.purchase');
 
 
 /*-------------------------------------

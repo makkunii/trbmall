@@ -111,7 +111,7 @@
                         </div>
                      </div>
                   </div>
-            </div>
+                    </div>
             <!-- end -->
             <div class="col-lg-4 col-md-6">
             <div class="checkout__order">
