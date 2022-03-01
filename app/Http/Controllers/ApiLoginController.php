@@ -19,18 +19,18 @@ class ApiLoginController extends Controller
             return response()->json(['Error' => 'User not found'], 400);
         }
         else{
-            // $check = Hash::check($password, $account->password);
+            $check = Hash::check($password, $account->password);
 
-            // if($check){
+            if($check){
                    $token = $account->createToken('login')->plainTextToken;
                  return response()->json([ 
                      'account' => $account->only('id', 'email', 'role_id',  'first_name', 'last_name','address','contact','merchant_id'),
                       'token' =>$token
                 ], 200);
-            // }
-            // else{
-            //      return response()->json(['Error' => 'Invalid credentials'], 400);
-            // }
+            }
+            else{
+                 return response()->json(['Error' => 'Invalid credentials'], 400);
+            }
         }
 
     }
