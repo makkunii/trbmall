@@ -39,6 +39,7 @@ Route::get('/dashboard/accounts',[ApiAccountController::class, 'showaccount']);
 Route::get('/dashboard/accounts/edit/{id}',[ApiAccountController::class, 'editaccount']);
 Route::post('/dashboard/accounts/insert',[ApiAccountController::class, 'insertaccount']);
 Route::post('/dashboard/accounts/update/{id}',[ApiAccountController::class, 'updateaccount']);
+Route::post('/dashboard/accounts/changepw/{email}',[ApiAccountController::class, 'changepassword']);
 //********************Category********************\\
 Route::get('/dashboard/category',[ApiCategoryController::class, 'showcategory']);
 Route::get('/dashboard/category/edit/{id}',[ApiCategoryController::class, 'editcategory']);
@@ -89,4 +90,4 @@ Route::post('/dashboard/merchant/insert',[ApiMerchantController::class, 'insertm
 Route::post('/dashboard/merchant/update',[ApiMerchantController::class, 'updatemerchant']);
 Route::get('/dashboard/merchant/check',[ApiMerchantController::class, 'checkmerchant']);
 //********************Login********************\\
-Route::get('/login/{id}/{password}', [ApiLoginController::class, 'login']);
+Route::get('/login/{email}/{password}', [ApiLoginController::class, 'login']);

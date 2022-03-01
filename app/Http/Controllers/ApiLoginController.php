@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ApiLoginController extends Controller
 {
-    public function login($id, $password){
+    public function login($email, $password){
         $account = Login::select('id', 'email', 'password', 'role_id', 'is_active', 'first_name', 'last_name','address','contact','created_at','updated_at','merchant_id')
-        -> where('id',$id)
+        -> where('email',$email)
         -> first();
 
         if(!$account){
@@ -24,7 +24,7 @@ class ApiLoginController extends Controller
             if($check){
                    $token = $account->createToken('login')->plainTextToken;
                  return response()->json([ 
-                     'account' => $account->only('id', 'email', 'role_id',  'first_name', 'last_name','address','contact','merchant_id'),
+                     'account' => $account->only('id', 'email', 'role_id',  'first_name', 'last_name','address','contact','merchant_id',),
                       'token' =>$token
                 ], 200);
             }

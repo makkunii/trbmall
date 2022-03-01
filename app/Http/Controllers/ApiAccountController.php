@@ -13,11 +13,12 @@ public function insertaccount(Request $request) {
        $request->validate([
           // 'name' => 'required|string|max:255',
            'email' => 'required',
+           'password' => 'required',
            //'email_verified_at' => 'float',
-           'role' => 'required',
+           'role_id' => 'required',
            'is_active' => 'required',
-           'first_name' => 'nullable',
-           'last_name' => 'nullable',
+           'first_name' => 'required',
+           'last_name' => 'required',
            'contact' => 'required',
            'address' => 'required',
            //'scid' => 'required|string|max:255',
@@ -29,22 +30,23 @@ public function insertaccount(Request $request) {
        ]);
 
        // CREATE PRODUCT
-       $insert = DB::table('accounts')
+       $insert = DB::table('users')
        ->insertGetId([
       //'name' => $request->name,
       'email' => $request->email,
+      'password' => $request->password,
       // 'email_verified_at' => $request->email_verified_at,
-       'role' => $request->role,
+       'role_id' => $request->role_id,
        'is_active' => $request->is_active,
-       'first_name' => $request->firs_name,
+       'first_name' => $request->first_name,
        'last_name' => $request->last_name,
        'contact' => $request->contact,
        //'scid' => $request->scid,
        //'remember_token' => $request->remember_token,
        'address' => $request->address,
        'merchant_id' => $request->merchant_id,
-       'created_at' => $request->created_at,
-       'updated_at' => $request->pdated_at
+       'created_at' => now(),
+       'updated_at' => $request->updated_at
 
        ]);
 
@@ -58,8 +60,9 @@ public function insertaccount(Request $request) {
           $request->validate([
           // 'name' => 'required|string|max:255',
           'email' => 'required',
+          'password' => 'required',
           //'email_verified_at' => 'float',
-          'role' => 'required',
+          'role_id' => 'required',
           'is_active' => 'required',
           'first_name' => 'nullable',
           'last_name' => 'nullable',
@@ -74,15 +77,16 @@ public function insertaccount(Request $request) {
           ]);
 
           // UPDATE PRODUCT
-          $update = DB::table('accounts')
+          $update = DB::table('users')
           ->where('id', $request->id)
                 ->update([
         //'name' => $request->name,
         'email' => $request->email,
+        'password' => $request->password,
        // 'email_verified_at' => $request->email_verified_at,
-        'role' => $request->role,
+        'role_id' => $request->role_id,
         'is_active' => $request->is_active,
-        'first_name' => $request->firs_name,
+        'first_name' => $request->first_name,
         'last_name' => $request->last_name,
         'contact' => $request->contact,
         //'scid' => $request->scid,
@@ -98,18 +102,18 @@ public function insertaccount(Request $request) {
    }
 
 
-   public function disableaccount(Request $request){
+   public function changepassword(Request $request){
        $request->validate([
-           'is_active' => 'required'
+           'password' => 'required'
        ]); // this is validation for api before update
 
        //update in database
        $update = DB::table('users')
-       ->where('id', $request->id)
+       ->where('email', $request->email)
        ->update([
-           'is_active' => $request->is_active
+           'password' => $request->password
        ]);
-       return response()->json(['Success' => 'Account Disable'],200);
+       return response()->json(['Success' => 'Password Changed'],200);
 
 }
 
