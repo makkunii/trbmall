@@ -60,25 +60,21 @@
                     <label for="signup" class="slide signup"> <small>Signup </small></label>
                     <div class="slider-tab"></div>
                 </div>
+                @if(Session::has('flash_message_error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{!! session('flash_message_error') !!}</strong>
+                    </div>
+                @endif
                 <div class="form-inner">
-                    <form action="#" Method="Post" class="login">
+                    <form action="{{ route('login') }}" Method="get" class="login">
                         @csrf
                         <div class="field">
-                            <input name="login-email" type="text" placeholder="Email Address"
-                                value="{{ old('login-email') }}" required>
-                            @error('login-email')
-                            <span class="invalid-feedback" role="alert">
-                                <small style="color:#f80d0d">{{ $message }}</small>
-                            </span>
-                            @enderror
+                            <input name="id" id="id" type="text" placeholder="User ID" required>
                         </div>
                         <div class="field">
-                            <input name="login-password" type="password" placeholder="Password" required>
-                            @error('login-password')
-                            <span class="invalid-feedback" role="alert">
-                                <small style="color:#f80d0d">{{ $message }}</small>
-                            </span>
-                            @enderror
+                            <input name="password" id="password" type="password" placeholder="Password" required>
+                            
                         </div>
                         <div class="pass-link">
                             <a href="#">Forgot password?</a>
@@ -112,36 +108,32 @@
                                 <input id="image" name="image" type="file" class="custom-file-input">
                                 <label class="custom-file-label" for="image">Upload picture</label>
                             </div>
-                            @error('image')
                             <span class="invalid-feedback" role="alert">
-                                <small style="color:#f80d0d">{{ $message }}</small>
+                                <small style="color:#f80d0d"></small>
                             </span>
-                            @enderror
+                            
                         </div>
                         <div class="field">
                             <input type="hidden" name="status" value="checked">
-                            <input type="text" name="name" placeholder="Name" value="{{ old('name') }}" required>
-                            @error('name')
+                            <input type="text" name="name" placeholder="Name" required>
                             <span class="invalid-feedback" role="alert">
-                                <small style="color:#f80d0d">{{ $message }}</small>
+                                <small style="color:#f80d0d"></small>
                             </span>
-                            @enderror
+                            
                         </div>
                         <div class="field">
-                            <input type="text" name="email" placeholder="Email Address" value="{{ old('email') }}" required>
-                            @error('email')
+                            <input type="text" name="email" placeholder="Email Address" required>
                             <span class="invalid-feedback" role="alert">
-                                <small style="color:#f80d0d">{{ $message }}</small>
+                                <small style="color:#f80d0d"></small>
                             </span>
-                            @enderror
+                            
                         </div>
                         <div class="field">
                             <input type="password" name="password" placeholder="Password" required>
-                            @error('password')
                             <span class="invalid-feedback" role="alert">
-                                <small style="color:#f80d0d">{{ $message }}</small>
+                                <small style="color:#f80d0d"></small>
                             </span>
-                            @enderror
+                            
                         </div>
                         <div class="field">
                             <input type="password" name="password_confirmation" placeholder="Confirm password" required>
