@@ -29,7 +29,7 @@ class ApiLoginController extends Controller
                 ], 200);
             }
             else{
-                 return response()->json(['Error' => 'Invalid credentials'], 400);
+                 return response()->json(['Error' => 'Invalid Credentials'], 400);
             }
         }
 
