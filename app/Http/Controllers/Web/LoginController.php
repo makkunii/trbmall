@@ -21,25 +21,25 @@ class LoginController extends Controller
 
 {
 
-    public function login($id, $password){
+    public function login($email,$password){
 
         $credentials = $this->validate($request, [
-            'id' => 'required',
+            'email' => 'required',
             'password' => 'required'
         ]);
 
         if($credentials) {
-            $login = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/login/'.$credentials['id'].'/'.$credentials['password']);
+            $login = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/login/'.$credentials['email'].'/'.$credentials['password']);
             if($login->successful()){
                 $minutes = 60 * 2;
                 $token = $login['token']; // array token but only one value
                 $array = $login['account']; // array account
                 
-                if($array['id'] = $credentials['id'] && $array['status'] = 1) // check if id is same and account status is enabled if not enabled cannot login
+                if($array['email'] = $credentials['email'] && $array['status'] = 1) // check if id is same and account status is enabled if not enabled cannot login
                 {
                     session([
                         'role_id' => $array['role_id'],
-                        'id' => $array['id'],
+                        'email' => $array['email'],
                         'first_name' => $array['first_name'],
                         'email' => $array['email']
                     ]);
@@ -58,7 +58,4 @@ class LoginController extends Controller
 
     }
 
-    
-
 } //end
-
