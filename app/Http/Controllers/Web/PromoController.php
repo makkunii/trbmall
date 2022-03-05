@@ -12,6 +12,7 @@ class PromoController extends Controller
      //PROMO
      public function promo(Request $request)
      {
+         //here it request the promo data on the trbexpress api
         $vpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo');
 
          if ($vpromo->successful())
@@ -56,7 +57,7 @@ class PromoController extends Controller
         }
     }
 
- 
+
 
     public function updatepromo(Request $request)
     {

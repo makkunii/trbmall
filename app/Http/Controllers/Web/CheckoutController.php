@@ -16,6 +16,8 @@ class CheckoutController extends Controller
         $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
         if($provinces->successful()){
                 $province = $provinces['Provinces'];
+
+                //here we assign data promo as null soo that we can do a validation
                 $datapromo = null;
 
                 return view('mall/checkout')->with(compact('province','datapromo'));
@@ -55,20 +57,27 @@ class CheckoutController extends Controller
     public function checkpromo(Request $request) {
         $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
         $province = $provinces['Provinces'];
+
+        //here we assign the status into null
         $PromoStatus = null;
 
+
+        //here it checks if the promo exist
         if (!empty($request->promo_name)) {
            $datapromo = Promo::where('name', $request->promo_name)->first();
 
-        
+            //here we check if the promo is expired
+            // and do a conditon if its expired
             $expired = $datapromo->expired_at;
             $date = Carbon::now()->toDateTimeString();
             if($date <= $expired) {
                 $PromoStatus = "Active";
+                //now we change the value of promo status to active if its valid
                 return view('mall/checkout')->with(compact('province','datapromo','PromoStatus'));
             }
             else {
                 $datapromo = null;
+                //else we return null 
                 return view('mall/checkout')->with(compact('province','datapromo','PromoStatus'));
             }
         }
@@ -115,7 +124,7 @@ class CheckoutController extends Controller
 
             $prod_qty = $products['product_qty'];
             $productss_qty = implode(',', $prod_qty);
-            
+
             $subtotal = $products['product_price'];
             $subtotals = implode(',', $subtotal);
         }

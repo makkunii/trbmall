@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
+// we are using a package here
 
 class CartController extends Controller
 
@@ -19,6 +19,7 @@ class CartController extends Controller
 
     //     }
 
+    //here it calls the cartlist
     public function cartList()
 
     {
@@ -31,7 +32,7 @@ class CartController extends Controller
 
     }
 
-
+   // here it adds the selected item to the cart
     public function addToCart(Request $request)
 
     {
@@ -56,7 +57,7 @@ class CartController extends Controller
 
     }
 
-
+ // here it updates the cart
 
     public function updateCart(Request $request)
 
@@ -90,7 +91,7 @@ class CartController extends Controller
 
     }
 
-
+// here when we remove items to the cart
 
     public function removeCart(Request $request)
 
@@ -106,7 +107,7 @@ class CartController extends Controller
 
     }
 
-
+// clear all cart
 
     public function clearAllCart()
 

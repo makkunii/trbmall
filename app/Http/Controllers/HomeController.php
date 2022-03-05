@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function save_data(Request $request)
 
     {
-
+        // here we access the requeset array and put into an array to assign it to a session array
         $checked_array = $request->prodid;
         foreach($request->prod_name as $key => $value) {
             if(in_array($request->prod_name[$key], $checked_array)) {
