@@ -95,7 +95,7 @@
                         {{ session()->get('updatefailed') }}
                     </div>
                   @endif
-
+                      {{-- foreach loop to call all the products --}}
                   @foreach ($productdata as $productdatas)
 
                   <tr onclick="showDiscount(this)">
@@ -349,6 +349,7 @@
 
 
       <script>
+           //   this is where we get the row value and pass it on to the input field on a modal
           function showDiscount(row)
           {
           var j = row.cells;

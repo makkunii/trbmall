@@ -74,7 +74,7 @@
                         </div>
                         <div class="field">
                             <input name="password" id="password" type="password" placeholder="Password" required>
-                            
+
                         </div>
                         <div class="pass-link">
                             <a href="#">Forgot password?</a>
@@ -111,7 +111,7 @@
                             <span class="invalid-feedback" role="alert">
                                 <small style="color:#f80d0d"></small>
                             </span>
-                            
+
                         </div>
                         <div class="field">
                             <input type="hidden" name="status" value="checked">
@@ -119,21 +119,21 @@
                             <span class="invalid-feedback" role="alert">
                                 <small style="color:#f80d0d"></small>
                             </span>
-                            
+
                         </div>
                         <div class="field">
                             <input type="text" name="email" placeholder="Email Address" required>
                             <span class="invalid-feedback" role="alert">
                                 <small style="color:#f80d0d"></small>
                             </span>
-                            
+
                         </div>
                         <div class="field">
                             <input type="password" name="password" placeholder="Password" required>
                             <span class="invalid-feedback" role="alert">
                                 <small style="color:#f80d0d"></small>
                             </span>
-                            
+
                         </div>
                         <div class="field">
                             <input type="password" name="password_confirmation" placeholder="Confirm password" required>
@@ -161,20 +161,24 @@
 
 
         <script>
+            // here we declare variables and via query selector
         const loginText = document.querySelector(".title-text .login");
         const loginForm = document.querySelector("form.login");
         const loginBtn = document.querySelector("label.login");
         const signupBtn = document.querySelector("label.signup");
         const signupLink = document.querySelector("form .signup-link a");
 
+        // here if the singup button is clicked it slides to the signup form
         signupBtn.onclick = (()=>{
             loginForm.style.marginLeft = "-50%";
             loginText.style.marginLeft = "-50%";
         });
+        // here if the login button is clicked it slides to the login form
         loginBtn.onclick = (()=>{
             loginForm.style.marginLeft = "0%";
             loginText.style.marginLeft = "0%";
         });
+
         signupLink.onclick = (()=>{
             signupBtn.click();
             return false;
@@ -187,6 +191,8 @@
         </script>
         @endif
 
+
+         {{-- scripts  --}}
         <script src="/plugins/jquery/jquery.min.js"></script>
         <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="/js/adminlte.min.js"></script>

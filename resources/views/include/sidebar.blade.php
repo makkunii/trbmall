@@ -30,7 +30,7 @@
               <p>Dashboard</p>
             </a>
           </li>
-
+     {{-- You can customize the sidebar items here --}}
           <li class="nav-item">
             <a href="{{ route('accounts')}}" class="nav-link">
               <i class="fas fa-users nav-icon"></i>

@@ -3,6 +3,8 @@
 @section('title', 'Purchase History')
 <meta name="csrf-often" content="{{ csrf_token() }}">
 <style>
+
+    /* this customizes the form  */
        select{
    height: 45px !important;
    border: 1px solid #ABADB3;
@@ -23,11 +25,14 @@
     <br>
 
 
-    <!-- Blog Details Section Begin -->
+    <!-- Users Details Section Begin using the blog details template -->
+
     <section class="blog-details">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-5 order-md-1 order-2">
+
+                         {{-- this is the left side of the page  --}}
                     <div class="blog__sidebar">
 
                             <div class="blog__details__author">
@@ -63,6 +68,8 @@
                         </div> --}}
                     </div>
                 </div>
+
+                {{-- here is the right side of the page  --}}
                     <div class="col-lg-8 col-md-7 order-md-1 order-1">
                         <div class="blog__details__text">
                             <div class="card">

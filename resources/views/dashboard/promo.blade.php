@@ -47,6 +47,7 @@
             <div class="card">
               <div class="card-header text-right bg-light">
                 <h3 class="card-title text-red font-weight-bold">Promo</h3>
+                {{-- add new promo --}}
                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
                   Add Promo
                 </button>
@@ -92,6 +93,8 @@
                     </div>
                   @endif
 
+
+                      {{-- foreach loop to call all the ppromo --}}
                   @foreach ($promodata as $promodatas)
 
                   <tr onclick="showDiscount(this)">
@@ -103,7 +106,7 @@
                     <td>{{ $promodatas['expired_at'] }}</td>
 
                     <td>
-                    @if($promodatas['is_active'] == '1') 
+                    @if($promodatas['is_active'] == '1')
 
                     <div class="badge bg-green text-white">Active</div>
 
@@ -323,6 +326,7 @@
 
 
       <script>
+           //   this is where we get the row value and pass it on to the input field on a modal
           function showDiscount(row)
           {
           var j = row.cells;

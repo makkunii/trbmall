@@ -33,6 +33,8 @@
             <div class="card">
               <div class="card-header text-right bg-light">
                 <h3 class="card-title text-red font-weight-bold">Accounts table</h3>
+
+                {{-- Opens add account modal --}}
                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
                   Add account
                 </button>
@@ -53,6 +55,7 @@
                   </thead>
 
                   <tbody>
+                      {{-- call the account data in a loop to call them all  --}}
                   @foreach ($accountdata as $accountdatas)
                   <tr>
                     <td>{{ $accountdatas['id'] }}</td>

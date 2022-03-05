@@ -2,6 +2,7 @@
 @section('content')
 @section('title', 'Checkout')
 <style>
+  /* custom select style for the provinces select field */
    select{
    height: 45px !important;
    border: 1px solid #ABADB3;
@@ -75,6 +76,8 @@
                         </div>
                      </div>
                   </div>
+
+                  {{-- the select where we get the province city and barangay relatively --}}
                   <div class="form-group">
                      <p>Province<span>*</span></p>
                      <select class="form-control province text-muted" name="province" id="province">
@@ -118,17 +121,24 @@
             <h4>Your Order</h4>
             <div class="checkout__order__products">Products <span>Total</span></div>
             <ul>
+            {{-- we loop the session to call all of the array session  --}}
             @foreach(Session::get('data')['product_id'] as $index => $product)
             <li>
             {{ Session::get('data')['product_name'][$index] }} - {{ Session::get('data')['product_qty'][$index] }}
 
+
+            {{-- here it checks if there is not promo --}}
             @if($datapromo == null)
+            {{-- here we update the value of the session promo to 1  --}}
             {{ session()->put('data.promo',1);}}
+            {{--  we do math with the session to compute the price with the promo which null--}}
             <span>₱ {{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index])*
                 Session::get('data')['promo']
             }} </span>
             @else
+            {{-- else we update the session promo with the promo rate that we had applied  --}}
             {{ session()->put('data.promo',$datapromo->rate);}}
+              {{--  we do math with the session to compute the price with the product price, quantity and promo rate--}}
             <span>₱{{ (Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index])*
                 Session::get('data')['promo']
             }} (<del>{{ Session::get('data')['product_qty'][$index]*Session::get('data')['product_price'][$index] }}</del>)</span>
@@ -162,16 +172,21 @@
             <form action="{{ route('checkpromo') }}" method="post">
             @csrf
             <div class="row">
+                {{-- it checks if there is a promo if null --}}
                 @if($datapromo == null)
                 <input type="text" id="promo_name" name="promo_name" placeholder="Enter promo code" style="width: 100%; padding-right:10px">
                 <input type="hidden"  class="site-btn" name="promo_rate" id="promo_rate" value="0">
                 <button type="submit" class="site-btn bg-danger" style="font-size: 10px;">APPLY PROMO</button>
                 @else
 
+
                 <div class="alert alert-success alert-dismissible">
                 Promo applied successfully
                 </div>
                 {{-- {{ $datapromo->name }} {{$datapromo->rate}} --}}
+
+                {{-- here we check if the promo is active or null
+                    if null you can apply promo else yo ucant appy a promo --}}
             @if($PromoStatus == null)
                    <input type="text" id="promo_name" name="promo_name" value="{{ $datapromo->name }}" placeholder="Enter promo code" style="width: 100%; padding-right:10px">
                    <input type="hidden"  class="site-btn" name="promo_rate" id="promo_rate" value="{{ $datapromo->rate }}">
@@ -192,6 +207,8 @@
          </div>
       </div>
    </div>
+
+   {{-- a modal that shows the payment --}}
    <div class="modal fade" id="modal-danger">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -252,6 +269,7 @@
 </section>
 <!-- Checkout Section End -->
 <script>
+    // we get the subtotal and the promo rate
    var arr = document.getElementsByName('product_subtotal[]');
    var data = document.getElementById('promo_rate').value
 
@@ -263,9 +281,11 @@
       if(parseInt(arr[i].value))
       subtot += parseInt(arr[i].value);
    }
+   // we do a math to calculate the subtotal and the total with the promo and the discoutned price
    less = subtot*data;
    beng = subtot-less;
 
+   // we assign it to a text
       $('#SubTotalAmt').text(subtot.toFixed(2));
       $('#discount').text(less);
       $('#TotalAmt').text(beng.toFixed(2));
@@ -277,6 +297,7 @@
     //     document.getElementById("subtotal").value = testing
     //  }
 
+    
       document.getElementById("total").value = beng;
       document.getElementById("promo").value = document.getElementById("promo_name").value;
       document.getElementById("products").value = document.getElementById("product-name").value;

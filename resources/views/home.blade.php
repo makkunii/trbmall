@@ -1,5 +1,5 @@
-@extends('layouts.landingpage')
-@extends('layouts.layout')
+ @extends('layouts.landingpage') {{-- we extend the landing page here --}}
+@extends('layouts.layout') {{-- we extend the layout here  --}}
 @section('title', 'Home')
 
 @section('content')

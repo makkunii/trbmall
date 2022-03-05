@@ -23,7 +23,7 @@
     <br>
 
 
-    <!-- Blog Details Section Begin -->
+       <!-- Users Details Section Begin using the blog details template -->
     <section class="blog-details">
         <div class="container">
             <div class="row">
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                                 <br>
-
+ {{-- this is the left side of the page  --}}
                         <div class="blog__sidebar__item">
 
                             <ul>
@@ -63,6 +63,8 @@
                         </div> --}}
                     </div>
                 </div>
+
+                {{-- here is the right side of the page  --}}
                     <div class="col-lg-8 col-md-7 order-md-1 order-1">
                         <div class="blog__details__text">
                             <div class="card">
@@ -136,7 +138,7 @@
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="activity">
-
+                                            {{-- here we call the provinces, city and barangay relavtivly --}}
                                         <div class="post">
                                             <h4>Address</h4><br>
                                             <div class="checkout__input">
@@ -193,10 +195,7 @@
             </div>
         </div>
     </section>
-    <!-- Blog Details Section End -->
-
-    <!-- Related Blog Section Begin -->
-
+    <!--users Details Section End -->
 
 
 

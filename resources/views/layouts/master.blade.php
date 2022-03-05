@@ -19,6 +19,7 @@
 </head>
 <body>
 
+    {{-- here we yeild the sidebar navbar and the footer  --}}
     @yield('sidebar')
     @yield('navbar')
     @yield('footer')

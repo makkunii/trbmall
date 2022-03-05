@@ -3,12 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{-- yielding the custom title of per page  --}}
   <title>Trb Mall - @yield('title')</title>
 
+<!-- Css Styles -->
   <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
 
-
+<!--  Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
 
     <div class="container">
@@ -70,7 +73,7 @@
 
 
 
-
+<!-- Scripts -->
 <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('/dist/js/adminlte.min.js') }}"></script>

@@ -93,12 +93,12 @@
                   @endif
 
 
-                  
+    {{--a loop to call all the data  --}}
                   @foreach ($vorder as $vorderz)
-
+                    {{-- on click to call the function showDiscount on the script --}}
                   <tr onmouseover="showDiscount(this)">
                    <td>{{$vorderz['id'] }} </td>
-                 
+
                    <td><button type="button" class="btn btn-transparent btn-sm viewproduct" data-toggle="modal" data-target="#productmodal">{{$vorderz['first_name'] }} {{$vorderz['last_name'] }}</button></td>
                    <td>{{$vorderz['brgy'] }}, {{$vorderz['city'] }}, {{$vorderz['province'] }}</td>
                    <td>{{$vorderz['phone'] }}</td>
@@ -107,6 +107,7 @@
                     <td>{{$vorderz['promo'] }}</td>
                     <td>{{$vorderz['total'] }}</td>
                     <td>
+                        {{-- this is to change the status --}}
                       @if ($vorderz['status'] == "Pending")
                     <button type="button" class="btn btn-warning btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                       @elseif ($vorderz['status'] == "COP")
@@ -117,14 +118,14 @@
                       <button type="button" class="btn btn-danger btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                      @endif
                   </td>
-                    
+
                     <!-- data-toggle="modal" data-target="#modal-default2" -->
 
                     <!-- <td><button type="button" class="btn btn-danger btn-sm viewproduct" data-toggle="modal" data-target="#productmodal">View</button></td> -->
 
                   </tr>
                   @endforeach
-                  
+
 
                   </tbody>
 
@@ -161,7 +162,7 @@
               </button>
             </div>
             <div class="modal-body">
-                
+
                 <div id="loader" style="display:none;">Loading...</div>
                 <div id="orders_table">
                 <table class="table table-bordered">
@@ -174,7 +175,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        
+
                         <!-- <td></td>
                         <td><input type="text" class="form-control" name="name" id="edit-product" style="background: transparent; border: none;"></td>
                         <td> <input type="text" class="form-control" name="name" id="edit-qty" style="background: transparent; border: none;"></td>
@@ -217,11 +218,11 @@
                           <option value="4">Cancelled</option>
                         </select>
                   </div>
-                  
+
                       <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-danger">Save</button>
-        
+
                     </div>
 
                </form>
@@ -240,10 +241,11 @@
 
 
       <script>
+          // shows the products in a modal
         $(document).ready(function(){
-          
+
           $('.viewproduct').on('click', function(){
-            
+
             $("#loader").show();
             var order_id = $('.order_idz').val();
             // alert(order_id);
@@ -264,6 +266,7 @@
       </script>
 
 <script>
+        // passs the row data to the id assigned
           function showDiscount(row)
           {
           var j = row.cells;

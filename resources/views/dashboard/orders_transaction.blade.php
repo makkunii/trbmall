@@ -166,6 +166,7 @@
 
 
       <script>
+           //   this is where we get the row value and pass it on to the input field on a modal
           function showDiscount(row)
           {
           var j = row.cells;

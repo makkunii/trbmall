@@ -61,6 +61,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- a foreach loop to call all the items that had been added to the cart to show them --}}
                                 @foreach ($cartItems as $item)
                                 <tr>
 
@@ -70,8 +71,11 @@
                                 </td>
 
                                 <td class="shoping__cart__item">
+                                    {{-- dynamic picture that you can change
+                                        depending on the product --}}
                                     <img src="public/assets/img/cart/cart-1.jpg" alt="">
                                      <h5>{{ $item->name }}</h5>
+                                     {{-- passing the value into an array soo that i can store those values into a session --}}
                                      <input type="hidden" name="prod_name[]" class="prod-name" value="{{ $item->name }}">
                                 </td>
                                 <td class="shoping__cart__price">
@@ -156,25 +160,30 @@
 
 
 <script>
+
+    //upon clicking the checkout button
 $(document).ready(function(){
     $('.cartCheckout').on('click', function(e)
     {
         e.preventDefault();
-
+        // declare variables where you want your array to be stored
         const prodid = [];
         const prod_id = [];
         const prod_name = [];
         const prod_price = [];
         const prod_qty = [];
 
-
+        // for each function that check the "checked" checkbox
         $('.checkit').each(function()
         {
             if($(this).is(":checked"))
             {
+                // pushes that to the prodid
                 prodid.push($(this).val());
             }
         });
+        // look for the input with the name similar to that and each function to push each "checked" checkbox to
+        // the variables we've assign
         $('input[name^="prod_id"]').each(function()
         {
             prod_id.push($(this).val());
@@ -195,8 +204,9 @@ $(document).ready(function(){
         });
 
 
-
+// an ajax to pass them to the controller
         $.ajax({
+            // the target route is the save_data
             url: '/save_data',
             type: 'POST',
             dataType : 'json',
@@ -227,7 +237,7 @@ $(document).ready(function(){
     });
 });
 
-
+//here it calculates the subtotal of the items selected soo that the customer can see the total price
 $('.checkit').change(function () {
     calculateTotals();
 }).change();

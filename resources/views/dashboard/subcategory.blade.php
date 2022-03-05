@@ -89,7 +89,7 @@
                         {{ session()->get('updatefailed') }}
                     </div>
                   @endif
-
+                  {{-- foreach loop to call all the  subcategory--}}
                  @foreach ($subcategorydata as $subcategorydatas)
 
                   <tr onclick="showDiscount(this)">
@@ -153,14 +153,14 @@
                     <label for="productname">Sub-Category Name</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Enter Sub-Category Name">
                 </div>
-                
+
                 <div class="form-group">
                     <label>Category</label>
                     <select class="form-control" name="category_id" id="category_id">
                       <option value="null" selected disabled>Select category</option>
-                      <?php foreach ($vcategorydata as $vcategorydatas) { ?> 
+                      <?php foreach ($vcategorydata as $vcategorydatas) { ?>
                       <option value="<?php echo $vcategorydatas['id'];?>"> <?php echo $vcategorydatas['name'];?> </option>
-                      <?php } ?> 
+                      <?php } ?>
                     </select>
                 </div>
 
@@ -249,9 +249,9 @@
                     <label>Category</label>
                     <select class="form-control" name="category_id" id="edit-category_id">
                       <option value="null" selected disabled>Select category</option>
-                      <?php foreach ($vcategorydata as $vcategorydatas) { ?> 
+                      <?php foreach ($vcategorydata as $vcategorydatas) { ?>
                       <option value="<?php echo $vcategorydatas['id'];?>"> <?php echo $vcategorydatas['name'];?> </option>
-                      <?php } ?> 
+                      <?php } ?>
                     </select>
                 </div>
                   <!--
@@ -315,6 +315,7 @@
 
 
       <script>
+           //   this is where we get the row value and pass it on to the input field on a modal
           function showDiscount(row)
           {
           var j = row.cells;

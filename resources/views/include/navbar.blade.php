@@ -1,4 +1,4 @@
-<!-- Navbar -->
+<!-- Navbar  that we include to the pages -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -30,7 +30,7 @@
           </form>
         </div>
       </li>
-	  
+
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -58,7 +58,7 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-  
+
   <li class="nav-item">
   <a href="#" class="nav-link">
           <i class="fas fa-sign-out-alt"></i>

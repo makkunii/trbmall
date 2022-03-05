@@ -1,3 +1,5 @@
+{{-- this is the search that we include to the pages --}}
+
 <div class="hero__search">
     <div class="hero__search__form">
         <form action="#">

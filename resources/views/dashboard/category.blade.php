@@ -4,6 +4,8 @@
 @include('include.sidebar')
 @include('include.navbar')
 <style>
+
+    /* this is to customize the select2 */
     .select2-selection__rendered {
     line-height: 25px !important;
     margin-bottom: 50px  !important;
@@ -89,9 +91,10 @@
                         {{ session()->get('updatefailed') }}
                     </div>
                   @endif
-
+                      {{-- call the category in a loop to call them all  --}}
                   @foreach ($categorydata as $categorydatas)
 
+                        {{-- Onclick to pass the row data to the input box in a modal  --}}
                   <tr onclick="showDiscount(this)">
 
                    <td>{{ $categorydatas['id'] }}</td>
@@ -160,7 +163,7 @@
                     </select>
                 </div>
             </div>
-
+                {{-- this is the testing custom select2 --}}
                   <!--
                    <div class="form-group">
                         <label>Category</label>
@@ -293,6 +296,8 @@
 
 
       <script>
+
+        //   this is where we get the row value and pass it on to the input field on a modal
           function showDiscount(row)
           {
           var j = row.cells;

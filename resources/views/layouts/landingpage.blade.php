@@ -60,6 +60,7 @@
 
 
 <script>
+    //the datatable script we use for all of the table
     $(function () {
     $('#example1').DataTable({
       "paging": true,
