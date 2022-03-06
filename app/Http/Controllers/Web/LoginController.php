@@ -35,7 +35,7 @@ class LoginController extends Controller
                 $token = $login['token']; // array token but only one value
                 $array = $login['account']; // array account
                 
-                if($array['email'] = $credentials['email'] && $array['status'] = 1) // check if id is same and account status is enabled if not enabled cannot login
+                if($array['email'] = $credentials['email'] && $array['status'] = 1) // check if email is same and account status is enabled if not enabled cannot login
                 {
                     session([
                         'role_id' => $array['role_id'],

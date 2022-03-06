@@ -10,25 +10,26 @@ class OrdersController extends Controller
 {
     public function orders()
     {
-        $vorders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showorder');
+        $vorders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showorder'); //call api
 
-        if ($vorders->successful())
+        if ($vorders->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
 
             $vorder = $vorders['Show'];
+            // RETURN THIS PAGE IS SUCCESSFUL // vorder BELOW IS USED TO TRANSFER $vorders ABOVE TO THE BLADENAME SPECIFIED ON RETURN VIEW
             return view('dashboard/orders')->with(compact('vorder'));
 
         }
 
         else
         {
-        return view('dashboard/orders');
+        return view('dashboard/orders'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
     }
 
     public function show_ordered_products(Request $request){
 
-        $id = $request->post('order_id');
+        $id = $request->post('order_id'); //get order_id
 
         $html = "";
            $showproducts = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_ordered_products/'.$id);
@@ -41,21 +42,21 @@ class OrdersController extends Controller
                     $promo = $showproductzz['promo'];
                 }
                 
-                $showpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_promos');
+                $showpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_promos'); //call api
                 
                 $showpromos = $showpromo['ShowPromo'];
                 
                 $promorate = "";
                 
-                foreach($showpromos as $showpromoz)
+                foreach($showpromos as $showpromoz) //get promo used on ordered products
                 {
-                    if($promo == $showpromoz['name'])
+                    if($promo == $showpromoz['name']) //if promo matched the name
                     {
-                        $promorate = $showpromoz['rate'];
+                        $promorate = $showpromoz['rate']; //get promo rate
                     }
                 }
                     
-                    $html .= '<table class="table table-bordered">';
+                    $html .= '<table class="table table-bordered">'; //UI table for displaying ordered products
                         $html .= '<thead>
                         <tr>
                           <th>Products</th>
@@ -67,7 +68,7 @@ class OrdersController extends Controller
                       
             
                     $total = 0;
-                    foreach($showproduct as $showproductz)
+                    foreach($showproduct as $showproductz) //get ordered products to display on table
                     {  
                         
                         $totalprice = $showproductz['price'] * $showproductz['quantity'];
@@ -82,7 +83,7 @@ class OrdersController extends Controller
                         else
                         {
                             $totalpromo = $totalprice * $promorate;
-                            $html .= '<td><del style="color:red;">'.$totalprice.'</del><br>'.$totalpromo.'</td>';
+                            $html .= '<td><del style="color:red;">'.$totalprice.'</del><br>'.$totalpromo.'</td>'; //cross out original price and display new price based on promo
                             $total+= $totalpromo;
                         }
                         $html .= '</tr>';
@@ -98,7 +99,7 @@ class OrdersController extends Controller
                 else{
                     $html .= $showproducts;
                     
-                    echo $html;
+                    echo $html; //echo html and this will display on the blade
                 }
                 
             
@@ -112,44 +113,45 @@ class OrdersController extends Controller
               
                       $this->validate($request,[
               
-                        'order_idzz'=> 'required',
+                        'order_idzz'=> 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
                         'status'=> 'required',
               
                      ]);
               
               
-                     $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/update_status',[
+                     $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/update_status',[ //call api
               
-                      'order_id' => $request->order_idzz,
+                      'order_id' => $request->order_idzz, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
                       'status' => $request->status
                   ]);
               
                       if ($update->successful())
                       {
-                          return redirect()->back()->with('updatesuccess', 'Status updated');
+                          return redirect()->back()->with('updatesuccess', 'Status updated');  //redirect to the page and alert will pop up
                       }
               
                       else
                       {
-                        return redirect()->back()->with('updatefailed', 'Status failed to update');
+                        return redirect()->back()->with('updatefailed', 'Status failed to update'); //error handling and redirect to the page and alert will pop up
                       }
               
                   }
     
     public function orders_transaction() {
-        $torders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showordertrans');
+        $torders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showordertrans'); //call api
 
-        if ($torders->successful())
+        if ($torders->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
 
             $torder = $torders['Show'];
+            // RETURN THIS PAGE IS SUCCESSFUL //torder BELOW IS USED TO TRANSFER $torders ABOVE TO THE BLADENAME SPECIFIED ON RETURN VIEW
             return view('dashboard/orders_transaction')->with(compact('torder'));
 
         }
 
         else
         {
-        return view('dashboard/orders_transaction');
+        return view('dashboard/orders_transaction'); // ERROR HANDLING RETURN THIS PAGE IF QUERY $view DIDNT RETURN DATA
         }
     }
 

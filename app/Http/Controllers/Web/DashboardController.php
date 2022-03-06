@@ -10,6 +10,7 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
+        //view dashboard page
         return view('dashboard/dashboard');
     }
 

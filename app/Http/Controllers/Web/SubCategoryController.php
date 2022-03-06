@@ -13,34 +13,34 @@ class SubCategoryController extends Controller
     //show sub category
     public function subcategory()
     {
-        $vcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/view/vcategory');
+        $vcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/view/vcategory'); //call api for category
 
-        if ($vcategory->successful())
+        if ($vcategory->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
             
-            $vsubcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory');
+            $vsubcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory'); //call api for sub category
 
             
 
-            if ($vsubcategory->successful())
+            if ($vsubcategory->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
             $vcategorydata = $vcategory['ShowCategory'];
             $subcategorydata = $vsubcategory['Show'];
-
+            // RETURN THIS PAGE IS SUCCESSFUL // vcategorydata and subcategorydata BELOW IS USED TO TRANSFER $vcategory and vsubcategory ABOVE TO THE BLADENAME SPECIFIED ON RETURN VIEW
             return view('dashboard/subcategory')->with(compact('vcategorydata','subcategorydata'));
 
         }
 
         else
         {
-            return view('dashboard/dashboard');
+            return view('dashboard/dashboard'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
 
         }
 
         else
         {
-            return view('dashboard/dashboard');
+            return view('dashboard/dashboard'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
 
     }
@@ -48,43 +48,43 @@ class SubCategoryController extends Controller
     //show category on select
     public function vcategory()
     {
-        $vcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/view/vcategory');
+        $vcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/view/vcategory'); //call api
 
-        if ($vcategory->successful())
+        if ($vcategory->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
 
             $vcategorydata = $vcategory['ShowCategory'];
-
+            // RETURN THIS PAGE IS SUCCESSFUL // vcategorydata a BELOW IS USED TO TRANSFER $vcategory ABOVE TO THE BLADENAME SPECIFIED ON RETURN VIEW
             return view('dashboard/subcategory')->with(compact('vcategorydata'));
 
         }
 
         else
         {
-            return view('dashboard/dashboard');
+            return view('dashboard/dashboard'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
     }
 
     public function insertsubcategory(Request $request) {
 
         $this->validate($request,[
-            'name' => 'required',
+            'name' => 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
             'category_id' => 'required',
             'is_active' => 'required'
         ]);
 
-        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/insert',[
-            'name' => $request->name,
+        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/insert',[ //call api
+            'name' => $request->name, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
             'category_id' => $request->category_id,
             'is_active' => $request->is_active
         ]);
 
         if($insert->successful()) {
 
-            return redirect()->back()->with('insertsuccess', 'SubCategory saved');
+            return redirect()->back()->with('insertsuccess', 'SubCategory saved'); //redirect to the page and alert will pop up
 
         } else {
-            return redirect()->back()->with('insertfailed', 'SubCategory failed to save');
+            return redirect()->back()->with('insertfailed', 'SubCategory failed to save'); //error handling and redirect to the page and alert will pop up
         }
     }
 
@@ -93,7 +93,7 @@ class SubCategoryController extends Controller
 
         $this->validate($request,[
 
-            'id' => 'required',
+            'id' => 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
             'name' => 'required',
             'category_id' => 'required',
             'is_active' => 'required'
@@ -102,9 +102,9 @@ class SubCategoryController extends Controller
 
        $id = $request->input('id');
 
-       $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/update',[
+       $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/update',[ //call api
 
-        'id' => $request->id,
+        'id' => $request->id, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
         'name' => $request->name,
         'category_id' => $request->category_id,
         'is_active' => $request->is_active
@@ -112,12 +112,12 @@ class SubCategoryController extends Controller
 
         if ($update->successful())
         {
-            return redirect()->back()->with('updatesuccess', 'SubCategory updated');
+            return redirect()->back()->with('updatesuccess', 'SubCategory updated'); //redirect to the page and alert will pop up
         }
 
         else
         {
-            return redirect()->back()->with('updatefailed', 'SubCategory failed to update');
+            return redirect()->back()->with('updatefailed', 'SubCategory failed to update'); //error handling and redirect to the page and alert will pop up
         }
 
     }

@@ -13,27 +13,28 @@ class CheckoutController extends Controller
     public function checkout()
     {
 
-        $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
-        if($provinces->successful()){
+        $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all'); //call api
+        if($provinces->successful()){ // CONDITION IF API ABOVE RETURNED SOME DATA
                 $province = $provinces['Provinces'];
 
                 //here we assign data promo as null soo that we can do a validation
                 $datapromo = null;
-
-                return view('mall/checkout')->with(compact('province','datapromo'));
+                // province and datapromo BELOW IS USED TO TRANSFER $province & $datapromo ABOVE TO THE BLADENAME SPECIFIED ON RETURN VIEW
+                return view('mall/checkout')->with(compact('province','datapromo')); 
         }
         else{
-            return view('mall/checkout');
+            return view('mall/checkout'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
 
     }
 
     public function getCityz(Request $request){
             $province = $request->post('province');
-            $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/city/'.$province);
+            $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/city/'.$province); //call api
 
             $city = $response['City/Municipality'];
             $html='<option value="null" selected disabled> Select City/Municipality </option>';
+            // display cities based on selected province using foreach loop
             foreach($city as $cities){
                 $html.='<option value="'.$cities['citymunDesc'].'">'.$cities['citymunDesc'].'</option>';
             }
@@ -48,6 +49,7 @@ class CheckoutController extends Controller
             $brgy = $response['barangay'];
 
             $html='<option selected disabled> Select Brgy </option>';
+            // display barangay based on selectd city using foreach loop
             foreach($brgy as $brgys){
                 $html.='<option value="'.$brgys['brgyDesc'].'">'.$brgys['brgyDesc'].'</option>';
             }
@@ -99,15 +101,15 @@ class CheckoutController extends Controller
 
     public function insertorder(Request $request) {
 
-        $this->validate($request,[
-            'first_name'=> 'required',
-            'last_name'=> 'required',
+        $this->validate($request,[ // THIS IS USED FOR FIELD VALIDATION (IF FIELD IS BLANK OR INVALID PAGE WILL REFRESH)
+            'first_name'=> 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
+            'last_name'=> 'required', 
             'province'=> 'required',
             'city'=> 'required',
             'brgy'=> 'required',
             'phone'=> 'required',
             'email'=> 'required',
-            'promo'=> 'nullable',
+            'promo'=> 'nullable', // USE NULLABLE IF FIELD IS NOT REQUIRED ON FORM AND DB
             'subtotal'=>'required',
             'total'=>'required',
             'products'=>'required',
@@ -115,9 +117,9 @@ class CheckoutController extends Controller
             'status' => 'required'
         ]);
 
-        $products = $request->session()->get('data');
+        $products = $request->session()->get('data'); //get data using session
 
-        foreach($products as $product)
+        foreach($products as $product) //get product id, product quantity and product price of selected products
         {
             $prod_id = $products['product_id'];
             $productss_id = implode(',', $prod_id);
@@ -130,8 +132,8 @@ class CheckoutController extends Controller
         }
 
 
-        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/insertorder',[
-           'first_name'=> $request->first_name,
+        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/insertorder',[ //call api
+           'first_name'=> $request->first_name, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
            'last_name'=> $request->last_name,
            'province'=> $request->province,
            'city'=> $request->city,
@@ -150,10 +152,10 @@ class CheckoutController extends Controller
 
         if($insert->successful()) {
 
-            return redirect('/home')->with('insertsuccess', 'Products ordered successfully');
+            return redirect('/home')->with('insertsuccess', 'Products ordered successfully'); //redirect to home when products ordered successfully
 
         } else {
-            return $insert;
+            return $insert; //display error
         }
 
 
