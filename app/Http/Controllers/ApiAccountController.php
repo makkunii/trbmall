@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Hash;
 class ApiAccountController extends Controller
 {
   //**************************INSERT**************************//
@@ -34,7 +35,7 @@ public function insertaccount(Request $request) {
        ->insertGetId([
       //'name' => $request->name,
       'email' => $request->email,
-      'password' => $request->password,
+      'password' => Hash::make($request->input('password')),
       // 'email_verified_at' => $request->email_verified_at,
        'role_id' => $request->role_id,
        'is_active' => $request->is_active,
@@ -82,7 +83,7 @@ public function insertaccount(Request $request) {
                 ->update([
         //'name' => $request->name,
         'email' => $request->email,
-        'password' => $request->password,
+        'password' => Hash::make($request->input('password')),
        // 'email_verified_at' => $request->email_verified_at,
         'role_id' => $request->role_id,
         'is_active' => $request->is_active,
@@ -107,11 +108,12 @@ public function insertaccount(Request $request) {
            'password' => 'required'
        ]); // this is validation for api before update
 
+      
        //update in database
        $update = DB::table('users')
        ->where('email', $request->email)
        ->update([
-           'password' => $request->password
+        'password' => Hash::make($request->input('password'))
        ]);
        return response()->json(['Success' => 'Password Changed'],200);
 
