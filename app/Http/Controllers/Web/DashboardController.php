@@ -11,7 +11,13 @@ class DashboardController extends Controller
     public function dashboard(Request $request) {
         if (session()->has('id')) {
             return view('dashboard/dashboard');
-        } else {
+        }
+
+        else if (session()->has('role_id' == 0)){
+            return redirect('login');
+        }
+        
+         else {
             return redirect('login');
         }
     }

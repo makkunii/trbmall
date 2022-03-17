@@ -109,13 +109,13 @@
                     <td>
                         {{-- this is to change the status --}}
                       @if ($vorderz['status'] == "Pending")
-                    <button type="button" class="btn btn-warning btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                    <button type="button" class="btn btn-warning btn-sm btn-block text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                       @elseif ($vorderz['status'] == "COP")
-                      <button type="button" class="btn btn-primary btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                      <button type="button" class="btn btn-primary btn-sm btn-block text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                       @elseif ($vorderz['status'] == "COD")
-                      <button type="button" class="btn btn-primary btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                      <button type="button" class="btn btn-primary btn-sm btn-block text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                       @elseif ($vorderz['status'] == "Cancelled")
-                      <button type="button" class="btn btn-danger btn-sm text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                      <button type="button" class="btn btn-danger btn-sm btn-block text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                      @endif
                   </td>
 
