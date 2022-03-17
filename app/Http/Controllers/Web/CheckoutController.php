@@ -20,7 +20,7 @@ class CheckoutController extends Controller
                 //here we assign data promo as null soo that we can do a validation
                 $datapromo = null;
                 // province and datapromo BELOW IS USED TO TRANSFER $province & $datapromo ABOVE TO THE BLADENAME SPECIFIED ON RETURN VIEW
-                return view('mall/checkout')->with(compact('province','datapromo')); 
+                return view('mall/checkout')->with(compact('province','datapromo'));
         }
         else{
             return view('mall/checkout'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
@@ -79,7 +79,7 @@ class CheckoutController extends Controller
             }
             else {
                 $datapromo = null;
-                //else we return null 
+                //else we return null
                 return view('mall/checkout')->with(compact('province','datapromo','PromoStatus'));
             }
         }
@@ -103,7 +103,7 @@ class CheckoutController extends Controller
 
         $this->validate($request,[ // THIS IS USED FOR FIELD VALIDATION (IF FIELD IS BLANK OR INVALID PAGE WILL REFRESH)
             'first_name'=> 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
-            'last_name'=> 'required', 
+            'last_name'=> 'required',
             'province'=> 'required',
             'city'=> 'required',
             'brgy'=> 'required',
@@ -119,8 +119,12 @@ class CheckoutController extends Controller
 
         $products = $request->session()->get('data'); //get data using session
 
+
+
         foreach($products as $product) //get product id, product quantity and product price of selected products
         {
+
+
             $prod_id = $products['product_id'];
             $productss_id = implode(',', $prod_id);
 
@@ -129,6 +133,11 @@ class CheckoutController extends Controller
 
             $subtotal = $products['product_price'];
             $subtotals = implode(',', $subtotal);
+
+
+             \Cart::remove($request->prod_id['product_id']);
+
+
         }
 
 
