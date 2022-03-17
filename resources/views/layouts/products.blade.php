@@ -1,6 +1,12 @@
 @extends('home')
 
 @section('products')
+<style>
+    .w-5 {
+        display:none;
+    }
+
+</style>
 <section class="featured spad">
     <div class="container">
         <div class="row">
@@ -10,9 +16,14 @@
                 </div>
             </div>
         </div>
+
         <div class="row featured__filter">
               {{-- foreach loop to call all the products --}}
+
             @foreach ($products as $product)
+
+
+
             <div class="col-lg-3 col-md-4 col-sm-6" onclick="DisplayProduct(this)">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" data-setbg="{{ asset('public/images/testing.png')}}" data-toggle="modal" data-target="#modal-xl">
@@ -37,7 +48,7 @@
                 </div>
             </div>
             @endforeach
-
+         <div style="float:right">  {{ $products->links() }}</div>
 
             {{-- details of the products in a modal --}}
         <div class="modal fade" id="modal-xl">

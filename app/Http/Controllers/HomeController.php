@@ -21,7 +21,8 @@ class HomeController extends Controller
 
     {
 
-        $products = Product::all();
+        $products = Product::paginate(20);
+
 
 
 
