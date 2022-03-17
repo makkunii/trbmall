@@ -26,7 +26,7 @@
     <!-- Categories Section End -->
 
     <!-- Title Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('/assets/img/breadcrumb.jpg')}}">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('public/assets/img/breadcrumb.jpg')}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -73,7 +73,7 @@
                                 <td class="shoping__cart__item">
                                     {{-- dynamic picture that you can change
                                         depending on the product --}}
-                                    <img src="{{ asset('/assets/img/cart/cart-1.jpg')}}" alt="">
+                                    <img src="{{ asset('public/assets/img/cart/cart-1.jpg')}}" alt="">
                                      <h5>{{ $item->name }}</h5>
                                      {{-- passing the value into an array soo that i can store those values into a session --}}
                                      <input type="hidden" name="prod_name[]" class="prod-name" value="{{ $item->name }}">

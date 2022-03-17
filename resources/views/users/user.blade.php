@@ -32,7 +32,7 @@
 
                             <div class="blog__details__author">
                                 <div class="blog__details__author__pic">
-                                    <img src="{{ asset('/images/testing.png')}}" alt="">
+                                    <img src="{{ asset('public/images/testing.png')}}" alt="">
                                 </div>
                                 <div class="blog__details__author__text">
                                     <h6>Michael Scofield</h6>
@@ -78,7 +78,7 @@
                                         <div class="col-lg-4">
 
                                             <div class="blog__details__author__pic float-left">
-                                                <img src="" alt="">
+                                                <img src="{{ asset('public/images/testing.png')}}" alt="">
                                             </div>
 
                                     </div>

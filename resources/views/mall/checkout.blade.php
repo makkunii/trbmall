@@ -78,7 +78,7 @@
                   </div>
 
                   {{-- the select where we get the province city and barangay relatively --}}
-                  {{-- <div class="form-group">
+                  <div class="form-group">
                      <p>Province<span>*</span></p>
                      <select class="form-control province text-muted" name="province" id="province">
                         <option selected disabled>Select province</option>
@@ -86,7 +86,7 @@
                         <option value="<?php echo $prov['provDesc'];?>"><?php echo $prov['provDesc'];?></option>
                         <?php } ?>
                      </select>
-                  </div> --}}
+                  </div>
                   <div class="form-group">
                      <p>City<span>*</span></p>
                      <select class="form-control city text-muted" name="city" id="city">
@@ -156,7 +156,7 @@
             <div class="checkout__order__subtotal">Subtotal <span>₱<div style="float:right" id="SubTotalAmt"></div></span></div>
             <div class="checkout__order__total">Promo/Discount <span>₱<div style="float:right" id="discount"></div></span></div>
             <div class="checkout__order__total">Total <span>₱<div style="float:right" id="TotalAmt"></div></span></div>
-            <input type="text" name="subtotal" value="" id="subtotal">
+            <input type="hidden" name="subtotal" value="" id="subtotal">
             <input type="hidden" name="total" value="" id="total">
             <input type="hidden" name="promo" value="" id="promo">
             <input type="hidden" name="products" value="" id="products">

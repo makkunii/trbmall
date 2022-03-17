@@ -37,7 +37,7 @@
 
                             <div class="blog__details__author">
                                 <div class="blog__details__author__pic">
-                                    <img src="{{ asset('/images/testing.png')}}" alt="">
+                                    <img src="{{ asset('public/images/testing.png')}}" alt="">
                                 </div>
                                 <div class="blog__details__author__text">
                                     <h6>Michael Scofield</h6>
@@ -119,7 +119,7 @@
                                  <td><div class="row">
                                      <div class="col-lg-6">
                                         <div class="blog__details__author__pic">
-                                            <img src="{{ asset('/images/testing.png')}}" alt="">
+                                            <img src="{{ asset('public/images/testing.png')}}" alt="">
                                         </div>
                                      </div>
                                      <div class="col-lg-6">
