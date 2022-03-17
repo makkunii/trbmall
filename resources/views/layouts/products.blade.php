@@ -15,7 +15,7 @@
             @foreach ($products as $product)
             <div class="col-lg-3 col-md-4 col-sm-6" onclick="DisplayProduct(this)">
                 <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="{{ asset('public/images/testing.png')}}" data-toggle="modal" data-target="#modal-xl">
+                    <div class="featured__item__pic set-bg" data-setbg="{{ asset('/images/testing.png')}}" data-toggle="modal" data-target="#modal-xl">
                         <ul class="featured__item__pic__hover">
                         <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -53,7 +53,7 @@
                         <div class="row">
                             <div class="col-lg-6">
 
-                                <img src="{{ asset('public/images/testing.png')}}" style="height: 300px">
+                                <img src="{{ asset('/images/testing.png')}}" style="height: 300px">
 
                             </div>
                             <div class="col-lg-6">
