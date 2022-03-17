@@ -11,9 +11,12 @@ class PromoController extends Controller
 {
      //PROMO
      public function promo(Request $request)
-     {
+     {if(!session()->has('id')) {
+        return view('login');
+    } else {
+        $token = $request->cookie('token');
          //here it request the promo data on the trbexpress api
-        $vpromo = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo'); //call api
+        $vpromo = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo'); //call api
 
          if ($vpromo->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
          {
@@ -28,9 +31,14 @@ class PromoController extends Controller
           {
              return view('dashboard/dashboard'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
+    }
      }
 
      public function insertpromo(Request $request) {
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
 
         $this->validate($request,[
            'name' => 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
@@ -39,8 +47,9 @@ class PromoController extends Controller
            'created_at' => 'required',
            'expired_at' => 'required'
         ]);
-
-        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/insert',[ //call api
+        $token = $request->cookie('token');
+        
+        $insert = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/insert',[ //call api
            'name' => $request->name, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
            'rate' => $request->rate,
            'is_active' => $request->is_active,
@@ -56,11 +65,16 @@ class PromoController extends Controller
             return redirect()->back()->with('insertfailed', 'Promo failed to save'); //error handling and redirect to the page and alert will pop up
         }
     }
+    }
 
 
 
     public function updatepromo(Request $request)
     {
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
 
         $this->validate($request,[
 
@@ -73,8 +87,9 @@ class PromoController extends Controller
        ]);
 
        $id = $request->input('id'); // CALL ID INPUTFIELD NAME FOR ID(MIGHT BE HIDDEN IF ID ISNT DISPLAYED ON BLADE)
- 
-       $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/update',[ //call api
+       $token = $request->cookie('token');
+       
+       $update = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/promo/update',[ //call api
 
            'id' => $request->id, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
            'rate' => $request->rate,
@@ -92,6 +107,7 @@ class PromoController extends Controller
         {
             return redirect()->back()->with('updatefailed', 'Promo failed to update');  //error handling and redirect to the page and alert will pop up
         }
+    }
 
     }
 

@@ -30,13 +30,12 @@
               <p>Dashboard</p>
             </a>
           </li>
-     {{-- You can customize the sidebar items here --}}
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ route('accounts')}}" class="nav-link">
               <i class="fas fa-users nav-icon"></i>
               <p>Accounts</p>
             </a>
-          </li>
+          </li> -->
 		  <li class="nav-item">
             <a href="{{ route('products')}}" class="nav-link">
               <i class="fas fa-shopping-bag nav-icon"></i>

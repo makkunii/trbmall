@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class OrdersController extends Controller
 {
-    public function orders()
+    public function orders(Request $request)
     {
-        $vorders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showorder'); //call api
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+        $token = $request->cookie('token');
+        
+        $vorders = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showorder'); //call api
 
         if ($vorders->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
@@ -25,14 +30,19 @@ class OrdersController extends Controller
         {
         return view('dashboard/orders'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
+        }
     }
 
     public function show_ordered_products(Request $request){
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
 
         $id = $request->post('order_id'); //get order_id
-
+        $token = $request->cookie('token');
         $html = "";
-           $showproducts = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_ordered_products/'.$id);
+           $showproducts = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/show_ordered_products/'.$id);
 
                 if($showproducts->successful()){
                     $showproduct = $showproducts['ShowProduct'];
@@ -102,7 +112,7 @@ class OrdersController extends Controller
                     echo $html; //echo html and this will display on the blade
                 }
                 
-            
+        }
     }
 
     
@@ -110,6 +120,10 @@ class OrdersController extends Controller
 
                   public function updatestatus(Request $request)
                   {
+                    if(!session()->has('id')) {
+                        return view('login');
+                    } else {
+            
               
                       $this->validate($request,[
               
@@ -118,8 +132,9 @@ class OrdersController extends Controller
               
                      ]);
               
-              
-                     $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/update_status',[ //call api
+                     $token = $request->cookie('token');
+                     
+                     $update = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/update_status',[ //call api
               
                       'order_id' => $request->order_idzz, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
                       'status' => $request->status
@@ -134,11 +149,17 @@ class OrdersController extends Controller
                       {
                         return redirect()->back()->with('updatefailed', 'Status failed to update'); //error handling and redirect to the page and alert will pop up
                       }
+                    }
               
                   }
     
-    public function orders_transaction() {
-        $torders = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showordertrans'); //call api
+    public function orders_transaction(Request $request) {
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+            $token = $request->cookie('token');
+            
+        $torders = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/orders/showordertrans'); //call api
 
         if ($torders->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
@@ -154,5 +175,6 @@ class OrdersController extends Controller
         return view('dashboard/orders_transaction'); // ERROR HANDLING RETURN THIS PAGE IF QUERY $view DIDNT RETURN DATA
         }
     }
+}
 
 }

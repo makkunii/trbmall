@@ -12,7 +12,12 @@ class CategoryController extends Controller
     //CATEGORY
     public function category(Request $request)
     {
-        $vcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/category'); //call api for category
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+            $token = $request->cookie('token');
+            
+        $vcategory = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/category'); //call api for category
 
         if ($vcategory->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
@@ -29,15 +34,22 @@ class CategoryController extends Controller
             return view('dashboard/dashboard'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
     }
+    }
 
     public function insertcategory(Request $request) {
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
 
         $this->validate($request,[
             'name' => 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
             'is_active' => 'required'
         ]);
+        $token = $request->cookie('token');
 
-        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/category/insert',[ //call api
+
+        $insert = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/category/insert',[ //call api
             'name' => $request->name, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
             'is_active' => $request->is_active
         ]);
@@ -50,9 +62,14 @@ class CategoryController extends Controller
             return redirect()->back()->with('insertfailed', 'Category failed to save'); //error handling and redirect to the page and alert will pop up
         }
     }
+    }
 
     public function updatecategory(Request $request)
     {
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
 
         $this->validate($request,[
 
@@ -61,10 +78,11 @@ class CategoryController extends Controller
             'is_active' => 'required'
 
        ]);
-
+       $token = $request->cookie('token');
+       
        $id = $request->input('id'); // CALL ID INPUTFIELD NAME FOR ID(MIGHT BE HIDDEN IF ID ISNT DISPLAYED ON BLADE)
 
-       $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/category/update',[
+       $update = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/category/update',[
 
         'id' => $request->id, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
         'name' => $request->name,
@@ -82,4 +100,5 @@ class CategoryController extends Controller
         }
 
     }
+}
 }

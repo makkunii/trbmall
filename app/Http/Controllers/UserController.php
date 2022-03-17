@@ -8,54 +8,28 @@ use Illuminate\Support\Facades\Http;
 class UserController extends Controller
 {
 
-    public function user()
+public function user(Request $request)
 
-    {
-        $provinces = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/province/all');
-        if($provinces->successful()){
-                $province = $provinces['Provinces'];
+{
 
-
-                return view('users/user')->with(compact('province'));
-        }
-        else{
-            return view('users/user');
-        }
-
+    if (session()->has('id')) {
+        return view('users/user');
+    } else {
+        return redirect('login');
     }
 
-    public function getCityz(Request $request){
-        $province = $request->post('province');
-        $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/city/'.$province);
 
-        $city = $response['City/Municipality'];
-        $html='<option value="null" selected disabled> Select City/Municipality </option>';
-        foreach($city as $cities){
-            $html.='<option value="'.$cities['citymunDesc'].'">'.$cities['citymunDesc'].'</option>';
-        }
-        echo $html;
 }
-
-public function getBrgyz(Request $request){
-        $city = $request->post('city');
-        $province = $request->post('province');
-        $response = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/location/brgy/'.$city.'/'.$province);
-
-        $brgy = $response['barangay'];
-
-        $html='<option selected disabled> Select Brgy </option>';
-        foreach($brgy as $brgys){
-            $html.='<option value="'.$brgys['brgyDesc'].'">'.$brgys['brgyDesc'].'</option>';
-        }
-        echo $html;
-}
-
 
 public function purchase()
 
 {
 
+    if (session()->has('id')) {
         return view('users/purchase');
+    } else {
+        return redirect('login');
+    }
 
 
 }

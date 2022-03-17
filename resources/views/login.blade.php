@@ -67,10 +67,10 @@
                     </div>
                 @endif
                 <div class="form-inner">
-                    <form action="{{ route('login') }}" Method="get" class="login">
+                    <form action="{{ route('login2') }}" Method="get" class="login">
                         @csrf
                         <div class="field">
-                            <input name="id" id="id" type="text" placeholder="User ID" required>
+                            <input name="email" id="email" type="email" placeholder="Email" required>
                         </div>
                         <div class="field">
                             <input name="password" id="password" type="password" placeholder="Password" required>

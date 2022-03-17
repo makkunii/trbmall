@@ -51,7 +51,7 @@
                             <ul>
                                 <li><a   href="{{ route('users.user')}}"><i class="fas fa-address-card"></i> My Account</a></li>
                                 <li><a  href="{{ route('users.purchase')}}"><i class="fas fa-shopping-basket"></i> My Purchase</a></li>
-
+                                <li><a  href="https://dev.trbmall.trbexpressinc.net/logout" session_destroy();><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                             </ul>
                         </div>
 

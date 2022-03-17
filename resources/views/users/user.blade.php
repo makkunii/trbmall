@@ -35,7 +35,7 @@
                                     <img src="{{ asset('public/images/testing.png')}}" alt="">
                                 </div>
                                 <div class="blog__details__author__text">
-                                    <h6>Michael Scofield</h6>
+                                    <h6>{{ session('first_name') }}</h6>
                                     <span>Profile</span>
                                 </div>
                             </div>
@@ -46,6 +46,7 @@
                             <ul>
                                 <li><a   href="{{ route('users.user')}}"><i class="fas fa-address-card"></i> My Account</a></li>
                                 <li><a  href="{{ route('users.purchase')}}"><i class="fas fa-shopping-basket"></i> My Purchase</a></li>
+                                <li><a  href="https://dev.trbmall.trbexpressinc.net/logout" session_destroy();><i class="fas fa-sign-out-alt"></i> Logout</a></li>
 
                             </ul>
                         </div>
@@ -138,7 +139,7 @@
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="activity">
-                                            {{-- here we call the provinces, city and barangay relavtivly --}}
+                                            
                                         <div class="post">
                                             <h4>Address</h4><br>
                                             <div class="checkout__input">
@@ -149,9 +150,7 @@
                                                 Province<span>*</span>
                                                 <select class="form-control province text-muted" name="province" id="province">
                                                    <option selected disabled>Select province</option>
-                                                   <?php foreach ($province as $prov) { ?>
-                                                   <option value="<?php echo $prov['provDesc'];?>"><?php echo $prov['provDesc'];?></option>
-                                                   <?php } ?>
+                                                  
                                                 </select>
                                              </div>
                                              <div class="form-group">

@@ -33,11 +33,6 @@
             <div class="card">
               <div class="card-header text-right bg-light">
                 <h3 class="card-title text-red font-weight-bold">Accounts table</h3>
-
-                {{-- Opens add account modal --}}
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default">
-                  Add account
-                </button>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -50,7 +45,6 @@
                     <th>Email</th>
                     <th>Address</th>
                     <th>Contact</th>
-                    <th>Action</th>
                   </tr>
                   </thead>
 
@@ -63,10 +57,6 @@
                     <td>{{ $accountdatas['email'] }}</td>
                     <td>{{ $accountdatas['address'] }}</td>
                     <td>{{ $accountdatas['contact'] }}</td>
-                    <td>
-                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default2"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-archive text-light"></i></button>
-                    </td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -90,133 +80,3 @@
   </div>
 <!-- ./wrapper -->
 
-<!-- Add account modal -->
-<div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Add account</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <form>
-              @csrf
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter name" required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter username" required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password" required>
-                  </div>
-
-                  <div class="form-group">
-                        <label>Role</label>
-                        <select class="form-control">
-                          <option selected disabled>Select role</option>
-                          <option>Employee</option>
-                        </select>
-                      </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                  </div>
-            </form>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger">Add account</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-
-
- <!-- Edit account modal -->
-<div class="modal fade" id="modal-default2">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Edit account</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            <form>
-              @csrf
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter name" required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter username" required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password" required>
-                  </div>
-
-                  <div class="form-group">
-                        <label>Role</label>
-                        <select class="form-control">
-                          <option selected disabled>Select role</option>
-                          <option>Employee</option>
-                        </select>
-                      </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                  </div>
-            </form>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger">Save changes</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->

@@ -3,6 +3,7 @@
     use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Web\LoginController;
+use App\Http\Controllers\Web\LogoutController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\AccountsController;
 use App\Http\Controllers\Web\CategoryController;
@@ -30,7 +31,11 @@ use App\Http\Controllers\UserController;
 */
 
  //LOGIN
+Route::get('/login/confirm', [LoginController::class, 'login2'])->name('login2');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+
+//LOGOUT
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 /*-------------------------------------
 DASHBOARD

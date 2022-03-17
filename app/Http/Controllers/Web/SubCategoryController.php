@@ -11,9 +11,15 @@ class SubCategoryController extends Controller
 {
 
     //show sub category
-    public function subcategory()
+    public function subcategory(Request $request)
     {
-        $vcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/view/vcategory'); //call api for category
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
+        $token = $request->cookie('token');
+        
+        $vcategory = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/view/vcategory'); //call api for category
 
         if ($vcategory->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
@@ -42,13 +48,18 @@ class SubCategoryController extends Controller
         {
             return view('dashboard/dashboard'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
-
+    }
     }
 
     //show category on select
-    public function vcategory()
+    public function vcategory(Request $request)
     {
-        $vcategory = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/view/vcategory'); //call api
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+            $token = $request->cookie('token');
+            
+        $vcategory = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/view/vcategory'); //call api
 
         if ($vcategory->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
         {
@@ -64,16 +75,21 @@ class SubCategoryController extends Controller
             return view('dashboard/dashboard'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
         }
     }
+    }
 
     public function insertsubcategory(Request $request) {
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
 
         $this->validate($request,[
             'name' => 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
             'category_id' => 'required',
             'is_active' => 'required'
         ]);
-
-        $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/insert',[ //call api
+        $token = $request->cookie('token');
+        $insert = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/insert',[ //call api
             'name' => $request->name, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
             'category_id' => $request->category_id,
             'is_active' => $request->is_active
@@ -87,9 +103,14 @@ class SubCategoryController extends Controller
             return redirect()->back()->with('insertfailed', 'SubCategory failed to save'); //error handling and redirect to the page and alert will pop up
         }
     }
+    }
 
     public function updatesubcategory(Request $request)
     {
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
 
         $this->validate($request,[
 
@@ -101,8 +122,9 @@ class SubCategoryController extends Controller
        ]);
 
        $id = $request->input('id');
-
-       $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/update',[ //call api
+       $token = $request->cookie('token');
+       
+       $update = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/subcategory/update',[ //call api
 
         'id' => $request->id, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
         'name' => $request->name,
@@ -119,6 +141,7 @@ class SubCategoryController extends Controller
         {
             return redirect()->back()->with('updatefailed', 'SubCategory failed to update'); //error handling and redirect to the page and alert will pop up
         }
+    }
 
     }
 

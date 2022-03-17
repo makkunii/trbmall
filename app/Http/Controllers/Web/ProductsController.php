@@ -13,8 +13,11 @@ class ProductsController extends Controller
 
      public function products(Request $request)
      {
- 
-         $vproduct = Http::accept('application/json')->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/products'); //call api
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+        $token = $request->cookie('token');
+         $vproduct = Http::accept('application/json')->withToken($token)->get('https://dev.trbmall.trbexpressinc.net/api/dashboard/products'); //call api
  
          if ($vproduct->successful()) // CONDITION IF API ABOVE RETURNED SOME DATA
          {
@@ -31,10 +34,15 @@ class ProductsController extends Controller
              return view('dashboard/dashboard'); // ERROR HANDLING RETURN THIS PAGE IF QUERY DIDNT RETURN DATA
  
          }
+        }
  
      }
  
      public function insertproduct(Request $request) {
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+        
  
              $this->validate($request,[
                  'name' => 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
@@ -46,8 +54,8 @@ class ProductsController extends Controller
                  'height' => 'nullable',
                  'status' => 'required'
              ]);
- 
-             $insert = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/insert',[ //call api
+             $token = $request->cookie('token');
+             $insert = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/insert',[ //call api
                  'name' => $request->name, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
                  'description' => $request->description,
                  'price' => $request->price,
@@ -65,11 +73,15 @@ class ProductsController extends Controller
              } else {
                  return redirect()->back()->with('insertfailed', 'Product failed to save'); //error handling and redirect to the page and alert will pop up
              }
+            }
      }
  
      public function updateproduct(Request $request)
      {
- 
+        if(!session()->has('id')) {
+            return view('login');
+        } else {
+
          $this->validate($request,[
  
              'id' => 'required', // USE REQUIRED IF FIELD IS REQUIRED ON FORM AND DB
@@ -85,8 +97,8 @@ class ProductsController extends Controller
         ]);
  
         $id = $request->input('id');
- 
-        $update = Http::accept('application/json')->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/update',[ //call api
+        $token = $request->cookie('token');
+        $update = Http::accept('application/json')->withToken($token)->post('https://dev.trbmall.trbexpressinc.net/api/dashboard/products/update',[ //call api
  
          'id' => $request->id, // $request->(); is USED TO CALL INPUTFIELD/SESSION/COOKIES/ETC
          'name' => $request->name,
@@ -110,4 +122,5 @@ class ProductsController extends Controller
          }
  
      }
+    }
 }
