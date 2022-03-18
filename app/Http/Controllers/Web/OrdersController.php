@@ -10,7 +10,7 @@ class OrdersController extends Controller
 {
     public function orders(Request $request)
     {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
         $token = $request->cookie('token');
@@ -34,7 +34,7 @@ class OrdersController extends Controller
     }
 
     public function show_ordered_products(Request $request){
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 
@@ -120,7 +120,7 @@ class OrdersController extends Controller
 
                   public function updatestatus(Request $request)
                   {
-                    if(!session()->has('id')) {
+                    if(!session()->has('id') || session('role_id') == 0) {
                         return view('login');
                     } else {
             
@@ -154,7 +154,7 @@ class OrdersController extends Controller
                   }
     
     public function orders_transaction(Request $request) {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
             $token = $request->cookie('token');

@@ -13,7 +13,7 @@ class ProductsController extends Controller
 
      public function products(Request $request)
      {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
         $token = $request->cookie('token');
@@ -39,7 +39,7 @@ class ProductsController extends Controller
      }
  
      public function insertproduct(Request $request) {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
         
@@ -78,7 +78,7 @@ class ProductsController extends Controller
  
      public function updateproduct(Request $request)
      {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 

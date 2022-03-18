@@ -12,7 +12,7 @@ class CategoryController extends Controller
     //CATEGORY
     public function category(Request $request)
     {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
             $token = $request->cookie('token');
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     }
 
     public function insertcategory(Request $request) {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 
@@ -66,7 +66,7 @@ class CategoryController extends Controller
 
     public function updatecategory(Request $request)
     {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 

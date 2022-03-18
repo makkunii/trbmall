@@ -11,7 +11,8 @@ class PromoController extends Controller
 {
      //PROMO
      public function promo(Request $request)
-     {if(!session()->has('id')) {
+     {
+         if(!session()->has('id') || session('role_id') == 0) {
         return view('login');
     } else {
         $token = $request->cookie('token');
@@ -35,7 +36,7 @@ class PromoController extends Controller
      }
 
      public function insertpromo(Request $request) {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 
@@ -71,7 +72,7 @@ class PromoController extends Controller
 
     public function updatepromo(Request $request)
     {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 

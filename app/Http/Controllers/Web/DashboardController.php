@@ -9,12 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 class DashboardController extends Controller
 {
     public function dashboard(Request $request) {
-        if (session()->has('id')) {
+        if (session()->has('id') && session('role_id') == 1) {
             return view('dashboard/dashboard');
-        }
-
-        else if (session()->has('role_id' == 0)){
-            return redirect('login');
         }
         
          else {

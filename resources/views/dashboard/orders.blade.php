@@ -60,7 +60,6 @@
                     <th>Address</th>
                     <th>Phone</th>
                     <th>Email</th>
-                    <th>Subtotal</th>
                     <th>Promo</th>
                     <th>Total</th>
                     <th>Status</th>
@@ -103,7 +102,6 @@
                    <td>{{$vorderz['brgy'] }}, {{$vorderz['city'] }}, {{$vorderz['province'] }}</td>
                    <td>{{$vorderz['phone'] }}</td>
                    <td>{{$vorderz['email'] }}</td>
-                   <td>{{$vorderz['subtotal'] }}</td>
                     <td>{{$vorderz['promo'] }}</td>
                     <td>{{$vorderz['total'] }}</td>
                     <td>
@@ -113,7 +111,7 @@
                       @elseif ($vorderz['status'] == "COP")
                       <button type="button" class="btn btn-primary btn-sm btn-block text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                       @elseif ($vorderz['status'] == "COD")
-                      <button type="button" class="btn btn-primary btn-sm btn-block text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
+                      <button type="button" class="btn btn-info btn-sm btn-block text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                       @elseif ($vorderz['status'] == "Cancelled")
                       <button type="button" class="btn btn-danger btn-sm btn-block text-bold" data-toggle="modal" data-target="#orderstatus">{{$vorderz['status'] }}</button>
                      @endif

@@ -13,7 +13,7 @@ class SubCategoryController extends Controller
     //show sub category
     public function subcategory(Request $request)
     {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 
@@ -54,7 +54,7 @@ class SubCategoryController extends Controller
     //show category on select
     public function vcategory(Request $request)
     {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
             $token = $request->cookie('token');
@@ -78,7 +78,7 @@ class SubCategoryController extends Controller
     }
 
     public function insertsubcategory(Request $request) {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 
@@ -107,7 +107,7 @@ class SubCategoryController extends Controller
 
     public function updatesubcategory(Request $request)
     {
-        if(!session()->has('id')) {
+        if(!session()->has('id') || session('role_id') == 0) {
             return view('login');
         } else {
 
